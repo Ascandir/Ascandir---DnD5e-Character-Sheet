@@ -131,6 +131,10 @@
       "Spells": "Search spells…",
       "Inventory": "Search inventory…",
       "Effects": "Search effects…"
-    }
+    },
+    "RollSave": "Saving throw",
+    "Attr": "Abil.",
+    "NoTools": "No tool proficiencies.",
+    "Traits": "Senses, Resistances & Proficiencies"
   }
 }

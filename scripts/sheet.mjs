@@ -51,8 +51,8 @@ const SKILL_ICONS = {
   sur: "fa-solid fa-compass"
 };
 
-/** Design-Raster des Bogens. Alles wird proportional auf die Fenstergröße skaliert. */
-const DESIGN = { width: 1270, height: 1240, minZoom: 0.45, maxZoom: 1.6 };
+/** Bevorzugte Startgröße des Fensters. Der Inhalt passt sich jeder Fenstergröße an (kein Skalieren). */
+const DESIGN = { width: 1270, height: 1240 };
 
 /** Reihenfolge und Beschriftung der Aktionsgruppen im Kampf-Tab. */
 const ACTION_GROUPS = ["action", "bonus", "reaction", "other"];
@@ -157,6 +157,12 @@ export function createSheetClass() {
       for ( const [id, part] of Object.entries(parentParts) ) {
         if ( REPLACED_PARTS.has(id) || (id === "warnings") ) continue;
         parts[id] = part;
+        // Eigener Attribute-Tab im Bogen-Design (Teil-ID bleibt "details", damit Hooks anderer Module passen)
+        if ( id === "details" ) parts.details = {
+          container: tabBody,
+          template: `${TEMPLATE_PATH}/tabs/details.hbs`,
+          scrollable: [""]
+        };
         if ( id === "features" ) parts.combat = {
           container: tabBody,
           template: `${TEMPLATE_PATH}/tabs/combat.hbs`,
@@ -309,6 +315,7 @@ export function createSheetClass() {
         case "header": return this._ascPrepareHeader(context, options);
         case "sidebar": return this._ascPrepareSidebar(context, options);
         case "overview": return this._ascPrepareOverview(context, options);
+        case "details": return this._ascPrepareAbilityData(context);
         case "combat": return this._ascPrepareCombat(context, options);
         default: return context;
       }
@@ -451,34 +458,7 @@ export function createSheetClass() {
       context = await this._prepareDetailsContext(context, options);
       const { system } = this.actor;
 
-      // Attribute
-      context.ascAbilities = this._prepareAbilities(context).map(a => ({
-        ...a,
-        icon: ABILITY_ICONS[a.key] ?? "fa-solid fa-circle"
-      }));
-
-      // Passive Werte
-      context.ascPassives = ["prc", "inv", "ins"].filter(k => system.skills?.[k]).map(k => ({
-        key: k,
-        label: CONFIG.DND5E.skills[k]?.label,
-        value: system.skills[k].passive
-      }));
-
-      // Fertigkeiten mit Übungsstatus
-      context.ascSkills = context.skills.map(s => {
-        const multiplier = system.skills[s.key]?.prof?.multiplier ?? 0;
-        return {
-          ...s,
-          profClass: Base.PROFICIENCY_CLASSES[multiplier] ?? "none",
-          icon: SKILL_ICONS[s.key] ?? "fa-solid fa-circle-dot",
-          abilityMod: system.abilities[s.ability]?.mod ?? 0,
-          favorite: !!system.hasFavorite?.(s.key),
-          total: s.total
-        };
-      });
-      context.ascSaves = Object.values(context.saves).filter(s => !s.isConcentration).map(s => ({
-        ...s, icon: ABILITY_ICONS[s.key] ?? "fa-solid fa-circle"
-      }));
+      this._ascPrepareAbilityData(context);
 
       // Kampf
       context.ascCombat = this._ascCombatStats();
@@ -606,6 +586,56 @@ export function createSheetClass() {
     /* -------------------------------------------- */
 
     /**
+     * Attribute, passive Werte, Fertigkeiten, Werkzeuge und Rettungswürfe für Übersicht und Attribute-Tab.
+     * Erwartet einen Kontext, der bereits _prepareDetailsContext durchlaufen hat.
+     * @protected
+     */
+    _ascPrepareAbilityData(context) {
+      const { system } = this.actor;
+      const saves = context.saves ?? {};
+      // Attribute
+      context.ascAbilities = this._prepareAbilities(context).map(a => ({
+        ...a,
+        icon: ABILITY_ICONS[a.key] ?? "fa-solid fa-circle"
+      }));
+
+      // Passive Werte
+      context.ascPassives = ["prc", "inv", "ins"].filter(k => system.skills?.[k]).map(k => ({
+        key: k,
+        label: CONFIG.DND5E.skills[k]?.label,
+        value: system.skills[k].passive
+      }));
+
+      // Fertigkeiten mit Übungsstatus
+      context.ascSkills = context.skills.map(s => {
+        const multiplier = system.skills[s.key]?.prof?.multiplier ?? 0;
+        return {
+          ...s,
+          profClass: Base.PROFICIENCY_CLASSES[multiplier] ?? "none",
+          icon: SKILL_ICONS[s.key] ?? "fa-solid fa-circle-dot",
+          abilityMod: system.abilities[s.ability]?.mod ?? 0,
+          favorite: !!system.hasFavorite?.(s.key),
+          total: s.total
+        };
+      });
+      context.ascSaves = Object.values(saves).filter(s => !s.isConcentration).map(s => ({
+        ...s, icon: ABILITY_ICONS[s.key] ?? "fa-solid fa-circle"
+      }));
+
+      context.ascTools = (context.tools ?? []).map(t => {
+        const multiplier = system.tools?.[t.key]?.prof?.multiplier ?? t.value ?? 0;
+        return { ...t, profClass: Base.PROFICIENCY_CLASSES[multiplier] ?? "none", total: t.total };
+      });
+      context.ascCombat ??= this._ascCombatStats();
+      context.ascSaves = context.ascSaves.map(s => ({
+        ...s, checkMod: system.abilities[s.key]?.mod ?? 0
+      }));
+      return context;
+    }
+
+    /* -------------------------------------------- */
+
+    /**
      * Zauberwerte der Hauptklasse.
      * @returns {object|null}
      * @protected
@@ -682,7 +712,6 @@ export function createSheetClass() {
       await super._onRender(context, options);
       applyTheme(this.element, getActiveTheme(this.document));
       this._ascMoveWindowButtons();
-      this._ascUpdateZoom();
       this._ascBindSearch();
       this.element.classList.toggle("asc-can-edit", this.canEditSheet);
       this.element.classList.toggle("asc-no-edit", !this.canEditSheet);
@@ -707,24 +736,9 @@ export function createSheetClass() {
 
     /* -------------------------------------------- */
 
-    /**
-     * Den Inhalt proportional zur Fenstergröße skalieren, damit der Bogen immer wie der Entwurf aussieht.
-     * @protected
-     */
-    _ascUpdateZoom() {
-      const content = this.element?.querySelector(".window-content");
-      if ( !content || this.minimized ) return;
-      const width = content.clientWidth;
-      const height = content.clientHeight;
-      if ( !width || !height ) return;
-      const zoom = Math.clamp(Math.min(width / DESIGN.width, height / DESIGN.height), DESIGN.minZoom, DESIGN.maxZoom);
-      this.element.style.setProperty("--asc-zoom", zoom.toFixed(4));
-    }
-
     /** @inheritDoc */
     _onPosition(position) {
       super._onPosition(position);
-      this._ascUpdateZoom();
       this._ascSaveSize ??= foundry.utils.debounce(({ width, height }) => {
         if ( !Number.isFinite(width) || !Number.isFinite(height) ) return;
         game.user.setFlag(MODULE_ID, "sheetSize", { width, height });

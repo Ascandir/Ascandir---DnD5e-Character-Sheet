@@ -131,6 +131,10 @@
       "Spells": "Zauber suchen…",
       "Inventory": "Inventar suchen…",
       "Effects": "Effekte suchen…"
-    }
+    },
+    "RollSave": "Rettungswurf",
+    "Attr": "Attr.",
+    "NoTools": "Keine Werkzeug-Übungen.",
+    "Traits": "Sinne, Resistenzen & Übungen"
   }
 }

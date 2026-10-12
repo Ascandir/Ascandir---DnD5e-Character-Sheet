@@ -1,7 +1,8 @@
 /* ==========================================================================
    Ascandir – DnD5e Character Sheet
-   Grundlayout nach dem Design-Entwurf (Raster 1270 × 1240 px).
-   Der Inhalt wird per `zoom` (--asc-zoom) proportional an die Fenstergröße angepasst.
+   Grundlayout nach dem Design-Entwurf (gestaltet für ca. 1270 × 1240 px).
+   Der Inhalt ist responsiv: Panels wachsen/schrumpfen mit dem Fenster und ordnen sich
+   bei schmalen Fenstern um (Container Queries), statt skaliert zu werden.
    Farben, Rahmen und Texturen kommen aus Theme-Variablen (--asc-*), siehe THEMES.md.
    ========================================================================== */
 
@@ -236,7 +237,8 @@
   /*  Skalierte Bereiche                */
   /* ---------------------------------- */
 
-  .sheet-header.asc-header, .sheet-body { zoom: var(--asc-zoom, 1); }
+  .window-content { container-type: inline-size; container-name: asc-win; }
+  .tab-body { container-type: inline-size; container-name: asc-body; }
 
   /* ---------------------------------- */
   /*  Bausteine: Zierrahmen & Panels    */
@@ -602,7 +604,7 @@
     }
 
     /* Original-Tabs des Systems (Inventar, Zauber, Merkmale ...) auf Pergament */
-    > .tab:not(.asc-tab-overview, .asc-tab-combat) {
+    > .tab:not(.asc-tab-overview, .asc-tab-combat, .asc-tab-details) {
       --color-text-primary: var(--asc-text);
       background: var(--asc-system-tab-bg, var(--asc-panel-bg));
       border: 1px solid var(--asc-panel-border);
@@ -613,7 +615,7 @@
   }
 
   &.tab-details .tab-body { padding-top: 0; }
-  .create-child { right: 22px; bottom: 22px; zoom: var(--asc-zoom, 1); }
+  .create-child { right: 22px; bottom: 22px; }
 
   /* ---------------------------------- */
   /*  Seitenleiste                      */
@@ -1028,20 +1030,20 @@
   /*  Übersicht: Raster                 */
   /* ---------------------------------- */
 
-  .tab-body > .tab.asc-tab-overview, .tab-body > .tab.asc-tab-combat {
-    overflow: hidden;
-    padding: 5px;
+  .tab-body > .tab.asc-tab-overview, .tab-body > .tab.asc-tab-combat, .tab-body > .tab.asc-tab-details {
+    padding: 5px 5px 5px 0 !important;
+    overflow: hidden auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--asc-gold-dark) transparent;
   }
-  .tab-body > .tab.asc-tab-combat {
-    overflow-y: auto;
-    scrollbar-width: none;
-    &::-webkit-scrollbar { display: none; }
-  }
+
+  /* Panels mit eigener Liste geben ihre Höhe an das Raster ab (kein Aufblähen, Liste scrollt intern) */
+  .asc-combat, .asc-inventory, .asc-spells, .asc-bottom-row > .asc-panel { contain: size; min-height: 0; }
 
   .tab.asc-tab-overview.active {
     display: grid;
     grid-template-columns: 316fr 284fr 56fr 322fr;
-    grid-template-rows: 156px minmax(0, 316fr) minmax(0, 146fr) minmax(0, 236fr) 146px;
+    grid-template-rows: auto minmax(270px, 1.3fr) minmax(150px, auto) minmax(220px, 1.2fr) minmax(150px, .7fr);
     grid-template-areas:
       "abil abil abil side"
       "skills saves combat combat"
@@ -1049,13 +1051,11 @@
       "spells spells spells inv"
       "bottom bottom bottom bottom";
     gap: var(--asc-gap);
-    padding: 0 !important;
     height: 100%;
-    overflow: hidden;
   }
 
   .tab.asc-tab-overview.active.asc-has-setup {
-    grid-template-rows: 124px 156px minmax(0, 316fr) minmax(0, 146fr) minmax(0, 236fr) 146px;
+    grid-template-rows: auto auto minmax(270px, 1.3fr) minmax(150px, auto) minmax(220px, 1.2fr) minmax(150px, .7fr);
     grid-template-areas:
       "setup setup setup setup"
       "abil abil abil side"
@@ -1063,6 +1063,53 @@
       "skills spellstats spellstats inv"
       "spells spells spells inv"
       "bottom bottom bottom bottom";
+  }
+
+  /* Mittlere Breite: zwei Spalten */
+  @container asc-body (max-width: 940px) {
+    .tab.asc-tab-overview.active {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: auto 250px minmax(270px, auto) auto minmax(280px, 1fr) minmax(360px, auto) auto;
+      grid-template-areas:
+        "abil abil"
+        "side combat"
+        "skills saves"
+        "skills spellstats"
+        "spells spells"
+        "inv inv"
+        "bottom bottom";
+    }
+    .tab.asc-tab-overview.active.asc-has-setup {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: auto auto 250px minmax(270px, auto) auto minmax(280px, 1fr) minmax(360px, auto) auto;
+      grid-template-areas:
+        "setup setup"
+        "abil abil"
+        "side combat"
+        "skills saves"
+        "skills spellstats"
+        "spells spells"
+        "inv inv"
+        "bottom bottom";
+    }
+    .asc-bottom-row { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 170px; }
+  }
+
+  /* Schmal: eine Spalte */
+  @container asc-body (max-width: 620px) {
+    .tab.asc-tab-overview.active, .tab.asc-tab-overview.active.asc-has-setup {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: none;
+      grid-auto-rows: auto;
+      grid-template-areas: "setup" "abil" "side" "skills" "saves" "combat" "spellstats" "spells" "inv" "bottom";
+    }
+    .tab.asc-tab-overview.active:not(.asc-has-setup) {
+      grid-template-areas: "abil" "side" "skills" "saves" "combat" "spellstats" "spells" "inv" "bottom";
+    }
+    .asc-combat { height: 300px; }
+    .asc-spells { height: 320px; }
+    .asc-inventory { height: 420px; }
+    .asc-abilities { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 
   /* Ersteinrichtung */
@@ -1315,7 +1362,7 @@
   /* Fertigkeiten füllen die Panel-Höhe genau aus – kein Scrollen nötig */
   .asc-skills .asc-panel-body { display: flex; flex-direction: column; overflow: hidden; }
   .asc-skills .asc-rows { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-  .asc-skills .asc-row { flex: 1 1 0; height: auto; min-height: 0; max-height: 32px; }
+  .asc-skills .asc-row { flex: 1 1 0; height: auto; min-height: 21px; max-height: 32px; }
   .asc-save { grid-template-columns: 22px minmax(0, 1fr) 34px 34px 34px; }
 
   .asc-name {
@@ -1849,6 +1896,343 @@
   }
   .asc-tab-combat .asc-conditions .asc-condition-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 6px 8px; }
   .asc-tab-combat .asc-condition { height: 22px; }
+
+
+  /* ---------------------------------- */
+  /*  Attribute-Tab                     */
+  /* ---------------------------------- */
+
+  .tab.asc-tab-details.active {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "abil abil abil"
+      "skills saves origin"
+      "skills tools traits";
+    gap: var(--asc-gap);
+    align-content: start;
+    align-items: start;
+    > .asc-skills { align-self: stretch; }
+  }
+
+  .asc-abilities--detail {
+    .asc-ability { padding-bottom: 10px; }
+    .asc-ability-label { cursor: default; }
+  }
+
+  .asc-ability-rolls {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .asc-roll-chip {
+    flex: 1 1 0;
+    max-width: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 24px;
+    padding: 0 4px;
+    font-family: var(--asc-font-body);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--asc-badge-text);
+    background: var(--asc-badge-bg);
+    border: 1px solid var(--asc-gold-dark);
+    border-radius: 5px;
+    text-decoration: none;
+    i { font-size: 10px; color: var(--asc-gold); margin: 0; }
+    &.asc-roll-chip--save i { color: var(--asc-gold-light); }
+    &.rollable:hover { border-color: var(--asc-gold); box-shadow: 0 0 6px var(--asc-gold-dark); text-shadow: none; }
+  }
+
+  .asc-skills--detail .asc-panel-body { padding: 0; }
+  .asc-skill-detail { grid-template-columns: 14px 18px minmax(0, 1fr) 40px 34px 40px 34px; }
+  .asc-skills--detail .asc-row { height: 29px; flex: 0 0 auto; }
+  .asc-col-heads.asc-cols-4 { margin-right: 9px; > span { width: 38px; } }
+  .asc-num--passive { font-weight: 500; color: var(--asc-text-muted); font-size: 14px; }
+  .asc-ability-select {
+    height: 20px;
+    padding: 0 2px;
+    font-size: 12px;
+    background: var(--asc-input-bg);
+    border: 1px solid var(--asc-input-border);
+    color: var(--asc-text);
+  }
+
+  .asc-tool { grid-template-columns: 16px 30px minmax(0, 1fr) 40px 16px; height: 27px; }
+  .asc-tools .asc-header-link, .asc-tools .asc-panel-header button { color: var(--asc-gold); background: none; border: none; }
+
+  .asc-origin-cards { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; }
+  .asc-origin-card {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border: 1px solid var(--asc-row-border);
+    border-radius: 5px;
+    background: var(--asc-row-alt);
+    cursor: var(--cursor-pointer, pointer);
+    &:hover { background: var(--asc-row-hover); }
+    .asc-origin-card-img { width: 44px; height: 44px; border: 1.5px solid var(--asc-gold-dark); border-radius: 5px; object-fit: cover; background: var(--asc-badge-bg); }
+    .asc-origin-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.15; }
+    .asc-origin-caption { font-family: var(--asc-font-heading); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .4px; color: var(--asc-text-muted); }
+    .asc-origin-name { font-family: var(--asc-font-body); font-weight: 700; font-size: 17px; color: var(--asc-text-heading); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; em { font-weight: 400; font-size: 14px; } }
+    .asc-origin-sub { font-size: 13px; color: var(--asc-text-muted); }
+    .asc-size-select { height: 22px; font-size: 13px; background: var(--asc-input-bg); border: 1px solid var(--asc-input-border); color: var(--asc-text); }
+  }
+
+  .asc-traits-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 12px;
+    .pills-group h3 {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 5px;
+      font-family: var(--asc-font-heading);
+      font-weight: 700;
+      font-size: 12.5px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      color: var(--asc-text-heading);
+      border: none;
+      span { font: inherit; }
+      i, dnd5e-icon { color: var(--asc-icon); --icon-fill: var(--asc-icon); font-size: 13px; --icon-size: 14px; }
+      .config-button { margin-left: auto; color: var(--asc-text-muted); }
+    }
+    .pill {
+      font-family: var(--asc-font-body);
+      font-size: 13.5px;
+      background: var(--asc-badge-bg);
+      color: var(--asc-badge-text);
+      border: 1px solid var(--asc-gold-dark);
+      padding: 3px 8px;
+      &.green { background: #24502c; border-color: #3f7a45; }
+      &.maroon { background: #5b1a1a; border-color: #8a2b2b; }
+    }
+  }
+
+  @container asc-body (max-width: 940px) {
+    .tab.asc-tab-details.active {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: none;
+      grid-template-areas:
+        "abil abil"
+        "skills saves"
+        "skills tools"
+        "origin traits";
+    }
+  }
+  @container asc-body (max-width: 620px) {
+    .tab.asc-tab-details.active {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "abil" "skills" "saves" "tools" "origin" "traits";
+    }
+  }
+
+  /* ---------------------------------- */
+  /*  Kampf-Tab: schmale Fenster        */
+  /* ---------------------------------- */
+
+  @container asc-body (max-width: 820px) {
+    .asc-combat-columns { grid-template-columns: minmax(0, 1fr); }
+    .asc-combat-strip .asc-combat-stats { grid-template-columns: repeat(3, 1fr); row-gap: 12px; }
+  }
+
+  /* ---------------------------------- */
+  /*  Kopfzeile: schmale Fenster        */
+  /* ---------------------------------- */
+
+  @container asc-win (max-width: 1180px) {
+    nav.tabs.asc-tabs .asc-tab .asc-tab-label { font-size: 11px; letter-spacing: 0; }
+    nav.tabs.asc-tabs .asc-tab .asc-tab-icon { font-size: 22px; }
+  }
+  @container asc-win (max-width: 940px) {
+    nav.tabs.asc-tabs { height: 60px; }
+    nav.tabs.asc-tabs .asc-tab .asc-tab-label { display: none; }
+    .asc-nameplate { height: 82px; .asc-name { font-size: 26px; } .asc-subtitle { font-size: 11px; } }
+  }
+  @container asc-win (max-width: 760px) {
+    .sheet-header.asc-header, .sheet-body { --asc-sidebar-width: 190px; }
+  }
+
+  /* ---------------------------------- */
+  /*  System-Tabs im Bogen-Look         */
+  /*  (Merkmale, Zauber, Inventar,      */
+  /*  Effekte, Biografie, Spezial ...)  */
+  /* ---------------------------------- */
+
+  .tab-body > .tab:not(.asc-tab-overview, .asc-tab-combat, .asc-tab-details) {
+    --dnd5e-background-card: transparent;
+    --dnd5e-inventory-border: 1px solid var(--asc-panel-border);
+    --dnd5e-border-dotted: 1px solid var(--asc-row-border);
+    --item-summary-background: var(--asc-row-alt);
+    --color-text-primary: var(--asc-text);
+    --color-text-secondary: var(--asc-text-muted);
+    --color-text-tertiary: var(--asc-text-muted);
+    --filter-control-color: #b7a789;
+    --filter-control-active-color: var(--asc-gold-light);
+    --pill-background-color: var(--asc-badge-bg);
+    color: var(--asc-text);
+    font-family: var(--asc-font-body);
+
+    /* Abschnitte (Listen mit Kopfzeile) */
+    .items-section.card, .card {
+      background: transparent;
+      border: 1px solid var(--asc-panel-border);
+      border-radius: var(--asc-radius);
+      box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+      overflow: hidden;
+    }
+    .items-header.header, .card > .header {
+      min-height: 32px;
+      background:
+        linear-gradient(rgb(0 0 0 / 35%), rgb(0 0 0 / 55%)),
+        var(--asc-dark-bg);
+      color: var(--asc-panel-header-text);
+      border-bottom: 1px solid var(--asc-gold-dark);
+      border-radius: 0;
+      h3, .item-name {
+        font-family: var(--asc-font-heading);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        color: var(--asc-panel-header-text);
+      }
+      .item-header {
+        font-family: var(--asc-font-heading);
+        font-weight: 700;
+        font-size: 10.5px;
+        color: var(--asc-panel-header-text);
+        opacity: .85;
+      }
+    }
+    .item-list .item {
+      border-bottom: 1px solid var(--asc-row-border);
+      background: transparent;
+      &:nth-child(even) { background: var(--asc-row-alt); }
+      &:hover { background: var(--asc-row-hover); }
+    }
+    .item-name .title { font-family: var(--asc-font-body); font-weight: 600; font-size: 15.5px; color: var(--asc-text-heading); }
+    .item-name .subtitle { font-family: var(--asc-font-body); font-size: 12.5px; color: var(--asc-text-muted); }
+    .item-detail { font-family: var(--asc-font-body); font-size: 14px; color: var(--asc-text); }
+    .gold-icon, .item-image {
+      border: 1.5px solid var(--asc-gold-dark);
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 40%);
+    }
+    .item-control, .item-action.item-control { color: var(--asc-text-muted); &:hover { color: var(--asc-accent); } }
+
+    /* Suche / Filter */
+    item-list-controls search {
+      height: 36px;
+      background: var(--asc-search-bg);
+      border: 1px solid var(--asc-gold-dark);
+      border-radius: 6px;
+      box-shadow: inset 0 1px 4px rgb(0 0 0 / 70%), 0 1px 0 rgb(255 255 255 / 4%);
+      &::before { color: #b7a789; }
+      > input[type="text"] {
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 34px;
+        font-family: var(--asc-font-body);
+        font-size: 15px;
+        color: var(--asc-text-on-dark);
+        &::placeholder { color: #8f8169; font-style: italic; }
+        &:hover, &:focus-visible { box-shadow: none; }
+      }
+    }
+
+    /* Große Karten (Klassen, Spezies, Hintergrund, Zauberwirken) */
+    .pill-lg {
+      background:
+        linear-gradient(rgb(0 0 0 / 25%), rgb(0 0 0 / 45%)),
+        var(--asc-dark-bg);
+      border: 1px solid var(--asc-gold-dark);
+      box-shadow: var(--asc-panel-shadow);
+      color: var(--asc-text-on-dark);
+      .title, .name { color: var(--asc-text-on-dark); font-family: var(--asc-font-body); font-weight: 700; font-size: 16px; }
+      .subtitle { color: var(--asc-gold-light); opacity: .8; }
+      .level, .level span { font-family: var(--asc-font-heading); font-weight: 700; font-size: 20px; color: var(--asc-gold-light); }
+      > .underlay { opacity: .25; mix-blend-mode: luminosity; }
+      &.empty {
+        background: transparent;
+        border: 1px dashed var(--asc-gold-dark);
+        color: var(--asc-text-heading);
+        font-family: var(--asc-font-heading);
+        font-weight: 700;
+        font-size: 13px;
+        opacity: .7;
+      }
+    }
+
+    /* Spellcasting-Karten im Zauber-Tab */
+    .spellcasting.card, .spellcasting-card, .tab[data-tab="spells"] .top .card {
+      background:
+        linear-gradient(rgb(0 0 0 / 25%), rgb(0 0 0 / 45%)),
+        var(--asc-dark-bg);
+      color: var(--asc-text-on-dark);
+      .header { background: transparent; }
+      .value, .ability, .label { color: var(--asc-text-on-dark); }
+    }
+
+    /* Kleine Pillen (Sinne, Resistenzen, Eigenschaften) */
+    .pill {
+      background: var(--asc-badge-bg);
+      color: var(--asc-badge-text);
+      border: 1px solid var(--asc-gold-dark);
+      font-family: var(--asc-font-body);
+      font-size: 13px;
+      padding: 3px 7px;
+    }
+
+    /* Filigran-Kästen (Spezial-Tab, Bastion) */
+    filigree-box {
+      --filigree-background-color: transparent;
+      --filigree-border-color: var(--asc-gold-dark);
+      h3 { font-family: var(--asc-font-heading); color: var(--asc-text-heading); }
+    }
+
+    /* Überschriften */
+    h3, h4, legend { font-family: var(--asc-font-heading); color: var(--asc-text-heading); }
+
+    /* Zustände im Effekte-Tab */
+    .effects-element .conditions-list .condition {
+      background: var(--asc-row-alt);
+      border: 1px solid var(--asc-row-border);
+      color: var(--asc-text);
+      font-family: var(--asc-font-body);
+      &:not(.disabled) { background: var(--asc-accent); color: var(--asc-accent-contrast); border-color: var(--asc-accent); }
+    }
+
+    /* Biografie */
+    .characteristics input, input[type="text"]:not(.uninput, search input), select, textarea {
+      background: var(--asc-input-bg);
+      border: 1px solid var(--asc-input-border);
+      color: var(--asc-text);
+    }
+    .editor, prose-mirror { color: var(--asc-text); font-family: var(--asc-font-body); font-size: 15px; }
+
+    /* Währung & Traglast im Inventar */
+    .currency {
+      label { background: var(--asc-row-alt); border: 1px solid var(--asc-row-border); border-radius: 4px; padding: 0 6px; }
+      input { color: var(--asc-text-heading); font-family: var(--asc-font-body); font-weight: 700; font-size: 15px; }
+    }
+    .meter.encumbrance, .encumbrance .meter {
+      background: var(--asc-meter-bg);
+      border: 1px solid var(--asc-gold-dark);
+    }
+  }
 
   /* ---------------------------------- */
   /*  Bearbeitungsmodus                 */

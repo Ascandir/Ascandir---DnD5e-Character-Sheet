@@ -1,0 +1,223 @@
+<section class="tab asc-tab-details {{ tab.cssClass }}" data-tab="{{ tab.id }}" data-group="{{ tab.group }}">
+
+    {{!-- Attribute mit Attributs- und Rettungswurf --}}
+    <div class="asc-abilities asc-abilities--detail asc-framed asc-dark-box" style="grid-area: abil">
+        {{#each ascAbilities}}
+        <div class="asc-ability" data-ability="{{ key }}">
+            <i class="asc-ability-icon {{ icon }}" inert></i>
+            <span class="asc-ability-label">{{ label }}</span>
+            <div class="asc-ability-score">
+                {{#if @root.editable}}
+                <input type="text" name="system.abilities.{{ key }}.value" value="{{ source.value }}" placeholder="10" data-dtype="Number">
+                {{else}}
+                <span>{{ value }}</span>
+                {{/if}}
+            </div>
+            <div class="asc-ability-rolls">
+                <a class="asc-roll-chip {{ @root.rollableClass }} ability-check" data-action="roll" data-type="ability"
+                   data-tooltip="{{ localize 'ASCSHEET.RollCheck' }}">
+                    <i class="fa-solid fa-dice-d20" inert></i>{{ dnd5e-formatModifier mod }}
+                </a>
+                <a class="asc-roll-chip asc-roll-chip--save {{ @root.rollableClass }} saving-throw" data-action="roll" data-type="ability"
+                   data-tooltip="{{ localize 'ASCSHEET.RollSave' }}">
+                    <i class="fa-solid fa-shield-heart" inert></i>{{ dnd5e-formatModifier save.value }}
+                </a>
+            </div>
+            {{#if @root.editable}}
+            <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="ability"
+                    data-tooltip="{{ localize 'DND5E.AbilityConfigure' ability=label }}"><i class="fas fa-cog" inert></i></button>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+
+    {{!-- Fertigkeiten --}}
+    <div class="asc-panel asc-framed asc-skills asc-skills--detail" style="grid-area: skills">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-sun" inert></i><span>{{ localize "DND5E.Skills" }}</span>
+            <span class="asc-col-heads asc-cols-4"><span>{{ localize "ASCSHEET.Attr" }}</span><span>{{ localize "ASCSHEET.Prof" }}</span><span>{{ localize "ASCSHEET.Total" }}</span><span>{{ localize "ASCSHEET.Passive" }}</span></span>
+        </div>
+        <div class="asc-panel-body">
+            <ul class="unlist asc-rows">
+                {{#each ascSkills}}
+                <li class="asc-row asc-skill-detail" data-key="{{ key }}" {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}>
+                    <button type="button" class="unbutton asc-fav-dot {{#if favorite}}active{{/if}}" data-action="ascToggleSkillFavorite"
+                            data-tooltip="{{ localize 'ASCSHEET.FavoriteToggle' }}"></button>
+                    <i class="asc-row-icon {{ icon }}" inert></i>
+                    <a class="asc-name draggable {{ @root.rollableClass }} skill-name" data-action="roll" data-type="skill">{{ label }}</a>
+                    {{#if @root.editable}}
+                    <select name="system.skills.{{ key }}.ability" class="asc-ability-select">
+                        {{ selectOptions @root.CONFIG.abilities selected=baseAbility labelAttr="abbreviation" }}
+                    </select>
+                    <proficiency-cycle type="skill" name="system.skills.{{ key }}.value" value="{{ source.value }}" data-tooltip="{{ hover }}"></proficiency-cycle>
+                    {{else}}
+                    <span class="asc-abbr">{{ abbreviation }}</span>
+                    <span class="asc-check asc-check--{{ profClass }}" data-tooltip="{{ hover }}"></span>
+                    {{/if}}
+                    <span class="asc-num asc-num--total">{{ dnd5e-formatModifier total }}</span>
+                    {{#if @root.editable}}
+                    <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="skill"
+                            data-tooltip="DND5E.SkillConfigure"><i class="fas fa-cog" inert></i></button>
+                    {{else}}
+                    <span class="asc-num asc-num--passive">{{ passive }}</span>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    {{!-- Rettungswürfe --}}
+    <div class="asc-panel asc-framed asc-saves" style="grid-area: saves">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-dharmachakra" inert></i><span>{{ localize "DND5E.ClassSaves" }}</span>
+            <span class="asc-col-heads asc-cols-3"><span>{{ localize "ASCSHEET.Prof" }}</span><span>{{ localize "ASCSHEET.Mod" }}</span><span>{{ localize "ASCSHEET.Total" }}</span></span>
+        </div>
+        <div class="asc-panel-body">
+            <ul class="unlist asc-rows asc-rows--banded">
+                {{#each ascSaves}}
+                <li class="asc-row asc-save" data-ability="{{ key }}">
+                    <i class="asc-row-icon {{ icon }}" inert></i>
+                    <a class="asc-name {{ @root.rollableClass }} saving-throw" data-action="roll" data-type="ability">{{ label }}</a>
+                    {{#if @root.editable}}
+                    <proficiency-cycle type="ability" name="system.abilities.{{ key }}.proficient" value="{{ source.proficient }}"
+                                       data-tooltip aria-label="{{ hover }}"></proficiency-cycle>
+                    {{else}}
+                    <span class="asc-check asc-check--{{ class }}" data-tooltip="{{ hover }}"></span>
+                    {{/if}}
+                    <span class="asc-num">{{ dnd5e-formatModifier mod }}</span>
+                    <span class="asc-num asc-num--total">{{ dnd5e-formatModifier save.value }}</span>
+                </li>
+                {{/each}}
+                <li class="asc-row asc-save" data-ability="concentration">
+                    <i class="asc-row-icon fa-solid fa-brain" inert></i>
+                    <a class="asc-name {{ @root.rollableClass }} saving-throw" data-action="roll" data-type="ability">{{ localize "DND5E.Concentration" }}</a>
+                    {{#if @root.editable}}
+                    <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="ability"
+                            data-tooltip="DND5E.ConcentrationConfigure"><i class="fas fa-cog" inert></i></button>
+                    {{else}}<span></span>{{/if}}
+                    <span></span>
+                    <span class="asc-num asc-num--total">{{ dnd5e-formatModifier ascCombat.concentration }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {{!-- Werkzeuge --}}
+    <div class="asc-panel asc-framed asc-tools" style="grid-area: tools">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-hammer" inert></i><span>{{ localize "TYPES.Item.toolPl" }}</span>
+            {{#if editable}}
+            <button type="button" class="unbutton asc-header-link" data-action="showConfiguration" data-trait="tool"
+                    data-tooltip="{{ localize 'DND5E.TRAIT.Action.Configure' trait=(localize 'DND5E.TRAIT.Tool.title') }}">
+                <i class="fas fa-cog" inert></i>
+            </button>
+            {{/if}}
+        </div>
+        <div class="asc-panel-body">
+            <ul class="unlist asc-rows">
+                {{#each ascTools}}
+                <li class="asc-row asc-tool" data-key="{{ key }}" {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}>
+                    {{#if @root.editable}}
+                    <proficiency-cycle type="tool" name="system.tools.{{ key }}.value" value="{{ source.value }}" data-tooltip="{{ hover }}"></proficiency-cycle>
+                    {{else}}
+                    <span class="asc-check asc-check--{{ profClass }}" data-tooltip="{{ hover }}"></span>
+                    {{/if}}
+                    <span class="asc-abbr">{{ abbreviation }}</span>
+                    <a class="asc-name draggable {{ @root.rollableClass }} tool-name" data-action="roll" data-type="tool">{{ label }}</a>
+                    <span class="asc-num asc-num--total">{{ dnd5e-formatModifier total }}</span>
+                    {{#if @root.editable}}
+                    <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="tool"
+                            data-tooltip="DND5E.ToolConfigure"><i class="fas fa-cog" inert></i></button>
+                    {{/if}}
+                </li>
+                {{else}}
+                <li class="asc-empty">{{ localize "ASCSHEET.NoTools" }}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    {{!-- Herkunft --}}
+    <div class="asc-panel asc-framed asc-origin-detail" style="grid-area: origin">
+        <div class="asc-panel-header"><i class="fa-solid fa-users" inert></i><span>{{ localize "ASCSHEET.Origin.Title" }}</span></div>
+        <div class="asc-panel-body asc-origin-cards">
+            {{#with creatureType}}
+            <div class="asc-origin-card" {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}>
+                <img src="{{ icon }}" alt="" class="asc-origin-card-img">
+                <div class="asc-origin-text">
+                    <span class="asc-origin-caption">{{ localize "DND5E.CreatureType" }}</span>
+                    <span class="asc-origin-name">{{ localize title }}{{#if subtitle}} <em>({{ subtitle }})</em>{{/if}}</span>
+                </div>
+                {{#if (and @root.editable @root.species)}}
+                <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="creatureType"
+                        data-tooltip="DND5E.CreatureTypeConfig"><i class="fas fa-cog" inert></i></button>
+                {{/if}}
+            </div>
+            {{/with}}
+
+            {{#if species}}
+            <div class="asc-origin-card item-tooltip draggable" data-item-id="{{ species.id }}" data-uuid="{{ species.uuid }}">
+                <img src="{{ species.img }}" alt="" class="asc-origin-card-img" data-action="showDocument">
+                <div class="asc-origin-text" data-action="showDocument">
+                    <span class="asc-origin-caption">{{ localize "TYPES.Item.race" }}</span>
+                    <span class="asc-origin-name">{{ species.name }}</span>
+                </div>
+                {{#if editable}}
+                <select class="asc-size-select" name="system.traits.size" data-tooltip="DND5E.Size">
+                    {{ selectOptions CONFIG.actorSizes selected=source.traits.size labelAttr="label" }}
+                </select>
+                <button type="button" class="unbutton asc-config" data-action="deleteDocument" data-tooltip="DND5E.ItemDelete"><i class="fas fa-trash" inert></i></button>
+                {{else}}
+                <span class="asc-origin-sub">{{ labels.size }}</span>
+                {{/if}}
+            </div>
+            {{else}}
+            <button type="button" class="asc-add-button" data-action="findItem" data-item-type="race"
+                    {{#unless asc.setup.canSpecies}}disabled data-tooltip="ASCSHEET.Warn.NoEditRights"{{/unless}}>
+                <i class="fa-solid fa-plus" inert></i>{{ localize "ASCSHEET.Setup.Species" }}
+            </button>
+            {{/if}}
+
+            {{#if background}}
+            <div class="asc-origin-card item-tooltip draggable" data-item-id="{{ background.id }}" data-uuid="{{ background.uuid }}">
+                <img src="{{ background.img }}" alt="" class="asc-origin-card-img" data-action="showDocument">
+                <div class="asc-origin-text" data-action="showDocument">
+                    <span class="asc-origin-caption">{{ localize "DND5E.Background" }}</span>
+                    <span class="asc-origin-name">{{ background.name }}</span>
+                </div>
+                {{#if editable}}
+                <button type="button" class="unbutton asc-config" data-action="deleteDocument" data-tooltip="DND5E.ItemDelete"><i class="fas fa-trash" inert></i></button>
+                {{/if}}
+            </div>
+            {{else}}
+            <button type="button" class="asc-add-button" data-action="findItem" data-item-type="background"
+                    {{#unless asc.setup.canBackground}}disabled data-tooltip="ASCSHEET.Warn.NoEditRights"{{/unless}}>
+                <i class="fa-solid fa-plus" inert></i>{{ localize "ASCSHEET.Setup.Background" }}
+            </button>
+            {{/if}}
+        </div>
+    </div>
+
+    {{!-- Sinne, Resistenzen, Übungen, Sprachen (Bausteine des Systems, im Bogen-Look) --}}
+    <div class="asc-panel asc-framed asc-traits" style="grid-area: traits">
+        <div class="asc-panel-header"><i class="fa-solid fa-shield-halved" inert></i><span>{{ localize "ASCSHEET.Traits" }}</span></div>
+        <div class="asc-panel-body asc-traits-body">
+            {{#if (or editable senses)}}
+            {{> "dnd5e.actor-trait-pills" values=senses key="senses" icon="fas fa-eye" label="DND5E.Senses" configAction="senses" }}
+            {{/if}}
+            {{> "dnd5e.actor-trait-pills" values=traits.dr key="dr" color="green" icon="fas fa-shield-halved" label="DND5E.Resistances" }}
+            {{#if editable}}
+            {{> "dnd5e.actor-trait-pills" values=traits.di key="di" color="green" icon="fas fa-shield" label="DND5E.TRAIT.Damage.Immunity.title" }}
+            {{else}}
+            {{> "dnd5e.actor-trait-pills" values=traits.di key="di" color="green" icon="fas fa-shield" label="DND5E.Immunities" }}
+            {{/if}}
+            {{> "dnd5e.actor-trait-pills" values=traits.ci key="ci" color="green" svg="rosa-shield" label="DND5E.TRAIT.Condition.Immunity.title" }}
+            {{> "dnd5e.actor-trait-pills" values=traits.dv key="dv" color="maroon" icon="fas fa-heart-crack" label="DND5E.Vulnerabilities" }}
+            {{> "dnd5e.actor-trait-pills" values=traits.dm key="dm" icon="fas fa-heart-circle-plus" label="DND5E.DamageModification.Label" }}
+            {{> "dnd5e.actor-trait-pills" values=traits.armor key="armor" svg="checked-shield" label="DND5E.Armor" }}
+            {{> "dnd5e.actor-trait-pills" values=traits.weapon key="weapon" svg="trait-weapon-proficiencies" label="TYPES.Item.weaponPl" }}
+            {{> "dnd5e.actor-trait-pills" values=traits.languages key="languages" icon="fas fa-flag" label="DND5E.Languages" }}
+        </div>
+    </div>
+</section>

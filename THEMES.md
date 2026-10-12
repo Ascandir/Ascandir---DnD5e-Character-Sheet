@@ -90,7 +90,8 @@ Eigene, neu gemalte Grafiken können die Dateien jederzeit ersetzen.
 Zusätzliche Variablen für Skins: `--asc-wood-overlay`, `--asc-dark-overlay`, `--asc-panel-overlay`
 (Abdunklung über Holz/Pergament), `--asc-glow` (Leuchtfarbe), `--asc-soft-bg`, `--asc-line`, `--asc-ring`.
 
-## Skalierung
+## Fenstergröße
 
-Alle Maße sind für ein Raster von 1270 × 1240 Pixeln gebaut. Der Bogen skaliert den Inhalt automatisch
-proportional zur Fenstergröße (`--asc-zoom`). Themes müssen sich darum nicht kümmern.
+Der Bogen ist für ca. 1270 × 1240 Pixel gestaltet und passt sein Raster per Container Queries an die
+Fenstergröße an (`asc-win` für das ganze Fenster, `asc-body` für den Tab-Bereich). Themes müssen sich darum
+nicht kümmern.

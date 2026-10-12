@@ -20,7 +20,7 @@
       var(--asc-dark-overlay, linear-gradient(rgb(10 6 3 / 62%), rgb(10 6 3 / 74%))),
       var(--asc-img-wood-dark) repeat 0 0 / 300px auto;
   }
-  .asc-panel-body, .asc-passive-list, .tab-body > .tab:not(.asc-tab-overview, .asc-tab-combat) {
+  .asc-panel-body, .asc-passive-list, .tab-body > .tab:not(.asc-tab-overview, .asc-tab-combat, .asc-tab-details) {
     background:
       var(--asc-panel-overlay, radial-gradient(ellipse at center, rgb(255 245 220 / 0%) 55%, rgb(120 80 30 / 22%) 100%)),
       var(--asc-img-parchment) repeat 0 0 / 340px auto;

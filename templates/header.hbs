@@ -19,7 +19,7 @@
     <nav class="tabs asc-tabs asc-framed" data-group="primary" aria-roledescription="{{ localize 'SHEETS.FormNavLabel' }}">
         {{#each ascHeader.tabs}}
         <a class="item control asc-tab {{ cssClass }}" data-action="tab" data-group="primary" data-tab="{{ id }}"
-           aria-label="{{ localize label }}">
+           aria-label="{{ localize label }}" data-tooltip="{{ localize label }}">
             <span class="asc-tab-icon">
                 {{#if icon}}<i class="{{ icon }}" inert></i>{{/if}}
                 {{#if svg}}<dnd5e-icon src="{{ svg }}"></dnd5e-icon>{{/if}}
