@@ -213,13 +213,17 @@
             {{#if spells.length}}
             <div class="asc-spell-group" data-search-group>
                 <div class="asc-group-head">
-                    <span>{{ label }}</span>
-                    <span class="asc-col-heads asc-cols-2"><span>{{ localize "ASCSHEET.SpellRoll" }}</span><span>{{ localize "ASCSHEET.Uses" }}</span></span>
-                    {{#if prop}}
-                    <div class="pips asc-pips" data-prop="{{ prop }}">
-                        {{#each pips}}<button type="button" class="{{ classes }}" data-action="togglePip" data-n="{{ n }}" data-tooltip="{{ tooltip }}" aria-pressed="{{ filled }}"></button>{{/each}}
-                    </div>
-                    {{else}}<span class="asc-pips-spacer"></span>{{/if}}
+                    <span class="asc-group-title">
+                        <span>{{ label }}</span>
+                        {{#if prop}}
+                        <span class="pips asc-pips" data-prop="{{ prop }}">
+                            {{#each pips}}<button type="button" class="{{ classes }}" data-action="togglePip" data-n="{{ n }}" data-tooltip="{{ tooltip }}" aria-pressed="{{ filled }}"></button>{{/each}}
+                        </span>
+                        {{/if}}
+                    </span>
+                    <span class="asc-group-col">{{ localize "ASCSHEET.SpellRoll" }}</span>
+                    <span class="asc-group-col">{{ localize "ASCSHEET.Uses" }}</span>
+                    <span></span>
                 </div>
                 <ul class="unlist asc-item-rows">
                     {{#each spells}}
