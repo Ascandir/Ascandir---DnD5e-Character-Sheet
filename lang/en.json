@@ -28,7 +28,20 @@
       "psychic": "Damage: Psychic",
       "radiant": "Damage: Radiant",
       "slashing": "Damage: Slashing",
-      "thunder": "Damage: Thunder"
+      "thunder": "Damage: Thunder",
+      "barbarian": "Class: Barbarian",
+      "bard": "Class: Bard",
+      "cleric": "Class: Cleric",
+      "druid": "Class: Druid",
+      "fighter": "Class: Fighter",
+      "monk": "Class: Monk",
+      "paladin": "Class: Paladin",
+      "ranger": "Class: Ranger",
+      "rogue": "Class: Rogue",
+      "sorcerer": "Class: Sorcerer",
+      "warlock": "Class: Warlock",
+      "wizard": "Class: Wizard",
+      "artificer": "Class: Artificer"
     },
     "Settings": {
       "ThemeWorldDefault": "World default",

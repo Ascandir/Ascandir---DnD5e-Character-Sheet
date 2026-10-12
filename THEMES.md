@@ -87,6 +87,9 @@ Die Grafiken von „Blutmond“ (`assets/crimson`) sind aus den Pergament-Grafik
 „Nachtwache“ erzeugt `tools/build_art.py` aus dem Blutmond-Satz (`python3 tools/build_art.py`).
 Die 13 Schadenstyp-Themes (`assets/damage/<typ>`, Farben in `styles/themes/damage-types.css`) erzeugt
 `python3 tools/build_damage.py`; Farben, Metall und Leuchtton stehen dort in der Tabelle `TYPES`.
+Die 13 Klassen-Themes (`assets/classes/<klasse>`, Farben in `styles/themes/class-themes.css`) erzeugt
+`python3 tools/build_classes.py --fa <pfad zu fontawesome-free/svgs>`; Tabelle `CLASSES`.
+Alle erzeugten PNGs werden auf 256 Farben reduziert, damit das Modul klein bleibt.
 Eigene, neu gemalte Grafiken können die Dateien jederzeit ersetzen.
 
 Zusätzliche Variablen für Skins: `--asc-wood-overlay`, `--asc-dark-overlay`, `--asc-panel-overlay`

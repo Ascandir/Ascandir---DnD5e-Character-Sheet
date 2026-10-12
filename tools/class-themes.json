@@ -1,0 +1,54 @@
+{
+  "barbarian": {
+    "de": "Barbar",
+    "en": "Barbarian"
+  },
+  "bard": {
+    "de": "Barde",
+    "en": "Bard"
+  },
+  "cleric": {
+    "de": "Kleriker",
+    "en": "Cleric"
+  },
+  "druid": {
+    "de": "Druide",
+    "en": "Druid"
+  },
+  "fighter": {
+    "de": "Kämpfer",
+    "en": "Fighter"
+  },
+  "monk": {
+    "de": "Mönch",
+    "en": "Monk"
+  },
+  "paladin": {
+    "de": "Paladin",
+    "en": "Paladin"
+  },
+  "ranger": {
+    "de": "Waldläufer",
+    "en": "Ranger"
+  },
+  "rogue": {
+    "de": "Schurke",
+    "en": "Rogue"
+  },
+  "sorcerer": {
+    "de": "Zauberer",
+    "en": "Sorcerer"
+  },
+  "warlock": {
+    "de": "Hexenmeister",
+    "en": "Warlock"
+  },
+  "wizard": {
+    "de": "Magier",
+    "en": "Wizard"
+  },
+  "artificer": {
+    "de": "Magieschmied",
+    "en": "Artificer"
+  }
+}

@@ -29,6 +29,11 @@ export const SKIN_ASSETS = [
   "inspiration-on.png", "circle-slot.png", "search-bar.png", "wood-dark.jpg", "parchment.jpg"
 ];
 
+/** Ein Theme pro Klasse. */
+export const CLASS_THEMES = [
+  "barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard", "artificer"
+];
+
 /** Ein Theme pro D&D-5e-Schadenstyp. */
 export const DAMAGE_THEMES = [
   "acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"
@@ -82,6 +87,11 @@ export function registerBuiltinThemes() {
   // Schadenstyp-Themes (Grafiken: assets/damage/<typ>, Farben: styles/themes/damage-types.css)
   for ( const type of DAMAGE_THEMES ) {
     registerTheme({ id: type, label: `ASCSHEET.Theme.${type}`, base: "dark", author: "Ascandir", assets: skin(`damage/${type}`) });
+  }
+
+  // Klassen-Themes (Grafiken: assets/classes/<klasse>, Farben: styles/themes/class-themes.css)
+  for ( const cls of CLASS_THEMES ) {
+    registerTheme({ id: cls, label: `ASCSHEET.Theme.${cls}`, base: "dark", author: "Ascandir", assets: skin(`classes/${cls}`) });
   }
 }
 

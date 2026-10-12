@@ -57,8 +57,8 @@ def metalize(arr, tint):
     out[..., :3] = arr[..., :3] * (1 - m[..., None]) + metal * m[..., None]
     return out
 
-def build_assets(key, target, tint, hue):
-    folder = OUT / key
+def build_assets(key, target, tint, hue, out=None):
+    folder = (out or OUT) / key
     for name in FRAMES:
         a = np.array(Image.open(BASE / f"{name}.png").convert("RGBA")).astype(np.float32)
         a = retint_dark(a, target)
@@ -175,7 +175,13 @@ def theme_css(key, target, tint, accent_hex, glow):
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }}
 
-/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+"""
+
+def emblem_css(key, glow, mask_url, title="Symbol"):
+    """Symbol als leuchtendes Wasserzeichen im Namensschild und bei der Inspiration."""
+    glow = np.array(glow, np.float32)
+    return f"""
+/* {title} als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-{key}:not(.limited) {{
   .asc-nameplate {{
     &::before {{
@@ -183,7 +189,7 @@ def theme_css(key, target, tint, accent_hex, glow):
       position: absolute;
       inset: 16px 28% 6px;
       background: {rgb(glow, 100)};
-      mask: url("../../../../systems/dnd5e/icons/svg/damage/{key}.svg") center / contain no-repeat;
+      mask: url("{mask_url}") center / contain no-repeat;
       opacity: .24;
       pointer-events: none;
       filter: drop-shadow(0 0 6px {rgb(glow, 80)});
@@ -194,7 +200,7 @@ def theme_css(key, target, tint, accent_hex, glow):
     width: 22px;
     height: 22px;
     background: {hx(glow)};
-    mask: url("../../../../systems/dnd5e/icons/svg/damage/{key}.svg") center / contain no-repeat;
+    mask: url("{mask_url}") center / contain no-repeat;
     &::before {{ display: none; }}
   }}
 }}
@@ -207,6 +213,7 @@ def main(css_only=False):
         if not css_only:
             build_assets(key, target, tint, hue)
         css.append(theme_css(key, target, tint, accent, glow))
+        css.append(emblem_css(key, glow, f"../../../../systems/dnd5e/icons/svg/damage/{key}.svg", "Schadens-Symbol"))
         names[key] = {"de": de, "en": en}
         print("Theme erzeugt:", key)
     CSS.write_text("\n".join(css), encoding="utf-8")

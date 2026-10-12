@@ -20,9 +20,13 @@ FRAMES = ["frame-panel", "frame-window", "crest-nameplate", "portrait-arch", "me
 def load(name):
     return np.array(Image.open(SRC / f"{name}.png").convert("RGBA")).astype(np.float32)
 
-def save_png(arr, folder, name):
+def save_png(arr, folder, name, quantize=True):
+    """PNG speichern; standardmäßig auf 256 Farben reduziert (ca. 6× kleiner, optisch kaum Unterschied)."""
     folder.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).save(folder / f"{name}.png", optimize=True)
+    im = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
+    if quantize:
+        im = im.quantize(colors=256, method=Image.Quantize.FASTOCTREE, dither=Image.Dither.FLOYDSTEINBERG)
+    im.save(folder / f"{name}.png", optimize=True)
 
 def hsv(arr):
     rgb = arr[..., :3] / 255.0

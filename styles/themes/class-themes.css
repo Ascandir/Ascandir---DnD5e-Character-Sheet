@@ -1,0 +1,1235 @@
+/* Automatisch erzeugt von tools/build_classes.py – Klassen-Themes. Nicht von Hand bearbeiten. */
+
+/* ---- barbarian ---- */
+.ascandir-sheet.asc-theme-barbarian {
+  --asc-frame-bg: #0d0705;
+  --asc-frame-border: #4d463e;
+  --asc-content-bg: linear-gradient(to bottom, #1d100b, #0e0806);
+  --asc-dark-bg: linear-gradient(to bottom, #26150f, #170d09);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(245 95 45 / 16%), transparent 55%),
+    linear-gradient(rgb(20 11 8 / 30%), rgb(20 11 8 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(20 11 8 / 30%), rgb(20 11 8 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(245 95 45 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(245 95 45 / 80%);
+
+  --asc-gold: #a09182;
+  --asc-gold-light: #cbc3ba;
+  --asc-gold-dark: #4d463e;
+
+  --asc-panel-bg: linear-gradient(to bottom, #2d1b14, #241610);
+  --asc-card-bg: linear-gradient(to bottom, #352018, #281812);
+  --asc-system-tab-bg: linear-gradient(to bottom, #2b1a13, #22140f);
+  --asc-panel-color: #291812;
+  --asc-card-color: #301d16;
+  --asc-panel-dark: #4c2518;
+  --asc-header-color: #120a07;
+  --asc-panel-border: #4d463e;
+  --asc-panel-inner-border: rgb(160 145 130 / 25%);
+  --asc-panel-header-text: #e7e4e0;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e7dbd7;
+  --asc-text-muted: #b09389;
+  --asc-text-heading: #fdf5f2;
+  --asc-text-on-dark: #e7e4e0;
+  --asc-icon: #d09c88;
+  --asc-accent: #b24522;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(160 145 130 / 9%);
+  --asc-line: rgb(160 145 130 / 26%);
+  --asc-ring: #a89286;
+
+  --asc-row-alt: rgb(160 145 130 / 6%);
+  --asc-row-hover: rgb(217 84 42 / 22%);
+  --asc-row-border: rgb(160 145 130 / 17%);
+
+  --asc-tab-text: #e7e4e0;
+  --asc-tab-icon: #cfa18f;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(245 95 45 / 75%), rgb(110 43 20 / 70%) 55%, rgb(22 12 8 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #100906;
+  --asc-badge-text: #fdf5f2;
+  --asc-meter-bg: #0b0604;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #572211;
+  --asc-hd-fill-2: #8d371b;
+  --asc-mana-fill: linear-gradient(to bottom, #e4876a, #823219);
+  --asc-enc-fill: linear-gradient(to bottom, #e4876a, #823219);
+  --asc-pip-fill: #d9542a;
+  --asc-gem: #df6e4a;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(160 145 130 / 30%);
+  --asc-search-bg: #0e0806;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-barbarian:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(245 95 45 / 100%);
+      mask: url("../../assets/classes/barbarian/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(245 95 45 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #f55f2d;
+    mask: url("../../assets/classes/barbarian/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- bard ---- */
+.ascandir-sheet.asc-theme-bard {
+  --asc-frame-bg: #0c050a;
+  --asc-frame-border: #604e2c;
+  --asc-content-bg: linear-gradient(to bottom, #1b0c18, #0e060c);
+  --asc-dark-bg: linear-gradient(to bottom, #24101f, #160a14);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(240 110 190 / 16%), transparent 55%),
+    linear-gradient(rgb(19 8 16 / 30%), rgb(19 8 16 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(19 8 16 / 30%), rgb(19 8 16 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(240 110 190 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(240 110 190 / 80%);
+
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #e1cca5;
+  --asc-gold-dark: #604e2c;
+
+  --asc-panel-bg: linear-gradient(to bottom, #2b1526, #22111f);
+  --asc-card-bg: linear-gradient(to bottom, #321a2d, #261322);
+  --asc-system-tab-bg: linear-gradient(to bottom, #291425, #20101d);
+  --asc-panel-color: #271323;
+  --asc-card-color: #2d1728;
+  --asc-panel-dark: #4a233c;
+  --asc-header-color: #11080f;
+  --asc-panel-border: #604e2c;
+  --asc-panel-inner-border: rgb(201 163 92 / 25%);
+  --asc-panel-header-text: #f2e8d6;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e7dce2;
+  --asc-text-muted: #ad8da5;
+  --asc-text-heading: #fcf5f9;
+  --asc-text-on-dark: #f2e8d6;
+  --asc-icon: #dda6a3;
+  --asc-accent: #ae4e83;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(201 163 92 / 9%);
+  --asc-line: rgb(201 163 92 / 26%);
+  --asc-ring: #bb9880;
+
+  --asc-row-alt: rgb(201 163 92 / 6%);
+  --asc-row-hover: rgb(212 95 160 / 22%);
+  --asc-row-border: rgb(201 163 92 / 17%);
+
+  --asc-tab-text: #f2e8d6;
+  --asc-tab-icon: #ddaca4;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(240 110 190 / 75%), rgb(108 50 86 / 70%) 55%, rgb(20 9 18 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0f070e;
+  --asc-badge-text: #fcf5f9;
+  --asc-meter-bg: #0a0409;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #552640;
+  --asc-hd-fill-2: #8a3e68;
+  --asc-mana-fill: linear-gradient(to bottom, #e18fbc, #7f3960);
+  --asc-enc-fill: linear-gradient(to bottom, #e18fbc, #7f3960);
+  --asc-pip-fill: #d45fa0;
+  --asc-gem: #da77ae;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(201 163 92 / 30%);
+  --asc-search-bg: #0e060c;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-bard:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(240 110 190 / 100%);
+      mask: url("../../assets/classes/bard/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(240 110 190 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #f06ebe;
+    mask: url("../../assets/classes/bard/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- cleric ---- */
+.ascandir-sheet.asc-theme-cleric {
+  --asc-frame-bg: #0d0c09;
+  --asc-frame-border: #604e2c;
+  --asc-content-bg: linear-gradient(to bottom, #1e1b15, #0f0e0a);
+  --asc-dark-bg: linear-gradient(to bottom, #28241b, #191611);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(255 230 150 / 16%), transparent 55%),
+    linear-gradient(rgb(21 19 14 / 30%), rgb(21 19 14 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(21 19 14 / 30%), rgb(21 19 14 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(255 230 150 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(255 230 150 / 80%);
+
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #e1cca5;
+  --asc-gold-dark: #604e2c;
+
+  --asc-panel-bg: linear-gradient(to bottom, #302b22, #26221b);
+  --asc-card-bg: linear-gradient(to bottom, #373228, #2a261e);
+  --asc-system-tab-bg: linear-gradient(to bottom, #2d2920, #242019);
+  --asc-panel-color: #2b271f;
+  --asc-card-color: #322d24;
+  --asc-panel-dark: #534932;
+  --asc-header-color: #13110d;
+  --asc-panel-border: #604e2c;
+  --asc-panel-inner-border: rgb(201 163 92 / 25%);
+  --asc-panel-header-text: #f2e8d6;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e9e6de;
+  --asc-text-muted: #b4ad9d;
+  --asc-text-heading: #fefcf7;
+  --asc-text-on-dark: #f2e8d6;
+  --asc-icon: #e7ce96;
+  --asc-accent: #c6ac64;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(201 163 92 / 9%);
+  --asc-line: rgb(201 163 92 / 26%);
+  --asc-ring: #bea87d;
+
+  --asc-row-alt: rgb(201 163 92 / 6%);
+  --asc-row-hover: rgb(242 210 122 / 22%);
+  --asc-row-border: rgb(201 163 92 / 17%);
+
+  --asc-tab-text: #f2e8d6;
+  --asc-tab-icon: #e6ce98;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(255 230 150 / 75%), rgb(115 104 68 / 70%) 55%, rgb(23 20 16 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #110f0c;
+  --asc-badge-text: #fefcf7;
+  --asc-meter-bg: #0b0a08;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #615431;
+  --asc-hd-fill-2: #9d884f;
+  --asc-mana-fill: linear-gradient(to bottom, #f6e0a2, #917e49);
+  --asc-enc-fill: linear-gradient(to bottom, #f6e0a2, #917e49);
+  --asc-pip-fill: #f2d27a;
+  --asc-gem: #f4d98e;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(201 163 92 / 30%);
+  --asc-search-bg: #0f0e0a;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-cleric:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(255 230 150 / 100%);
+      mask: url("../../assets/classes/cleric/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(255 230 150 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #ffe696;
+    mask: url("../../assets/classes/cleric/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- druid ---- */
+.ascandir-sheet.asc-theme-druid {
+  --asc-frame-bg: #060a06;
+  --asc-frame-border: #594c36;
+  --asc-content-bg: linear-gradient(to bottom, #0e160d, #070b06);
+  --asc-dark-bg: linear-gradient(to bottom, #131d11, #0c120a);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(130 210 90 / 16%), transparent 55%),
+    linear-gradient(rgb(10 15 9 / 30%), rgb(10 15 9 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(10 15 9 / 30%), rgb(10 15 9 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(130 210 90 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(130 210 90 / 80%);
+
+  --asc-gold: #ba9e70;
+  --asc-gold-light: #d9cab0;
+  --asc-gold-dark: #594c36;
+
+  --asc-panel-bg: linear-gradient(to bottom, #192416, #141d12);
+  --asc-card-bg: linear-gradient(to bottom, #1d2a1b, #162014);
+  --asc-system-tab-bg: linear-gradient(to bottom, #172215, #131b11);
+  --asc-panel-color: #162114;
+  --asc-card-color: #1a2618;
+  --asc-panel-dark: #283e20;
+  --asc-header-color: #090e08;
+  --asc-panel-border: #594c36;
+  --asc-panel-inner-border: rgb(186 158 112 / 25%);
+  --asc-panel-header-text: #eee7db;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dde4da;
+  --asc-text-muted: #92a38d;
+  --asc-text-heading: #f6faf4;
+  --asc-text-on-dark: #eee7db;
+  --asc-icon: #b4c28c;
+  --asc-accent: #5b933d;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(186 158 112 / 9%);
+  --asc-line: rgb(186 158 112 / 26%);
+  --asc-ring: #a6a17f;
+
+  --asc-row-alt: rgb(186 158 112 / 6%);
+  --asc-row-hover: rgb(111 179 74 / 22%);
+  --asc-row-border: rgb(186 158 112 / 17%);
+
+  --asc-tab-text: #eee7db;
+  --asc-tab-icon: #b9c391;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(130 210 90 / 75%), rgb(58 94 40 / 70%) 55%, rgb(11 17 10 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #080d07;
+  --asc-badge-text: #f6faf4;
+  --asc-meter-bg: #050805;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #2c481e;
+  --asc-hd-fill-2: #487430;
+  --asc-mana-fill: linear-gradient(to bottom, #9aca80, #436b2c);
+  --asc-enc-fill: linear-gradient(to bottom, #9aca80, #436b2c);
+  --asc-pip-fill: #6fb34a;
+  --asc-gem: #85be65;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(186 158 112 / 30%);
+  --asc-search-bg: #070b06;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-druid:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(130 210 90 / 100%);
+      mask: url("../../assets/classes/druid/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(130 210 90 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #82d25a;
+    mask: url("../../assets/classes/druid/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- fighter ---- */
+.ascandir-sheet.asc-theme-fighter {
+  --asc-frame-bg: #09090b;
+  --asc-frame-border: #4d4f55;
+  --asc-content-bg: linear-gradient(to bottom, #151519, #0a0a0c);
+  --asc-dark-bg: linear-gradient(to bottom, #1b1b21, #111114);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(225 75 60 / 16%), transparent 55%),
+    linear-gradient(rgb(14 14 17 / 30%), rgb(14 14 17 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(14 14 17 / 30%), rgb(14 14 17 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(225 75 60 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(225 75 60 / 80%);
+
+  --asc-gold: #a0a5b1;
+  --asc-gold-light: #cbced4;
+  --asc-gold-dark: #4d4f55;
+
+  --asc-panel-bg: linear-gradient(to bottom, #222228, #1b1b20);
+  --asc-card-bg: linear-gradient(to bottom, #28282e, #1e1e23);
+  --asc-system-tab-bg: linear-gradient(to bottom, #202026, #19191e);
+  --asc-panel-color: #1f1f24;
+  --asc-card-color: #24242a;
+  --asc-panel-dark: #3d282b;
+  --asc-header-color: #0d0d10;
+  --asc-panel-border: #4d4f55;
+  --asc-panel-inner-border: rgb(160 165 177 / 25%);
+  --asc-panel-header-text: #e7e9eb;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e4d9d8;
+  --asc-text-muted: #a19ba1;
+  --asc-text-heading: #fbf4f3;
+  --asc-text-on-dark: #e7e9eb;
+  --asc-icon: #c49d9e;
+  --asc-accent: #973730;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(160 165 177 / 9%);
+  --asc-line: rgb(160 165 177 / 26%);
+  --asc-ring: #a0a0a9;
+
+  --asc-row-alt: rgb(160 165 177 / 6%);
+  --asc-row-hover: rgb(184 67 58 / 22%);
+  --asc-row-border: rgb(160 165 177 / 17%);
+
+  --asc-tab-text: #e7e9eb;
+  --asc-tab-icon: #c5a4a6;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(225 75 60 / 75%), rgb(101 34 27 / 70%) 55%, rgb(16 16 19 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0c0c0e;
+  --asc-badge-text: #fbf4f3;
+  --asc-meter-bg: #080809;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #4a1b17;
+  --asc-hd-fill-2: #782c26;
+  --asc-mana-fill: linear-gradient(to bottom, #cd7b75, #6e2823);
+  --asc-enc-fill: linear-gradient(to bottom, #cd7b75, #6e2823);
+  --asc-pip-fill: #b8433a;
+  --asc-gem: #c35f58;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(160 165 177 / 30%);
+  --asc-search-bg: #0a0a0c;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-fighter:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(225 75 60 / 100%);
+      mask: url("../../assets/classes/fighter/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(225 75 60 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #e14b3c;
+    mask: url("../../assets/classes/fighter/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- monk ---- */
+.ascandir-sheet.asc-theme-monk {
+  --asc-frame-bg: #0b0905;
+  --asc-frame-border: #594934;
+  --asc-content-bg: linear-gradient(to bottom, #1a140b, #0d0a06);
+  --asc-dark-bg: linear-gradient(to bottom, #221a0f, #151009);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(250 170 60 / 16%), transparent 55%),
+    linear-gradient(rgb(18 14 8 / 30%), rgb(18 14 8 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(18 14 8 / 30%), rgb(18 14 8 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(250 170 60 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(250 170 60 / 80%);
+
+  --asc-gold: #ba986c;
+  --asc-gold-light: #d9c7ae;
+  --asc-gold-dark: #594934;
+
+  --asc-panel-bg: linear-gradient(to bottom, #292114, #211a10);
+  --asc-card-bg: linear-gradient(to bottom, #302618, #241d12);
+  --asc-system-tab-bg: linear-gradient(to bottom, #271f13, #1f190f);
+  --asc-panel-color: #251d12;
+  --asc-card-color: #2b2316;
+  --asc-panel-dark: #4a3719;
+  --asc-header-color: #100c07;
+  --asc-panel-border: #594934;
+  --asc-panel-inner-border: rgb(186 152 108 / 25%);
+  --asc-panel-header-text: #eee5da;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e8e1d7;
+  --asc-text-muted: #ab9e89;
+  --asc-text-heading: #fdf9f2;
+  --asc-text-on-dark: #eee5da;
+  --asc-icon: #ddb781;
+  --asc-accent: #ba7f25;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(186 152 108 / 9%);
+  --asc-line: rgb(186 152 108 / 26%);
+  --asc-ring: #b29b7b;
+
+  --asc-row-alt: rgb(186 152 108 / 6%);
+  --asc-row-hover: rgb(227 155 45 / 22%);
+  --asc-row-border: rgb(186 152 108 / 17%);
+
+  --asc-tab-text: #eee5da;
+  --asc-tab-icon: #dcba87;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(250 170 60 / 75%), rgb(112 76 27 / 70%) 55%, rgb(19 15 8 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0e0b06;
+  --asc-badge-text: #fdf9f2;
+  --asc-meter-bg: #0a0804;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #5b3e12;
+  --asc-hd-fill-2: #94651d;
+  --asc-mana-fill: linear-gradient(to bottom, #ebb96c, #885d1b);
+  --asc-enc-fill: linear-gradient(to bottom, #ebb96c, #885d1b);
+  --asc-pip-fill: #e39b2d;
+  --asc-gem: #e7aa4c;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(186 152 108 / 30%);
+  --asc-search-bg: #0d0a06;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-monk:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(250 170 60 / 100%);
+      mask: url("../../assets/classes/monk/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(250 170 60 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #faaa3c;
+    mask: url("../../assets/classes/monk/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- paladin ---- */
+.ascandir-sheet.asc-theme-paladin {
+  --asc-frame-bg: #05080f;
+  --asc-frame-border: #604e2c;
+  --asc-content-bg: linear-gradient(to bottom, #0c1222, #060911);
+  --asc-dark-bg: linear-gradient(to bottom, #10172c, #0a0e1b);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(255 215 110 / 16%), transparent 55%),
+    linear-gradient(rgb(8 12 23 / 30%), rgb(8 12 23 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(8 12 23 / 30%), rgb(8 12 23 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(255 215 110 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(255 215 110 / 80%);
+
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #e1cca5;
+  --asc-gold-dark: #604e2c;
+
+  --asc-panel-bg: linear-gradient(to bottom, #151d34, #11172a);
+  --asc-card-bg: linear-gradient(to bottom, #1a233d, #131a2d);
+  --asc-system-tab-bg: linear-gradient(to bottom, #141c32, #101627);
+  --asc-panel-color: #131a2f;
+  --asc-card-color: #171f37;
+  --asc-panel-dark: #3b3b3b;
+  --asc-header-color: #080b15;
+  --asc-panel-border: #604e2c;
+  --asc-panel-inner-border: rgb(201 163 92 / 25%);
+  --asc-panel-header-text: #f2e8d6;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e8e5db;
+  --asc-text-muted: #949cb1;
+  --asc-text-heading: #fefbf5;
+  --asc-text-on-dark: #f2e8d6;
+  --asc-icon: #e4c98b;
+  --asc-accent: #bea14a;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(201 163 92 / 9%);
+  --asc-line: rgb(201 163 92 / 26%);
+  --asc-ring: #af9f87;
+
+  --asc-row-alt: rgb(201 163 92 / 6%);
+  --asc-row-hover: rgb(232 196 90 / 22%);
+  --asc-row-border: rgb(201 163 92 / 17%);
+
+  --asc-tab-text: #f2e8d6;
+  --asc-tab-icon: #e3ca8f;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(255 215 110 / 75%), rgb(115 97 50 / 70%) 55%, rgb(9 13 25 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #070a13;
+  --asc-badge-text: #fefbf5;
+  --asc-meter-bg: #04070d;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #5d4e24;
+  --asc-hd-fill-2: #977f3a;
+  --asc-mana-fill: linear-gradient(to bottom, #efd68c, #8b7636);
+  --asc-enc-fill: linear-gradient(to bottom, #efd68c, #8b7636);
+  --asc-pip-fill: #e8c45a;
+  --asc-gem: #ebcd73;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(201 163 92 / 30%);
+  --asc-search-bg: #060911;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-paladin:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(255 215 110 / 100%);
+      mask: url("../../assets/classes/paladin/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(255 215 110 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #ffd76e;
+    mask: url("../../assets/classes/paladin/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- ranger ---- */
+.ascandir-sheet.asc-theme-ranger {
+  --asc-frame-bg: #0b0805;
+  --asc-frame-border: #594c36;
+  --asc-content-bg: linear-gradient(to bottom, #19130c, #0c0a06);
+  --asc-dark-bg: linear-gradient(to bottom, #211910, #14100a);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(140 205 90 / 16%), transparent 55%),
+    linear-gradient(rgb(17 13 8 / 30%), rgb(17 13 8 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(17 13 8 / 30%), rgb(17 13 8 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(140 205 90 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(140 205 90 / 80%);
+
+  --asc-gold: #ba9e70;
+  --asc-gold-light: #d9cab0;
+  --asc-gold-dark: #594c36;
+
+  --asc-panel-bg: linear-gradient(to bottom, #282015, #201911);
+  --asc-card-bg: linear-gradient(to bottom, #2e251a, #231c13);
+  --asc-system-tab-bg: linear-gradient(to bottom, #261e14, #1e1810);
+  --asc-panel-color: #241c13;
+  --asc-card-color: #2a2117;
+  --asc-panel-dark: #363a1f;
+  --asc-header-color: #100c08;
+  --asc-panel-border: #594c36;
+  --asc-panel-inner-border: rgb(186 158 112 / 25%);
+  --asc-panel-header-text: #eee7db;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dee3da;
+  --asc-text-muted: #a49d8c;
+  --asc-text-heading: #f7faf4;
+  --asc-text-on-dark: #eee7db;
+  --asc-icon: #b7c18c;
+  --asc-accent: #63903d;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(186 158 112 / 9%);
+  --asc-line: rgb(186 158 112 / 26%);
+  --asc-ring: #af9e7e;
+
+  --asc-row-alt: rgb(186 158 112 / 6%);
+  --asc-row-hover: rgb(121 176 74 / 22%);
+  --asc-row-border: rgb(186 158 112 / 17%);
+
+  --asc-tab-text: #eee7db;
+  --asc-tab-icon: #bcc291;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(140 205 90 / 75%), rgb(63 92 40 / 70%) 55%, rgb(19 14 9 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0e0b07;
+  --asc-badge-text: #f7faf4;
+  --asc-meter-bg: #090704;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #30461e;
+  --asc-hd-fill-2: #4f7230;
+  --asc-mana-fill: linear-gradient(to bottom, #a1c880, #496a2c);
+  --asc-enc-fill: linear-gradient(to bottom, #a1c880, #496a2c);
+  --asc-pip-fill: #79b04a;
+  --asc-gem: #8dbc65;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(186 158 112 / 30%);
+  --asc-search-bg: #0c0a06;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-ranger:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(140 205 90 / 100%);
+      mask: url("../../assets/classes/ranger/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(140 205 90 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #8ccd5a;
+    mask: url("../../assets/classes/ranger/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- rogue ---- */
+.ascandir-sheet.asc-theme-rogue {
+  --asc-frame-bg: #060607;
+  --asc-frame-border: #47494f;
+  --asc-content-bg: linear-gradient(to bottom, #0e0e11, #070708);
+  --asc-dark-bg: linear-gradient(to bottom, #121216, #0b0b0e);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(160 140 240 / 16%), transparent 55%),
+    linear-gradient(rgb(9 9 12 / 30%), rgb(9 9 12 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(9 9 12 / 30%), rgb(9 9 12 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(160 140 240 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(160 140 240 / 80%);
+
+  --asc-gold: #9598a4;
+  --asc-gold-light: #c5c7cd;
+  --asc-gold-dark: #47494f;
+
+  --asc-panel-bg: linear-gradient(to bottom, #18181c, #131317);
+  --asc-card-bg: linear-gradient(to bottom, #1c1c21, #151519);
+  --asc-system-tab-bg: linear-gradient(to bottom, #16161b, #121215);
+  --asc-panel-color: #151519;
+  --asc-card-color: #19191e;
+  --asc-panel-dark: #2c2a3d;
+  --asc-header-color: #08080a;
+  --asc-panel-border: #47494f;
+  --asc-panel-inner-border: rgb(149 152 164 / 25%);
+  --asc-panel-header-text: #e4e5e8;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e0dfe6;
+  --asc-text-muted: #92929b;
+  --asc-text-heading: #f8f7fc;
+  --asc-text-on-dark: #e4e5e8;
+  --asc-icon: #b0aece;
+  --asc-accent: #7268ab;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(149 152 164 / 9%);
+  --asc-line: rgb(149 152 164 / 26%);
+  --asc-ring: #93959f;
+
+  --asc-row-alt: rgb(149 152 164 / 6%);
+  --asc-row-hover: rgb(139 127 208 / 22%);
+  --asc-row-border: rgb(149 152 164 / 17%);
+
+  --asc-tab-text: #e4e5e8;
+  --asc-tab-icon: #b3b1ce;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(160 140 240 / 75%), rgb(72 63 108 / 70%) 55%, rgb(10 10 13 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #080809;
+  --asc-badge-text: #f8f7fc;
+  --asc-meter-bg: #050506;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #383353;
+  --asc-hd-fill-2: #5a5387;
+  --asc-mana-fill: linear-gradient(to bottom, #aea5de, #534c7d);
+  --asc-enc-fill: linear-gradient(to bottom, #aea5de, #534c7d);
+  --asc-pip-fill: #8b7fd0;
+  --asc-gem: #9c92d7;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(149 152 164 / 30%);
+  --asc-search-bg: #070708;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-rogue:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(160 140 240 / 100%);
+      mask: url("../../assets/classes/rogue/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(160 140 240 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #a08cf0;
+    mask: url("../../assets/classes/rogue/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- sorcerer ---- */
+.ascandir-sheet.asc-theme-sorcerer {
+  --asc-frame-bg: #0d0406;
+  --asc-frame-border: #604e2c;
+  --asc-content-bg: linear-gradient(to bottom, #1e0a0e, #0f0507);
+  --asc-dark-bg: linear-gradient(to bottom, #280d13, #19080c);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(255 80 100 / 16%), transparent 55%),
+    linear-gradient(rgb(21 7 10 / 30%), rgb(21 7 10 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(21 7 10 / 30%), rgb(21 7 10 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(255 80 100 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(255 80 100 / 80%);
+
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #e1cca5;
+  --asc-gold-dark: #604e2c;
+
+  --asc-panel-bg: linear-gradient(to bottom, #301219, #260e14);
+  --asc-card-bg: linear-gradient(to bottom, #37161d, #2a1016);
+  --asc-system-tab-bg: linear-gradient(to bottom, #2d1117, #240d13);
+  --asc-panel-color: #2b1016;
+  --asc-card-color: #32131a;
+  --asc-panel-dark: #511b24;
+  --asc-header-color: #130609;
+  --asc-panel-border: #604e2c;
+  --asc-panel-inner-border: rgb(201 163 92 / 25%);
+  --asc-panel-header-text: #f2e8d6;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e8d9db;
+  --asc-text-muted: #b38891;
+  --asc-text-heading: #fef4f5;
+  --asc-text-on-dark: #f2e8d6;
+  --asc-icon: #e49d8b;
+  --asc-accent: #be394a;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(201 163 92 / 9%);
+  --asc-line: rgb(201 163 92 / 26%);
+  --asc-ring: #be9576;
+
+  --asc-row-alt: rgb(201 163 92 / 6%);
+  --asc-row-hover: rgb(232 69 90 / 22%);
+  --asc-row-border: rgb(201 163 92 / 17%);
+
+  --asc-tab-text: #f2e8d6;
+  --asc-tab-icon: #e3a48f;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(255 80 100 / 75%), rgb(115 36 45 / 70%) 55%, rgb(23 7 11 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #110508;
+  --asc-badge-text: #fef4f5;
+  --asc-meter-bg: #0b0405;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #5d1c24;
+  --asc-hd-fill-2: #972d3a;
+  --asc-mana-fill: linear-gradient(to bottom, #ef7d8c, #8b2936);
+  --asc-enc-fill: linear-gradient(to bottom, #ef7d8c, #8b2936);
+  --asc-pip-fill: #e8455a;
+  --asc-gem: #eb6173;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(201 163 92 / 30%);
+  --asc-search-bg: #0f0507;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-sorcerer:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(255 80 100 / 100%);
+      mask: url("../../assets/classes/sorcerer/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(255 80 100 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #ff5064;
+    mask: url("../../assets/classes/sorcerer/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- warlock ---- */
+.ascandir-sheet.asc-theme-warlock {
+  --asc-frame-bg: #07050b;
+  --asc-frame-border: #52475f;
+  --asc-content-bg: linear-gradient(to bottom, #100a19, #08050c);
+  --asc-dark-bg: linear-gradient(to bottom, #150e21, #0d0814);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(140 240 100 / 16%), transparent 55%),
+    linear-gradient(rgb(11 7 17 / 30%), rgb(11 7 17 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(11 7 17 / 30%), rgb(11 7 17 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(140 240 100 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(140 240 100 / 80%);
+
+  --asc-gold: #ab95c5;
+  --asc-gold-light: #d1c5df;
+  --asc-gold-dark: #52475f;
+
+  --asc-panel-bg: linear-gradient(to bottom, #1b1328, #160f20);
+  --asc-card-bg: linear-gradient(to bottom, #20172e, #181123);
+  --asc-system-tab-bg: linear-gradient(to bottom, #1a1226, #140e1e);
+  --asc-panel-color: #181124;
+  --asc-card-color: #1d152a;
+  --asc-panel-dark: #2d3831;
+  --asc-header-color: #0a0610;
+  --asc-panel-border: #52475f;
+  --asc-panel-inner-border: rgb(171 149 197 / 25%);
+  --asc-panel-header-text: #eae4f1;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dfe8db;
+  --asc-text-muted: #9591a3;
+  --asc-text-heading: #f7fdf5;
+  --asc-text-on-dark: #eae4f1;
+  --asc-icon: #b3ceb1;
+  --asc-accent: #66b84a;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(171 149 197 / 9%);
+  --asc-line: rgb(171 149 197 / 26%);
+  --asc-ring: #a093b4;
+
+  --asc-row-alt: rgb(171 149 197 / 6%);
+  --asc-row-hover: rgb(125 224 90 / 22%);
+  --asc-row-border: rgb(171 149 197 / 17%);
+
+  --asc-tab-text: #eae4f1;
+  --asc-tab-icon: #b8cdb7;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(140 240 100 / 75%), rgb(63 108 45 / 70%) 55%, rgb(12 8 19 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #09060e;
+  --asc-badge-text: #f7fdf5;
+  --asc-meter-bg: #060409;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #325a24;
+  --asc-hd-fill-2: #51923a;
+  --asc-mana-fill: linear-gradient(to bottom, #a4e98c, #4b8636);
+  --asc-enc-fill: linear-gradient(to bottom, #a4e98c, #4b8636);
+  --asc-pip-fill: #7de05a;
+  --asc-gem: #90e573;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(171 149 197 / 30%);
+  --asc-search-bg: #08050c;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-warlock:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(140 240 100 / 100%);
+      mask: url("../../assets/classes/warlock/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(140 240 100 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #8cf064;
+    mask: url("../../assets/classes/warlock/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- wizard ---- */
+.ascandir-sheet.asc-theme-wizard {
+  --asc-frame-bg: #07060f;
+  --asc-frame-border: #4f5360;
+  --asc-content-bg: linear-gradient(to bottom, #100e23, #080712);
+  --asc-dark-bg: linear-gradient(to bottom, #15132e, #0d0c1d);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(140 125 255 / 16%), transparent 55%),
+    linear-gradient(rgb(11 10 24 / 30%), rgb(11 10 24 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(11 10 24 / 30%), rgb(11 10 24 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(140 125 255 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(140 125 255 / 80%);
+
+  --asc-gold: #a4adc9;
+  --asc-gold-light: #cdd2e1;
+  --asc-gold-dark: #4f5360;
+
+  --asc-panel-bg: linear-gradient(to bottom, #1b1937, #16142c);
+  --asc-card-bg: linear-gradient(to bottom, #201d3f, #18162f);
+  --asc-system-tab-bg: linear-gradient(to bottom, #1a1734, #141329);
+  --asc-panel-color: #181631;
+  --asc-card-color: #1d1a39;
+  --asc-panel-dark: #2c285b;
+  --asc-header-color: #0a0916;
+  --asc-panel-border: #4f5360;
+  --asc-panel-inner-border: rgb(164 173 201 / 25%);
+  --asc-panel-header-text: #e8eaf1;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #deddeb;
+  --asc-text-muted: #9592bc;
+  --asc-text-heading: #f7f6ff;
+  --asc-text-on-dark: #e8eaf1;
+  --asc-icon: #b0aeec;
+  --asc-accent: #6458d1;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(164 173 201 / 9%);
+  --asc-line: rgb(164 173 201 / 26%);
+  --asc-ring: #9c9fc3;
+
+  --asc-row-alt: rgb(164 173 201 / 6%);
+  --asc-row-hover: rgb(122 107 255 / 22%);
+  --asc-row-border: rgb(164 173 201 / 17%);
+
+  --asc-tab-text: #e8eaf1;
+  --asc-tab-icon: #b4b3ea;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(140 125 255 / 75%), rgb(63 56 115 / 70%) 55%, rgb(12 11 26 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #090814;
+  --asc-badge-text: #f7f6ff;
+  --asc-meter-bg: #06050d;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #312b66;
+  --asc-hd-fill-2: #4f46a6;
+  --asc-mana-fill: linear-gradient(to bottom, #a297ff, #494099);
+  --asc-enc-fill: linear-gradient(to bottom, #a297ff, #494099);
+  --asc-pip-fill: #7a6bff;
+  --asc-gem: #8e81ff;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(164 173 201 / 30%);
+  --asc-search-bg: #080712;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-wizard:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(140 125 255 / 100%);
+      mask: url("../../assets/classes/wizard/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(140 125 255 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #8c7dff;
+    mask: url("../../assets/classes/wizard/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- artificer ---- */
+.ascandir-sheet.asc-theme-artificer {
+  --asc-frame-bg: #060a0a;
+  --asc-frame-border: #5f402d;
+  --asc-content-bg: linear-gradient(to bottom, #0e1618, #070b0c);
+  --asc-dark-bg: linear-gradient(to bottom, #131d1f, #0c1214);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(90 225 215 / 16%), transparent 55%),
+    linear-gradient(rgb(10 15 16 / 30%), rgb(10 15 16 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(10 15 16 / 30%), rgb(10 15 16 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(90 225 215 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(90 225 215 / 80%);
+
+  --asc-gold: #c5865d;
+  --asc-gold-light: #dfbca6;
+  --asc-gold-dark: #5f402d;
+
+  --asc-panel-bg: linear-gradient(to bottom, #192426, #141d1f);
+  --asc-card-bg: linear-gradient(to bottom, #1d2a2d, #162022);
+  --asc-system-tab-bg: linear-gradient(to bottom, #172225, #131b1d);
+  --asc-panel-color: #162123;
+  --asc-card-color: #1a2628;
+  --asc-panel-dark: #204041;
+  --asc-header-color: #090e0f;
+  --asc-panel-border: #5f402d;
+  --asc-panel-inner-border: rgb(197 134 93 / 25%);
+  --asc-panel-header-text: #f1e1d6;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #d9e5e4;
+  --asc-text-muted: #90a4a6;
+  --asc-text-heading: #f3fbfb;
+  --asc-text-on-dark: #f1e1d6;
+  --asc-icon: #a7beac;
+  --asc-accent: #349e97;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(197 134 93 / 9%);
+  --asc-line: rgb(197 134 93 / 26%);
+  --asc-ring: #aa9581;
+
+  --asc-row-alt: rgb(197 134 93 / 6%);
+  --asc-row-hover: rgb(63 193 184 / 22%);
+  --asc-row-border: rgb(197 134 93 / 17%);
+
+  --asc-tab-text: #f1e1d6;
+  --asc-tab-icon: #afbeab;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(90 225 215 / 75%), rgb(40 101 97 / 70%) 55%, rgb(11 17 18 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #080d0e;
+  --asc-badge-text: #f3fbfb;
+  --asc-meter-bg: #050809;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #194d4a;
+  --asc-hd-fill-2: #297d78;
+  --asc-mana-fill: linear-gradient(to bottom, #79d4cd, #26746e);
+  --asc-enc-fill: linear-gradient(to bottom, #79d4cd, #26746e);
+  --asc-pip-fill: #3fc1b8;
+  --asc-gem: #5ccac3;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(197 134 93 / 30%);
+  --asc-search-bg: #070b0c;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+
+
+/* Klassen-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-artificer:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(90 225 215 / 100%);
+      mask: url("../../assets/classes/artificer/emblem.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(90 225 215 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #5ae1d7;
+    mask: url("../../assets/classes/artificer/emblem.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}

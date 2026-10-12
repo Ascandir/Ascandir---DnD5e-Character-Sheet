@@ -41,7 +41,9 @@ Im selben Fenster lässt sich unter **Theme** das Aussehen wählen.
 - **Themes/Skins**: „Pergament & Holz“, „Nachtwache“ (Silber/Schiefer), „Blutmond“ (Gotisch, Rot/Gold)
   und „Arkanum“ (Nachtblau, farbige Attributskarten), dazu je ein Theme für alle 13 Schadenstypen
   (Säure, Wucht, Kälte, Feuer, Energie, Blitz, Nekrotisch, Stich, Gift, Psychisch, Gleißend, Hieb, Schall)
-  mit passender Farbe, Metall der Rahmen und Schadens-Symbol im Namensschild. Weitere lassen sich einfach ergänzen –
+  mit passender Farbe, Metall der Rahmen und Schadens-Symbol im Namensschild, sowie je ein Theme für alle
+  13 Klassen (Barbar, Barde, Kleriker, Druide, Kämpfer, Mönch, Paladin, Waldläufer, Schurke, Zauberer,
+  Hexenmeister, Magier, Magieschmied) mit Klassen-Symbol. Weitere lassen sich einfach ergänzen –
   siehe [THEMES.md](THEMES.md).
 - **Kompatibel zum Standardbogen**: Der Bogen erweitert den originalen dnd5e-Bogen. Inventar, Zauber,
   Merkmale, Effekte, Biografie, Bastion und Spezial nutzen die Original-Bausteine, Hooks wie
@@ -76,3 +78,6 @@ api.sheetClass; // die Bogen-Klasse
 Grafiken des Themes „Pergament & Holz“ (`assets/parchment/`): erstellt von Ascandir mit ChatGPT.
 
 Schriften Cinzel und EB Garamond: SIL Open Font License (siehe `fonts/`).
+
+Klassen-Symbole (`assets/classes/*/emblem.svg`): Font Awesome Free, CC BY 4.0 (siehe `assets/classes/LICENSE-fontawesome.txt`).
+Schadens-Symbole: aus dem dnd5e-System (werden nur referenziert, nicht mitgeliefert).

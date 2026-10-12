@@ -28,7 +28,20 @@
       "psychic": "Schadenstyp: Psychisch",
       "radiant": "Schadenstyp: Gleißend",
       "slashing": "Schadenstyp: Hieb",
-      "thunder": "Schadenstyp: Schall"
+      "thunder": "Schadenstyp: Schall",
+      "barbarian": "Klasse: Barbar",
+      "bard": "Klasse: Barde",
+      "cleric": "Klasse: Kleriker",
+      "druid": "Klasse: Druide",
+      "fighter": "Klasse: Kämpfer",
+      "monk": "Klasse: Mönch",
+      "paladin": "Klasse: Paladin",
+      "ranger": "Klasse: Waldläufer",
+      "rogue": "Klasse: Schurke",
+      "sorcerer": "Klasse: Zauberer",
+      "warlock": "Klasse: Hexenmeister",
+      "wizard": "Klasse: Magier",
+      "artificer": "Klasse: Magieschmied"
     },
     "Settings": {
       "ThemeWorldDefault": "Standard der Welt",

@@ -68,6 +68,8 @@
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
 
+
+
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-acid:not(.limited) {
   .asc-nameplate {
@@ -160,6 +162,8 @@
   --asc-search-bg: #0d0b0a;
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
+
+
 
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-bludgeoning:not(.limited) {
@@ -254,6 +258,8 @@
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
 
+
+
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-cold:not(.limited) {
   .asc-nameplate {
@@ -346,6 +352,8 @@
   --asc-search-bg: #100704;
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
+
+
 
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-fire:not(.limited) {
@@ -440,6 +448,8 @@
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
 
+
+
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-force:not(.limited) {
   .asc-nameplate {
@@ -532,6 +542,8 @@
   --asc-search-bg: #050810;
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
+
+
 
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-lightning:not(.limited) {
@@ -626,6 +638,8 @@
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
 
+
+
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-necrotic:not(.limited) {
   .asc-nameplate {
@@ -718,6 +732,8 @@
   --asc-search-bg: #090c0a;
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
+
+
 
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-piercing:not(.limited) {
@@ -812,6 +828,8 @@
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
 
+
+
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-poison:not(.limited) {
   .asc-nameplate {
@@ -904,6 +922,8 @@
   --asc-search-bg: #0e060e;
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
+
+
 
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-psychic:not(.limited) {
@@ -998,6 +1018,8 @@
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
 
+
+
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-radiant:not(.limited) {
   .asc-nameplate {
@@ -1091,6 +1113,8 @@
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
 
+
+
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-slashing:not(.limited) {
   .asc-nameplate {
@@ -1183,6 +1207,8 @@
   --asc-search-bg: #080a0e;
   --asc-condition-icon-filter: brightness(0) invert(.85);
 }
+
+
 
 /* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
 .dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-thunder:not(.limited) {
