@@ -66,7 +66,8 @@
       "Stop": "Finish editing",
       "Label": "Edit",
       "Done": "Done",
-      "Locked": "Editing locked – the GM can unlock it."
+      "Locked": "Editing locked – the GM can unlock it.",
+      "LockedShort": "Locked"
     },
     "GM": {
       "Unlock": "GM: unlock editing for players",

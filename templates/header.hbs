@@ -64,14 +64,16 @@
         {{/if}}
 
         {{#if asc.canEdit}}
-        <button type="button" class="asc-square asc-edit-toggle {{#if asc.editMode}}active{{/if}}"
+        <button type="button" class="asc-edit-pill asc-edit-toggle {{#if asc.editMode}}active{{/if}}"
                 data-action="ascToggleEdit" aria-pressed="{{ asc.editMode }}"
                 data-tooltip="{{#if asc.editMode}}{{ localize 'ASCSHEET.Edit.Stop' }}{{else}}{{ localize 'ASCSHEET.Edit.Start' }}{{/if}}">
-            <i class="fa-solid {{#if asc.editMode}}fa-floppy-disk{{else}}fa-pen{{/if}}" inert></i>
+            <i class="fa-solid {{#if asc.editMode}}fa-floppy-disk{{else}}fa-pen-to-square{{/if}}" inert></i>
+            <span>{{#if asc.editMode}}{{ localize "ASCSHEET.Edit.Done" }}{{else}}{{ localize "ASCSHEET.Edit.Label" }}{{/if}}</span>
         </button>
         {{else}}
-        <span class="asc-square asc-locked" data-tooltip="{{ localize 'ASCSHEET.Edit.Locked' }}">
+        <span class="asc-edit-pill asc-locked" data-tooltip="{{ localize 'ASCSHEET.Edit.Locked' }}">
             <i class="fa-solid fa-lock" inert></i>
+            <span>{{ localize "ASCSHEET.Edit.LockedShort" }}</span>
         </span>
         {{/if}}
     </div>

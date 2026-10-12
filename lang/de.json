@@ -66,7 +66,8 @@
       "Stop": "Bearbeitung beenden und speichern",
       "Label": "Bearbeiten",
       "Done": "Fertig",
-      "Locked": "Bearbeitung gesperrt – der Spielleiter kann sie freigeben."
+      "Locked": "Bearbeitung gesperrt – der Spielleiter kann sie freigeben.",
+      "LockedShort": "Gesperrt"
     },
     "GM": {
       "Unlock": "SL: Bearbeitung für Spieler freigeben",

@@ -183,6 +183,46 @@
     &.asc-locked { cursor: help; opacity: .75; }
   }
 
+  /* Bearbeiten-Knopf: in allen Themes absichtlich identisch (feste Farben, keine Theme-Variablen) */
+  .asc-edit-pill {
+    height: 24px;
+    min-width: 0;
+    margin: 0;
+    padding: 0 10px 0 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Asc Cinzel", serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    line-height: 1;
+    white-space: nowrap;
+    color: #f3e3b8;
+    background: linear-gradient(to bottom, #3a2a18, #1a120a);
+    border: 1px solid #c9a35c;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 60%), 0 0 6px rgb(201 163 92 / 35%);
+    cursor: var(--cursor-pointer, pointer);
+    i { margin: 0; font-size: 11px; color: #e6c27a; }
+    &:hover { border-color: #ecd59c; color: #fff; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 60%), 0 0 10px rgb(236 213 156 / 60%); }
+    &.active {
+      background: linear-gradient(to bottom, #a8452b, #6b2414);
+      border-color: #f0c070;
+      color: #fff6e6;
+      i { color: #fff6e6; }
+    }
+    &.asc-locked {
+      cursor: help;
+      color: #b9ae9a;
+      background: linear-gradient(to bottom, #2b2723, #151311);
+      border-color: #6b6256;
+      box-shadow: inset 0 0 0 1px rgb(0 0 0 / 60%);
+      i { color: #b9ae9a; }
+    }
+  }
+
   .asc-xp {
     position: relative;
     height: 24px;
