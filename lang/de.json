@@ -1,0 +1,122 @@
+{
+  "ASCSHEET": {
+    "SheetLabel": "Ascandir Sheet",
+    "Tab": {
+      "overview": "Übersicht",
+      "details": "Attribute",
+      "features": "Merkmale",
+      "combat": "Kampf",
+      "spells": "Zauber",
+      "inventory": "Inventar",
+      "effects": "Effekte",
+      "biography": "Hintergrund"
+    },
+    "Theme": {
+      "parchment": "Pergament & Holz",
+      "nightwatch": "Nachtwache"
+    },
+    "Settings": {
+      "ThemeWorldDefault": "Standard der Welt",
+      "DefaultTheme": {
+        "Name": "Standard-Theme (Welt)",
+        "Hint": "Theme für alle, die weder im Fenster „Bogen konfigurieren“ noch in ihren eigenen Einstellungen ein Theme gewählt haben."
+      },
+      "Theme": {
+        "Name": "Mein Theme",
+        "Hint": "Dein persönliches Theme für den Ascandir-Bogen. Ein im Fenster „Bogen konfigurieren“ gewähltes Theme hat Vorrang."
+      },
+      "PlayerEdit": {
+        "Name": "Bearbeitungsmodus für Spieler",
+        "Hint": "Wer darf den Bearbeitungsmodus (Attributswerte, Klassenstufen, Konfiguration, Löschen von Klasse/Spezies/Hintergrund) nutzen? Würfeln, TP, Gegenstände benutzen usw. geht immer.",
+        "gm": "Nur mit Freigabe des SL (pro Charakter)",
+        "always": "Spieler dürfen ihre Charaktere immer bearbeiten"
+      },
+      "PlayerSetup": {
+        "Name": "Spieler dürfen leere Charaktere einrichten",
+        "Hint": "Erlaubt Spielern, ohne Freigabe die erste Klasse, Spezies und den Hintergrund zu wählen, solange diese noch fehlen."
+      }
+    },
+    "Warn": {
+      "NoEditRights": "Dafür brauchst du die Freigabe des Spielleiters."
+    },
+    "Notify": {
+      "Locked": "Bearbeitung von {name} für Spieler gesperrt.",
+      "Unlocked": "Bearbeitung von {name} für Spieler freigegeben."
+    },
+    "NoClass": "Ohne Klasse",
+    "Level": "Stufe",
+    "XP": "EP",
+    "Edit": {
+      "Start": "Bogen bearbeiten",
+      "Stop": "Bearbeitung beenden und speichern",
+      "Label": "Bearbeiten",
+      "Done": "Fertig",
+      "Locked": "Bearbeitung gesperrt – der Spielleiter kann sie freigeben."
+    },
+    "GM": {
+      "Unlock": "SL: Bearbeitung für Spieler freigeben",
+      "Lock": "SL: Bearbeitung für Spieler sperren"
+    },
+    "HpClick": "Klicken zum Ändern (z. B. -5 oder +3)",
+    "Origin": {
+      "Title": "Spezies & Hintergrund"
+    },
+    "Setup": {
+      "Title": "Charakter einrichten",
+      "Hint": "Wähle Klasse, Spezies und Hintergrund. Die Auswahl öffnet den Kompendium-Browser, danach führt dich der Stufenaufstieg durch alle Entscheidungen.",
+      "AbilitiesHint": "Attributswerte und weitere Werte trägst du im Bearbeitungsmodus ein, sobald der Spielleiter ihn freigegeben hat.",
+      "Class": "Klasse wählen",
+      "Species": "Spezies wählen",
+      "Background": "Hintergrund wählen"
+    },
+    "RollCheck": "Attributswurf",
+    "Passives": "Passive Werte",
+    "Mod": "Mod.",
+    "Passive": "Pass.",
+    "ShowAll": "Alles anzeigen",
+    "Movement": "Bewegung",
+    "Attacks": "Angriffe & Aktionen",
+    "ToHit": "Treffer",
+    "Damage": "Schaden",
+    "Uses": "Ladungen",
+    "NoAttacks": "Keine Angriffe oder Aktionen.",
+    "SpellAbility": "Attribut",
+    "SpellAttack": "Zauberangriff",
+    "SpellDC": "Zauber-SG",
+    "NoSpellcasting": "Dieser Charakter wirkt keine Zauber.",
+    "Spellbook": "Zauberbuch",
+    "NoSpells": "Noch keine Zauber.",
+    "Price": "Preis",
+    "Weight": "Gew.",
+    "Qty": "Anz.",
+    "NoItems": "Das Inventar ist leer.",
+    "Features": {
+      "Title": "Eigenschaften & Merkmale",
+      "class": "Klasse: {class}",
+      "species": "Spezies",
+      "background": "Hintergrund",
+      "other": "Sonstiges"
+    },
+    "NoFeatures": "Noch keine Merkmale.",
+    "Conditions": "Zustände",
+    "ExhaustionHint": "Klick: Stufe +1 · Umschalt+Klick: Stufe -1",
+    "Background": {
+      "trait": "Persönlichkeit",
+      "ideal": "Ideale",
+      "bond": "Bindungen",
+      "flaw": "Makel"
+    },
+    "Combat": {
+      "group": {
+        "action": "Aktionen",
+        "bonus": "Bonusaktionen",
+        "reaction": "Reaktionen",
+        "other": "Sonstiges"
+      }
+    },
+    "Death": {
+      "success": "Erfolge",
+      "failure": "Fehlschläge"
+    }
+  }
+}

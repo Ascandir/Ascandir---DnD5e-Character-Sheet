@@ -1,0 +1,122 @@
+{
+  "ASCSHEET": {
+    "SheetLabel": "Ascandir Sheet",
+    "Tab": {
+      "overview": "Overview",
+      "details": "Attributes",
+      "features": "Features",
+      "combat": "Combat",
+      "spells": "Spells",
+      "inventory": "Inventory",
+      "effects": "Effects",
+      "biography": "Background"
+    },
+    "Theme": {
+      "parchment": "Parchment & Wood",
+      "nightwatch": "Nightwatch"
+    },
+    "Settings": {
+      "ThemeWorldDefault": "World default",
+      "DefaultTheme": {
+        "Name": "Default theme (world)",
+        "Hint": "Theme for everyone who has not chosen one in the sheet configuration or in their own settings."
+      },
+      "Theme": {
+        "Name": "My theme",
+        "Hint": "Your personal theme for the Ascandir sheet. A theme chosen in the sheet configuration window takes priority."
+      },
+      "PlayerEdit": {
+        "Name": "Edit mode for players",
+        "Hint": "Who may use edit mode (ability scores, class levels, configuration, deleting class/species/background)? Rolling, HP and using items always work.",
+        "gm": "Only when unlocked by the GM (per character)",
+        "always": "Players may always edit their characters"
+      },
+      "PlayerSetup": {
+        "Name": "Players may set up empty characters",
+        "Hint": "Lets players pick their first class, species and background without GM approval while these are missing."
+      }
+    },
+    "Warn": {
+      "NoEditRights": "You need the GM's permission for that."
+    },
+    "Notify": {
+      "Locked": "Editing {name} is now locked for players.",
+      "Unlocked": "Editing {name} is now unlocked for players."
+    },
+    "NoClass": "No class",
+    "Level": "Level",
+    "XP": "XP",
+    "Edit": {
+      "Start": "Edit sheet",
+      "Stop": "Finish editing",
+      "Label": "Edit",
+      "Done": "Done",
+      "Locked": "Editing locked – the GM can unlock it."
+    },
+    "GM": {
+      "Unlock": "GM: unlock editing for players",
+      "Lock": "GM: lock editing for players"
+    },
+    "HpClick": "Click to change (e.g. -5 or +3)",
+    "Origin": {
+      "Title": "Species & Background"
+    },
+    "Setup": {
+      "Title": "Set up character",
+      "Hint": "Choose class, species and background. Each button opens the compendium browser, then the advancement flow guides you through every choice.",
+      "AbilitiesHint": "Ability scores and other values are entered in edit mode once the GM unlocks it.",
+      "Class": "Choose class",
+      "Species": "Choose species",
+      "Background": "Choose background"
+    },
+    "RollCheck": "Ability check",
+    "Passives": "Passive scores",
+    "Mod": "Mod",
+    "Passive": "Pass.",
+    "ShowAll": "Show all",
+    "Movement": "Movement",
+    "Attacks": "Attacks & actions",
+    "ToHit": "To hit",
+    "Damage": "Damage",
+    "Uses": "Uses",
+    "NoAttacks": "No attacks or actions.",
+    "SpellAbility": "Ability",
+    "SpellAttack": "Spell attack",
+    "SpellDC": "Spell DC",
+    "NoSpellcasting": "This character does not cast spells.",
+    "Spellbook": "Spellbook",
+    "NoSpells": "No spells yet.",
+    "Price": "Price",
+    "Weight": "Wt.",
+    "Qty": "Qty",
+    "NoItems": "The inventory is empty.",
+    "Features": {
+      "Title": "Features & Traits",
+      "class": "Class: {class}",
+      "species": "Species",
+      "background": "Background",
+      "other": "Other"
+    },
+    "NoFeatures": "No features yet.",
+    "Conditions": "Conditions",
+    "ExhaustionHint": "Click: level +1 · Shift+click: level -1",
+    "Background": {
+      "trait": "Personality",
+      "ideal": "Ideals",
+      "bond": "Bonds",
+      "flaw": "Flaws"
+    },
+    "Combat": {
+      "group": {
+        "action": "Actions",
+        "bonus": "Bonus actions",
+        "reaction": "Reactions",
+        "other": "Other"
+      }
+    },
+    "Death": {
+      "success": "Successes",
+      "failure": "Failures"
+    }
+  }
+}

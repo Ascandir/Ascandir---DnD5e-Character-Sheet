@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Theme: Pergament & Holz  (id: parchment, Grundschema: hell)
+   Dunkles Holz als Rahmen, Pergament-Panels, Bronze-/Goldlinien, Weinrot als Akzent.
+   ========================================================================== */
+
+.ascandir-sheet.asc-theme-parchment {
+  /* Rahmen & Hintergrund */
+  --asc-frame-bg:
+    radial-gradient(ellipse at 50% 0%, rgb(255 210 140 / 10%), transparent 60%),
+    repeating-linear-gradient(92deg, rgb(0 0 0 / 0%) 0 14px, rgb(0 0 0 / 14%) 14px 15px, rgb(0 0 0 / 0%) 15px 31px),
+    repeating-linear-gradient(88deg, rgb(255 255 255 / 0%) 0 40px, rgb(255 220 170 / 4%) 40px 42px),
+    linear-gradient(to bottom, #3a2618, #24170e 40%, #1b110a);
+  --asc-frame-border: #7a5a2e;
+  --asc-content-bg:
+    radial-gradient(ellipse at 50% 30%, rgb(120 80 40 / 18%), transparent 70%),
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0%) 0 22px, rgb(0 0 0 / 18%) 22px 23px),
+    linear-gradient(to bottom, #24170e, #160e08);
+
+  /* Gold / Bronze */
+  --asc-gold: #b48a46;
+  --asc-gold-light: #ecd08f;
+  --asc-gold-dark: #6b4d24;
+
+  /* Pergament */
+  --asc-parchment-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --asc-panel-bg:
+    var(--asc-parchment-noise),
+    radial-gradient(ellipse at center, #f4e8cb 0%, #ecdcb6 65%, #dcc597 100%);
+  --asc-card-bg:
+    var(--asc-parchment-noise),
+    radial-gradient(ellipse at 50% 30%, #f7ecd2 0%, #ead8af 80%, #d9c08e 100%);
+  --asc-panel-color: #ecdcb6;
+  --asc-card-color: #efe0bb;
+  --asc-header-color: #2f1f13;
+  --asc-panel-border: #8a6a3a;
+  --asc-panel-inner-border: rgb(122 90 46 / 55%);
+  --asc-panel-header-bg: linear-gradient(to bottom, #3d2a1b, #2a1b10);
+  --asc-panel-header-text: #ecd08f;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 60%);
+  --asc-nameplate-bg:
+    radial-gradient(ellipse at 50% 0%, rgb(236 208 143 / 16%), transparent 70%),
+    linear-gradient(to bottom, #3d2a1b, #1f140c);
+  --asc-tabbar-bg: linear-gradient(to bottom, #3a281a, #24170e);
+  --asc-portrait-bg: linear-gradient(to bottom, #3a281a, #1b110a);
+  --asc-system-tab-bg:
+    var(--asc-parchment-noise),
+    linear-gradient(to bottom, #f1e3c2, #e6d3a8);
+
+  /* Text */
+  --asc-text: #2e2215;
+  --asc-text-muted: #6d5a43;
+  --asc-text-heading: #3b2614;
+  --asc-text-on-dark: #f0e2c0;
+  --asc-accent: #8f2a1e;
+  --asc-accent-contrast: #fff4dc;
+  --asc-positive: #3f6b2a;
+
+  /* Zeilen */
+  --asc-row-alt: rgb(122 90 46 / 8%);
+  --asc-row-hover: rgb(143 42 30 / 12%);
+  --asc-row-border: rgb(122 90 46 / 25%);
+
+  /* Tabs */
+  --asc-tab-bg: transparent;
+  --asc-tab-text: #d6bd86;
+  --asc-tab-active-bg: linear-gradient(to bottom, #7a5428, #4d3317);
+  --asc-tab-active-text: #fff2cf;
+
+  /* Abzeichen, Balken */
+  --asc-badge-bg: #2a1c11;
+  --asc-badge-text: #f3e6c8;
+  --asc-shield-bg: linear-gradient(to bottom, #3e2b1b, #140d07);
+  --asc-meter-bg: #1a110a;
+  --asc-hp-fill-1: #2e6a22;
+  --asc-hp-fill-2: #55a53c;
+  --asc-hd-fill-1: #5b1a1a;
+  --asc-hd-fill-2: #923030;
+  --asc-xp-fill: linear-gradient(to right, #8a6a2e, #e0bf6c);
+  --asc-enc-fill: linear-gradient(to right, #4b3a78, #7a63b5);
+  --asc-pip-fill: #8f2a1e;
+
+  --asc-input-bg: rgb(255 250 235 / 55%);
+  --asc-input-border: rgb(122 90 46 / 50%);
+  --asc-ability-icon: #4a3420;
+  --asc-condition-icon-filter: brightness(.25) sepia(.6);
+}
+
+/* Kleine Zierdiamanten an den Panel-Ecken */
+.ascandir-sheet.asc-theme-parchment .asc-panel::after,
+.ascandir-sheet.asc-theme-parchment .asc-card:not(.asc-portrait)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(45deg, transparent 45%, #b48a46 45% 55%, transparent 55%) 3px calc(100% - 3px) / 8px 8px no-repeat,
+    linear-gradient(-45deg, transparent 45%, #b48a46 45% 55%, transparent 55%) calc(100% - 3px) calc(100% - 3px) / 8px 8px no-repeat;
+  opacity: .8;
+}

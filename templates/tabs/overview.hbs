@@ -1,0 +1,329 @@
+<section class="tab asc-tab-overview {{ tab.cssClass }}" data-tab="{{ tab.id }}" data-group="{{ tab.group }}">
+
+    {{!-- Ersteinrichtung --}}
+    {{#if asc.setup.needed}}
+    <div class="asc-panel asc-setup" style="grid-area: setup">
+        <div class="asc-panel-header"><i class="fa-solid fa-compass-drafting" inert></i><span>{{ localize "ASCSHEET.Setup.Title" }}</span></div>
+        <div class="asc-setup-body">
+            <p class="asc-hint">{{ localize "ASCSHEET.Setup.Hint" }}</p>
+            <div class="asc-setup-buttons">
+                {{> ".asc-setup-step" done=asc.setup.hasClass allowed=asc.setup.canClass type="class" icon="fa-solid fa-hat-wizard" label="ASCSHEET.Setup.Class" }}
+                {{> ".asc-setup-step" done=asc.setup.hasSpecies allowed=asc.setup.canSpecies type="race" icon="fa-solid fa-users" label="ASCSHEET.Setup.Species" }}
+                {{> ".asc-setup-step" done=asc.setup.hasBackground allowed=asc.setup.canBackground type="background" icon="fa-solid fa-book-open" label="ASCSHEET.Setup.Background" }}
+            </div>
+            {{#unless asc.canEdit}}
+            <p class="asc-hint asc-hint--small"><i class="fa-solid fa-circle-info" inert></i> {{ localize "ASCSHEET.Setup.AbilitiesHint" }}</p>
+            {{/unless}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{!-- Attribute --}}
+    <div class="asc-abilities" style="grid-area: abil">
+        {{#each ascAbilities}}
+        <div class="asc-ability" data-ability="{{ key }}">
+            <i class="asc-ability-icon {{ icon }}" inert></i>
+            <a class="asc-ability-label {{ @root.rollableClass }} ability-check" data-action="roll" data-type="ability"
+               data-tooltip="{{ localize 'ASCSHEET.RollCheck' }}">{{ label }}</a>
+            <div class="asc-ability-score">
+                {{#if @root.editable}}
+                <input type="text" name="system.abilities.{{ key }}.value" value="{{ source.value }}" placeholder="10"
+                       data-dtype="Number">
+                {{else}}
+                {{ value }}
+                {{/if}}
+            </div>
+            <div class="asc-ability-mod">{{ dnd5e-formatModifier mod }}</div>
+            {{#if @root.editable}}
+            <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="ability"
+                    data-tooltip="{{ localize 'DND5E.AbilityConfigure' ability=label }}"><i class="fas fa-cog" inert></i></button>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+
+    {{!-- Übungsbonus & Passive Werte --}}
+    <div class="asc-side-stats" style="grid-area: side">
+        <div class="asc-panel asc-prof">
+            <div class="asc-panel-header"><i class="fa-solid fa-medal" inert></i><span>{{ localize "DND5E.ProficiencyBonus" }}</span>
+                <span class="asc-badge">{{ dnd5e-numberFormat system.attributes.prof signDisplay="always" }}</span>
+            </div>
+        </div>
+        <div class="asc-panel asc-passives">
+            <div class="asc-panel-header"><i class="fa-solid fa-eye" inert></i><span>{{ localize "ASCSHEET.Passives" }}</span></div>
+            <div class="asc-passive-list">
+                {{#each ascPassives}}
+                <div class="asc-passive" data-key="{{ key }}">
+                    <span class="asc-passive-value">{{ value }}</span>
+                    <span class="asc-passive-label">{{ label }}</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    {{!-- Fertigkeiten --}}
+    <div class="asc-panel asc-skills" style="grid-area: skills">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-briefcase" inert></i><span>{{ localize "DND5E.Skills" }}</span>
+            <span class="asc-col-heads asc-col-heads--skills"><span>{{ localize "ASCSHEET.Mod" }}</span><span>{{ localize "ASCSHEET.Passive" }}</span></span>
+        </div>
+        <ul class="unlist asc-rows">
+            {{#each ascSkills}}
+            <li class="asc-row asc-skill" data-key="{{ key }}" {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}>
+                {{#if @root.editable}}
+                <proficiency-cycle type="skill" name="system.skills.{{ key }}.value" value="{{ source.value }}"
+                                   data-tooltip="{{ hover }}"></proficiency-cycle>
+                {{else}}
+                <span class="asc-prof-dot asc-prof--{{ profClass }}" data-tooltip="{{ hover }}"></span>
+                {{/if}}
+                <span class="asc-abbr">{{ abbreviation }}</span>
+                <a class="asc-name draggable {{ @root.rollableClass }} skill-name" data-action="roll" data-type="skill">{{ label }}</a>
+                <span class="asc-mod">{{ dnd5e-formatModifier total }}</span>
+                <span class="asc-passive-small">{{ passive }}</span>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    {{!-- Rettungswürfe --}}
+    <div class="asc-panel asc-saves" style="grid-area: saves">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-shield-heart" inert></i><span>{{ localize "DND5E.ClassSaves" }}</span>
+        </div>
+        <ul class="unlist asc-rows">
+            {{#each ascSaves}}
+            <li class="asc-row asc-save" data-ability="{{ key }}">
+                {{#if @root.editable}}
+                <proficiency-cycle type="ability" name="system.abilities.{{ key }}.proficient" value="{{ source.proficient }}"
+                                   data-tooltip aria-label="{{ hover }}"></proficiency-cycle>
+                {{else}}
+                <span class="asc-prof-dot asc-prof--{{ class }}" data-tooltip="{{ hover }}"></span>
+                {{/if}}
+                <i class="asc-row-icon {{ lookup @root.ascAbilityIcons key }}" inert></i>
+                <a class="asc-name {{ @root.rollableClass }} saving-throw" data-action="roll" data-type="ability">{{ label }}</a>
+                <span class="asc-mod">{{ dnd5e-formatModifier save.value }}</span>
+            </li>
+            {{/each}}
+            <li class="asc-row asc-save" data-ability="concentration">
+                <span class="asc-prof-dot asc-prof--none"></span>
+                <i class="asc-row-icon fa-solid fa-brain" inert></i>
+                <a class="asc-name {{ @root.rollableClass }} saving-throw" data-action="roll" data-type="ability">{{ localize "DND5E.Concentration" }}</a>
+                <span class="asc-mod">{{ dnd5e-formatModifier ascCombat.concentration }}</span>
+            </li>
+        </ul>
+    </div>
+
+    {{!-- Kampf --}}
+    <div class="asc-panel asc-combat" style="grid-area: combat">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-khanda" inert></i><span>{{ localize "ASCSHEET.Tab.combat" }}</span>
+            <a class="asc-header-link" data-action="ascGoTab" data-tab="combat" data-tooltip="ASCSHEET.ShowAll"><i class="fa-solid fa-angles-right" inert></i></a>
+        </div>
+        <div class="asc-combat-stats">
+            <div class="asc-stat asc-stat--ac" data-attribution="attributes.ac" data-attribution-caption="DND5E.ArmorClass">
+                <span class="asc-stat-label">{{ localize "DND5E.ArmorClass" }}</span>
+                <span class="asc-shield"><span>{{ ascCombat.ac }}</span></span>
+            </div>
+            <div class="asc-stat {{ rollableClass }}" data-action="roll" data-type="initiative">
+                <span class="asc-stat-label">{{ localize "DND5E.Initiative" }}</span>
+                <span class="asc-stat-hex">{{ dnd5e-numberFormat ascCombat.init signDisplay="always" }}</span>
+            </div>
+            <div class="asc-stat">
+                <span class="asc-stat-label">{{ localize "ASCSHEET.Movement" }}</span>
+                <span class="asc-stat-hex">{{ ascCombat.speed }} {{ localize ascCombat.speedUnit }}</span>
+            </div>
+        </div>
+        <div class="asc-subheader"><span>{{ localize "ASCSHEET.Attacks" }}</span><span class="asc-col-heads asc-col-heads--attack"><span>{{ localize "ASCSHEET.ToHit" }}</span><span>{{ localize "ASCSHEET.Damage" }}</span></span></div>
+        <ul class="unlist asc-rows asc-item-rows">
+            {{#each ascAttacks}}
+            <li class="asc-row asc-item-row item-tooltip" data-item-id="{{ itemId }}" data-activity-id="{{ activityId }}"
+                data-uuid="{{ item.uuid }}">
+                <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
+                <div class="asc-item-text {{ @root.rollableClass }}" data-action="ascUseItem">
+                    <span class="asc-item-name">{{ name }}</span>
+                    <span class="asc-item-sub">{{ subtitle }}</span>
+                </div>
+                <span class="asc-mod">{{#if toHit}}{{ toHit }}{{else if save}}{{ save }}{{/if}}</span>
+                <span class="asc-damage">{{#if damage}}{{ damage }}{{else if uses}}{{ uses.value }}/{{ uses.max }}{{/if}}</span>
+            </li>
+            {{else}}
+            <li class="asc-empty">{{ localize "ASCSHEET.NoAttacks" }}</li>
+            {{/each}}
+        </ul>
+    </div>
+
+    {{!-- Zauberwerte --}}
+    <div class="asc-panel asc-spellstats" style="grid-area: spellstats">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-wand-sparkles" inert></i><span>{{ localize "ASCSHEET.Tab.spells" }}</span>
+        </div>
+        {{#if ascSpellcasting}}
+        {{#each ascSpellcasting}}
+        <div class="asc-spellcasting">
+            <div class="asc-sc-cell"><span class="asc-stat-label">{{ localize "ASCSHEET.SpellAbility" }}</span><span class="asc-chip">{{ ability }}</span></div>
+            <div class="asc-sc-cell"><span class="asc-stat-label">{{ localize "ASCSHEET.SpellAttack" }}</span><span class="asc-big">{{ dnd5e-formatModifier attack }}</span></div>
+            <div class="asc-sc-cell"><span class="asc-stat-label">{{ localize "ASCSHEET.SpellDC" }}</span><span class="asc-big">{{ save }}</span></div>
+        </div>
+        {{/each}}
+        <div class="asc-slots">
+            {{#each ascSpellSections}}
+            {{#if prop}}
+            <div class="asc-slot-level">
+                <span class="asc-slot-label">{{ label }}</span>
+                <div class="pips asc-pips" data-prop="{{ prop }}">
+                    {{#each pips}}
+                    <button type="button" class="{{ classes }}" data-action="togglePip" data-n="{{ n }}"
+                            data-tooltip="{{ tooltip }}" aria-label="{{ label }}" aria-pressed="{{ filled }}"></button>
+                    {{/each}}
+                </div>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+        {{else}}
+        <p class="asc-empty">{{ localize "ASCSHEET.NoSpellcasting" }}</p>
+        {{/if}}
+    </div>
+
+    {{!-- Zauberliste --}}
+    <div class="asc-panel asc-spells" style="grid-area: spells">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-book" inert></i><span>{{ localize "ASCSHEET.Spellbook" }}</span>
+            <a class="asc-header-link" data-action="ascGoTab" data-tab="spells" data-tooltip="ASCSHEET.ShowAll"><i class="fa-solid fa-angles-right" inert></i></a>
+        </div>
+        <div class="asc-scroll">
+            {{#each ascSpellSections}}
+            {{#if spells.length}}
+            <div class="asc-subheader"><span>{{ label }}</span></div>
+            <ul class="unlist asc-rows asc-item-rows">
+                {{#each spells}}
+                <li class="asc-row asc-item-row item-tooltip {{#if (eq prepared false)}}unprepared{{/if}}" data-item-id="{{ id }}" data-uuid="{{ uuid }}">
+                    <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
+                    <div class="asc-item-text {{ @root.rollableClass }}" data-action="ascUseItem">
+                        <span class="asc-item-name">{{ name }}{{#if concentration}} <i class="fa-solid fa-c asc-conc" inert></i>{{/if}}</span>
+                        <span class="asc-item-sub">{{ subtitle }}</span>
+                    </div>
+                    {{#if (eq prepared true)}}<i class="fa-solid fa-sun asc-prepared" data-tooltip="DND5E.SpellPrepared"></i>{{/if}}
+                </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+            {{else}}
+            <p class="asc-empty">{{ localize "ASCSHEET.NoSpells" }}</p>
+            {{/each}}
+        </div>
+    </div>
+
+    {{!-- Inventar --}}
+    <div class="asc-panel asc-inventory" style="grid-area: inv">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-sack-dollar" inert></i><span>{{ localize "ASCSHEET.Tab.inventory" }}</span>
+            <a class="asc-header-link" data-action="ascGoTab" data-tab="inventory" data-tooltip="ASCSHEET.ShowAll"><i class="fa-solid fa-angles-right" inert></i></a>
+        </div>
+        <div class="asc-subheader"><span>{{ localize "Name" }}</span><span class="asc-col-heads asc-col-heads--inv"><span>{{ localize "ASCSHEET.Price" }}</span><span>{{ localize "ASCSHEET.Weight" }}</span><span>{{ localize "ASCSHEET.Qty" }}</span></span></div>
+        <ul class="unlist asc-rows asc-item-rows asc-scroll">
+            {{#each ascInventory}}
+            <li class="asc-row asc-item-row asc-inv-row item-tooltip" data-item-id="{{ id }}" data-uuid="{{ uuid }}">
+                <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
+                <div class="asc-item-text {{ @root.rollableClass }}" data-action="ascUseItem">
+                    <span class="asc-item-name">{{ name }}{{#if equipped}} <i class="fa-solid fa-shield-halved asc-equipped" data-tooltip="DND5E.Equipped"></i>{{/if}}</span>
+                    <span class="asc-item-sub">{{ subtitle }}</span>
+                </div>
+                <span class="asc-cell">{{ price }}</span>
+                <span class="asc-cell">{{ weight }}</span>
+                <span class="asc-cell asc-qty">{{ quantity }}</span>
+            </li>
+            {{else}}
+            <li class="asc-empty">{{ localize "ASCSHEET.NoItems" }}</li>
+            {{/each}}
+        </ul>
+        <div class="asc-encumbrance {{#if ascEncumbrance.encumbered}}encumbered{{/if}}" data-tooltip="DND5E.Encumbrance">
+            <i class="fa-solid fa-weight-hanging" inert></i>
+            <div class="asc-bar"><span style="width: {{ ascEncumbrance.pct }}%"></span><em>{{ ascEncumbrance.value }} / {{ ascEncumbrance.max }}</em></div>
+        </div>
+        <div class="asc-currency">
+            {{#each ascCurrency}}
+            <label class="asc-coin asc-coin--{{ key }}" data-tooltip="{{ label }}">
+                <img src="{{ icon }}" alt="{{ abbr }}">
+                {{#if @root.owner}}
+                <input type="text" name="{{ name }}" value="{{ value }}" data-dtype="Number" inputmode="numeric" pattern="[+=\-]?\d*">
+                {{else}}
+                <span>{{ value }}</span>
+                {{/if}}
+            </label>
+            {{/each}}
+        </div>
+    </div>
+
+    {{!-- Merkmale --}}
+    <div class="asc-panel asc-features" style="grid-area: feat">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-scroll" inert></i><span>{{ localize "ASCSHEET.Features.Title" }}</span>
+            <a class="asc-header-link" data-action="ascGoTab" data-tab="features" data-tooltip="ASCSHEET.ShowAll"><i class="fa-solid fa-angles-right" inert></i></a>
+        </div>
+        <div class="asc-scroll">
+            {{#each ascFeatureGroups}}
+            <details class="asc-feature-group" open>
+                <summary>{{ label }}</summary>
+                <ul class="unlist asc-chips">
+                    {{#each items}}
+                    <li class="asc-chip-item item-tooltip" data-item-id="{{ id }}" data-uuid="{{ uuid }}">
+                        <a class="{{ @root.rollableClass }}" data-action="ascUseItem">{{ name }}</a>{{#if uses}} <em>{{ uses }}</em>{{/if}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </details>
+            {{else}}
+            <p class="asc-empty">{{ localize "ASCSHEET.NoFeatures" }}</p>
+            {{/each}}
+        </div>
+    </div>
+
+    {{!-- Effekte / Zustände --}}
+    <div class="asc-panel asc-conditions" style="grid-area: cond">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-bolt" inert></i><span>{{ localize "ASCSHEET.Tab.effects" }}</span>
+            <a class="asc-header-link" data-action="ascGoTab" data-tab="effects" data-tooltip="ASCSHEET.ShowAll"><i class="fa-solid fa-angles-right" inert></i></a>
+        </div>
+        {{> ".asc-condition-grid" conditions=ascConditions }}
+    </div>
+
+    {{!-- Hintergrund --}}
+    <div class="asc-panel asc-background" style="grid-area: bg">
+        <div class="asc-panel-header">
+            <i class="fa-solid fa-feather-pointed" inert></i><span>{{ localize "ASCSHEET.Tab.biography" }}</span>
+            <a class="asc-header-link" data-action="ascGoTab" data-tab="biography" data-tooltip="ASCSHEET.ShowAll"><i class="fa-solid fa-angles-right" inert></i></a>
+        </div>
+        <ul class="unlist asc-bg-list">
+            {{#each ascBackground}}
+            <li data-action="ascGoTab" data-tab="biography">
+                <span class="asc-bg-label">{{ label }}</span>
+                <span class="asc-bg-text">{{#if text}}{{ text }}{{else}}–{{/if}}</span>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</section>
+
+{{#*inline ".asc-setup-step"}}
+<button type="button" class="asc-setup-step {{#if done}}done{{/if}}" data-action="findItem" data-item-type="{{ type }}"
+        {{#if (or done (not allowed))}}disabled{{/if}}
+        {{#unless (or done allowed)}}data-tooltip="ASCSHEET.Warn.NoEditRights"{{/unless}}>
+    <i class="{{#if done}}fa-solid fa-circle-check{{else if allowed}}{{ icon }}{{else}}fa-solid fa-lock{{/if}}" inert></i>
+    <span>{{ localize label }}</span>
+</button>
+{{/inline}}
+
+{{#*inline ".asc-condition-grid"}}
+<ul class="unlist asc-condition-grid">
+    {{#each conditions}}
+    <li class="asc-condition {{#if active}}active{{/if}}" data-condition="{{ id }}" data-action="ascToggleCondition"
+        {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}>
+        <img src="{{ img }}" alt="">
+        <span>{{ name }}</span>
+        {{#if isExhaustion}}<em class="asc-exhaustion-level" data-tooltip="ASCSHEET.ExhaustionHint">{{ level }}</em>{{/if}}
+    </li>
+    {{/each}}
+</ul>
+{{/inline}}

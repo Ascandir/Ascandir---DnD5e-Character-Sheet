@@ -1,0 +1,43 @@
+{
+  "id": "ascandir-dnd5e-character-sheet",
+  "title": "Ascandir - DnD5e Character Sheet",
+  "description": "Ein alternativer Charakterbogen für dnd5e mit Übersichtsseite, Kampf-Tab, SL-Freigabe für den Bearbeitungsmodus und austauschbaren Themes (Skins).",
+  "version": "0.1.0",
+  "authors": [
+    { "name": "Ascandir" }
+  ],
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.368"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "6.0.0",
+          "verified": "6.0.6"
+        }
+      }
+    ]
+  },
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "styles": [
+    "styles/fonts.css",
+    "styles/sheet.css",
+    "styles/themes/parchment.css",
+    "styles/themes/nightwatch.css"
+  ],
+  "languages": [
+    { "lang": "de", "name": "Deutsch", "path": "lang/de.json" },
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ],
+  "url": "https://github.com/Ascandir/Ascandir---DnD5e-Character-Sheet",
+  "manifest": "https://github.com/Ascandir/Ascandir---DnD5e-Character-Sheet/releases/latest/download/module.json",
+  "download": "https://github.com/Ascandir/Ascandir---DnD5e-Character-Sheet/releases/download/v0.1.0/module.zip",
+  "readme": "https://github.com/Ascandir/Ascandir---DnD5e-Character-Sheet#readme",
+  "bugs": "https://github.com/Ascandir/Ascandir---DnD5e-Character-Sheet/issues"
+}
