@@ -724,6 +724,7 @@ export function createSheetClass() {
       applyTheme(this.element, getActiveTheme(this.document));
       this._ascMoveWindowButtons();
       this._ascBindSearch();
+      this._ascBindFeatureGroups();
       this.element.classList.toggle("asc-can-edit", this.canEditSheet);
       this.element.classList.toggle("asc-no-edit", !this.canEditSheet);
       // Erstellen-Button nur anzeigen, wenn es für den aktuellen Tab etwas zu erstellen gibt.
@@ -763,6 +764,22 @@ export function createSheetClass() {
      * Einfache Suchfelder der Übersicht (Zauber, Inventar, Effekte). Filtert sofort beim Tippen.
      * @protected
      */
+    /**
+     * Gruppen unter „Merkmale" auf der Übersicht sind standardmäßig zugeklappt.
+     * Aufgeklappte Gruppen bleiben beim Neuzeichnen offen, solange das Fenster offen ist.
+     */
+    _ascBindFeatureGroups() {
+      this._ascOpenFeatureGroups ??= new Set();
+      for ( const el of this.element.querySelectorAll(".asc-feature-group[data-group-id]") ) {
+        const id = el.dataset.groupId;
+        el.open = this._ascOpenFeatureGroups.has(id);
+        el.addEventListener("toggle", () => {
+          if ( el.open ) this._ascOpenFeatureGroups.add(id);
+          else this._ascOpenFeatureGroups.delete(id);
+        });
+      }
+    }
+
     _ascBindSearch() {
       for ( const input of this.element.querySelectorAll("input.asc-search-input") ) {
         const key = input.dataset.search;

@@ -34,11 +34,11 @@
         {{#if showExperience}}
         {{#with system.details.xp}}
         <div class="asc-xp" data-tooltip="{{ localize 'DND5E.ExperiencePoints.Label' }}">
-            {{#if @root.editable}}
+            {{#unless @root.locked}}
             <input type="text" name="system.details.xp.value" class="asc-xp-input" data-dtype="Number" value="{{ value }}">
             {{else}}
             <span>{{ dnd5e-numberFormat value }}</span>
-            {{/if}}
+            {{/unless}}
             {{#unless @root.epicBoonsEarned}}<span class="asc-sep">/</span><span>{{ dnd5e-numberFormat max }}</span>{{/unless}}
             <span class="asc-xp-unit">{{ localize "ASCSHEET.XP" }}</span>
             <span class="asc-xp-bar" style="width: {{ pct }}%"></span>
