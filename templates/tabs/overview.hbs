@@ -262,10 +262,18 @@
             <div class="asc-inv-head"><span></span><span>{{ localize "Name" }}</span><span>{{ localize "ASCSHEET.Price" }}</span><span>{{ localize "ASCSHEET.Weight" }}</span><span>{{ localize "ASCSHEET.Qty" }}</span></div>
             <ul class="unlist asc-item-rows asc-scroll" data-search-scope="inventory">
                 {{#each ascInventory}}
-                <li class="asc-item-row asc-inv-row item-tooltip" data-item-id="{{ id }}" data-uuid="{{ uuid }}" data-search-text="{{ name }} {{ subtitle }}">
-                    <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
+                <li class="asc-item-row asc-inv-row item-tooltip {{#if equipped}}is-equipped{{/if}}" data-item-id="{{ id }}" data-uuid="{{ uuid }}" data-search-text="{{ name }} {{ subtitle }}">
+                    <span class="asc-item-img-wrap">
+                        <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
+                        {{#if equippable}}
+                        <button type="button" class="unbutton asc-equip-badge {{#if equipped}}active{{/if}}" data-action="ascToggleEquipped"
+                                data-tooltip="{{#if equipped}}{{ localize 'DND5E.Equipped' }}{{else}}{{ localize 'DND5E.Unequipped' }}{{/if}}">
+                            <i class="fa-solid fa-shield-halved" inert></i>
+                        </button>
+                        {{/if}}
+                    </span>
                     <div class="asc-item-text {{ @root.rollableClass }}" data-action="ascUseItem">
-                        <span class="asc-item-name">{{ name }}{{#if equipped}} <i class="fa-solid fa-shield-halved asc-equipped" inert></i>{{/if}}</span>
+                        <span class="asc-item-name">{{ name }}{{#if (eq attuned true)}} <i class="fa-solid fa-sun asc-attuned" data-tooltip="DND5E.AttunementAttuned"></i>{{/if}}</span>
                         <span class="asc-item-sub">{{ subtitle }}</span>
                     </div>
                     <span class="asc-cell asc-cell--sep">{{ price }}{{#if priceIcon}}<img class="asc-coin-icon" src="{{ priceIcon }}" alt="" data-tooltip="{{ priceLabel }}">{{/if}}</span>

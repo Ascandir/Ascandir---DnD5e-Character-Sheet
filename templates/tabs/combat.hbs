@@ -46,7 +46,7 @@
                 <div class="asc-panel-body">
                     <ul class="unlist asc-item-rows">
                         {{#each rows}}
-                        <li class="asc-item-row asc-combat-row item-tooltip {{#unless equipped}}unequipped{{/unless}}"
+                        <li class="asc-item-row asc-combat-row item-tooltip {{#if equippable}}{{#if equipped}}is-equipped{{else}}unequipped{{/if}}{{/if}}"
                             data-item-id="{{ itemId }}" data-activity-id="{{ activityId }}" data-uuid="{{ item.uuid }}">
                             <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
                             <div class="asc-item-text {{ @root.rollableClass }}" data-action="ascUseItem">
@@ -57,7 +57,7 @@
                             <span class="asc-cell asc-cell--sep asc-num">{{#if damage}}{{ damage }}{{else}}–{{/if}}</span>
                             <span class="asc-cell asc-cell--sep">{{#if uses}}{{ uses.value }}/{{ uses.max }}{{else}}–{{/if}}</span>
                             {{#if equippable}}
-                            <button type="button" class="unbutton asc-equip {{#if equipped}}active{{/if}}" data-action="ascToggleEquipped"
+                            <button type="button" class="unbutton asc-equip asc-equip-badge asc-equip-badge--inline {{#if equipped}}active{{/if}}" data-action="ascToggleEquipped"
                                     data-tooltip="{{#if equipped}}DND5E.Equipped{{else}}DND5E.Unequipped{{/if}}">
                                 <i class="fa-solid fa-shield-halved" inert></i>
                             </button>

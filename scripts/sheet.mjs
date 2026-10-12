@@ -7,11 +7,11 @@ import { applyTheme, getActiveTheme } from "./themes.mjs";
  */
 const OWN_TABS = [
   { tab: "overview", label: "ASCSHEET.Tab.overview", icon: "fa-solid fa-house-chimney" },
-  { tab: "details", label: "ASCSHEET.Tab.details", icon: "fa-solid fa-dice-d20" },
-  { tab: "features", label: "ASCSHEET.Tab.features", icon: "fa-solid fa-scroll" },
   { tab: "combat", label: "ASCSHEET.Tab.combat", icon: "fa-solid fa-khanda" },
-  { tab: "spells", label: "ASCSHEET.Tab.spells", icon: "fa-solid fa-wand-sparkles" },
   { tab: "inventory", label: "ASCSHEET.Tab.inventory", icon: "fa-solid fa-sack-dollar" },
+  { tab: "spells", label: "ASCSHEET.Tab.spells", icon: "fa-solid fa-wand-sparkles" },
+  { tab: "features", label: "ASCSHEET.Tab.features", icon: "fa-solid fa-scroll" },
+  { tab: "details", label: "ASCSHEET.Tab.details", icon: "fa-solid fa-dice-d20" },
   { tab: "effects", label: "ASCSHEET.Tab.effects", icon: "fa-solid fa-bolt" },
   { tab: "biography", label: "ASCSHEET.Tab.biography", icon: "fa-solid fa-feather-pointed" }
 ];
@@ -538,7 +538,9 @@ export function createSheetClass() {
             priceLabel: price?.value ? game.i18n.localize(currencies[price.denomination]?.label ?? "") : "",
             weight: item.system.weight?.value ? item.system.weight.value : "–",
             quantity: item.system.quantity,
-            equipped: item.system.equipped
+            equipped: !!item.system.equipped,
+            equippable: "equipped" in item.system,
+            attuned: item.system.attunement ? !!item.system.attuned : null
           };
         });
       const enc = system.attributes.encumbrance ?? {};

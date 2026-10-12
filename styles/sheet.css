@@ -1783,7 +1783,7 @@
     > span:not(:nth-child(2)) { text-align: center; }
   }
   .asc-inventory .asc-item-rows { flex: 1; }
-  .asc-inv-row { grid-template-columns: 34px minmax(0, 1fr) 46px 46px 36px; column-gap: 6px; .asc-item-name { font-size: 15px; } .asc-item-img { width: 34px; height: 34px; } }
+  .asc-inv-row { grid-template-columns: 34px minmax(0, 1fr) 46px 46px 36px; column-gap: 8px; .asc-item-name { font-size: 15px; } }
 
   .asc-encumbrance {
     display: flex;
@@ -2307,6 +2307,97 @@
       background: var(--asc-meter-bg);
       border: 1px solid var(--asc-gold-dark);
     }
+  }
+
+  /* ---------------------------------- */
+  /*  Ausgerüstet / Eingestimmt         */
+  /*  (in allen Themes gleich deutlich) */
+  /* ---------------------------------- */
+
+  .asc-item-img-wrap { position: relative; display: inline-flex; width: 34px; height: 34px; }
+  .asc-inv-row .asc-item-img-wrap .asc-item-img { width: 34px; height: 34px; }
+
+  .asc-equip-badge {
+    position: absolute;
+    right: -6px;
+    bottom: -5px;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 9px;
+    color: #9b917f;
+    background: #1a1612;
+    border: 1px dashed #6b6256;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 60%);
+    opacity: .75;
+    cursor: var(--cursor-pointer, pointer);
+    i { margin: 0; }
+    &:hover { opacity: 1; border-style: solid; color: #e6dccb; box-shadow: none; }
+    &.active {
+      opacity: 1;
+      color: #ffffff;
+      background: radial-gradient(circle at 40% 35%, #5fd47a, #1f7a3c);
+      border: 1px solid #c7f5d2;
+      box-shadow: 0 0 0 1px rgb(0 0 0 / 60%), 0 0 8px rgb(80 220 120 / 75%);
+    }
+  }
+  .asc-equip-badge--inline {
+    position: static;
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+
+  .asc-item-row.is-equipped {
+    background: linear-gradient(to right, rgb(80 200 110 / 18%), transparent 60%);
+    box-shadow: inset 3px 0 0 #3fb85f;
+  }
+  .asc-combat-row.unequipped { opacity: .55; }
+  .asc-attuned { font-size: 10px; color: #f2b632; filter: drop-shadow(0 0 3px rgb(242 182 50 / 70%)); }
+
+  /* Original-Inventar des Systems: Ausrüsten/Einstimmen/Vorbereiten deutlich hervorheben */
+  .tab-body > .tab .item-control.item-action[data-action="equip"],
+  .tab-body > .tab .item-control.item-action[data-action="attune"],
+  .tab-body > .tab .item-control.item-action[data-action="prepare"] {
+    width: 22px;
+    height: 22px;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 11px;
+    color: #9b917f;
+    border: 1px dashed #6b6256;
+    background: rgb(0 0 0 / 15%);
+    opacity: .8;
+    &:hover { opacity: 1; border-style: solid; }
+  }
+  .tab-body > .tab .item-control.item-action[data-action="equip"].active {
+    color: #fff;
+    opacity: 1;
+    background: radial-gradient(circle at 40% 35%, #5fd47a, #1f7a3c);
+    border: 1px solid #c7f5d2;
+    box-shadow: 0 0 8px rgb(80 220 120 / 70%);
+  }
+  .tab-body > .tab .item-control.item-action[data-action="attune"].active {
+    color: #fff;
+    opacity: 1;
+    background: radial-gradient(circle at 40% 35%, #ffd76a, #b07c12);
+    border: 1px solid #fff0c0;
+    box-shadow: 0 0 8px rgb(242 182 50 / 70%);
+  }
+  .tab-body > .tab .item-control.item-action[data-action="prepare"].active {
+    color: #fff;
+    opacity: 1;
+    background: radial-gradient(circle at 40% 35%, #8fb8ff, #2f5fb8);
+    border: 1px solid #d8e6ff;
+    box-shadow: 0 0 8px rgb(110 160 255 / 70%);
+  }
+  .tab-body > .tab .item-list .item:has(.item-control[data-action="equip"].active) {
+    background: linear-gradient(to right, rgb(80 200 110 / 18%), transparent 60%);
+    box-shadow: inset 3px 0 0 #3fb85f;
   }
 
   /* ---------------------------------- */
