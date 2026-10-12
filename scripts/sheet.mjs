@@ -786,6 +786,32 @@ export function createSheetClass() {
     /*  Drag & Drop / Erstellen                     */
     /* -------------------------------------------- */
 
+    /**
+     * Manche Felder gibt es mehrfach im Bogen (z. B. Attributswerte und Übungen auf der Übersicht UND im
+     * Attribute-Tab, Geld auf der Übersicht UND im Inventar). Foundry würde daraus Listen machen, die das
+     * System ablehnt („must be a number“). Hier wird pro Feld genau ein Wert übernommen: der des gerade
+     * geänderten Elements, sonst der, der vom aktuellen Wert abweicht.
+     * @inheritDoc
+     */
+    _processFormData(event, form, formData) {
+      const flat = formData.object;
+      for ( const [key, value] of Object.entries(flat) ) {
+        if ( !Array.isArray(value) ) continue;
+        const current = foundry.utils.getProperty(this.document._source, key);
+        if ( Array.isArray(current) || (current instanceof Set) ) continue;
+        const elements = Array.from(form.querySelectorAll(`[name="${CSS.escape(key)}"]`));
+        const changed = event?.target?.closest?.(`[name="${CSS.escape(key)}"]`);
+        const index = changed ? elements.indexOf(changed) : -1;
+        let pick;
+        if ( (index >= 0) && (index < value.length) ) pick = value[index];
+        else pick = value.find(v => (v !== current) && (String(v) !== String(current))) ?? value[0];
+        flat[key] = pick;
+      }
+      return super._processFormData(event, form, formData);
+    }
+
+    /* -------------------------------------------- */
+
     /** @inheritDoc */
     async _onDropSingleItem(event, itemData, options={}) {
       if ( ORIGIN_TYPES.has(itemData.type) && !this.canSetupOrigin(itemData.type) ) {
