@@ -1,0 +1,34 @@
+name: Release
+
+# Ein Tag wie v0.1.0 pushen -> Release mit module.json und module.zip wird erstellt.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version aus dem Tag in module.json eintragen
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          jq --arg v "$VERSION" --arg tag "$GITHUB_REF_NAME" \
+            '.version = $v | .download = "https://github.com/\(env.GITHUB_REPOSITORY)/releases/download/\($tag)/module.zip"' \
+            module.json > module.tmp && mv module.tmp module.json
+
+      - name: ZIP bauen
+        run: zip -r module.zip module.json scripts templates styles lang fonts README.md THEMES.md
+
+      - name: Release erstellen
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            module.json
+            module.zip
+          generate_release_notes: true
