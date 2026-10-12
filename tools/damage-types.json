@@ -1,0 +1,54 @@
+{
+  "acid": {
+    "de": "Säure",
+    "en": "Acid"
+  },
+  "bludgeoning": {
+    "de": "Wucht",
+    "en": "Bludgeoning"
+  },
+  "cold": {
+    "de": "Kälte",
+    "en": "Cold"
+  },
+  "fire": {
+    "de": "Feuer",
+    "en": "Fire"
+  },
+  "force": {
+    "de": "Energie",
+    "en": "Force"
+  },
+  "lightning": {
+    "de": "Blitz",
+    "en": "Lightning"
+  },
+  "necrotic": {
+    "de": "Nekrotisch",
+    "en": "Necrotic"
+  },
+  "piercing": {
+    "de": "Stich",
+    "en": "Piercing"
+  },
+  "poison": {
+    "de": "Gift",
+    "en": "Poison"
+  },
+  "psychic": {
+    "de": "Psychisch",
+    "en": "Psychic"
+  },
+  "radiant": {
+    "de": "Gleißend",
+    "en": "Radiant"
+  },
+  "slashing": {
+    "de": "Hieb",
+    "en": "Slashing"
+  },
+  "thunder": {
+    "de": "Schall",
+    "en": "Thunder"
+  }
+}

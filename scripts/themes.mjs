@@ -29,6 +29,11 @@ export const SKIN_ASSETS = [
   "inspiration-on.png", "circle-slot.png", "search-bar.png", "wood-dark.jpg", "parchment.jpg"
 ];
 
+/** Ein Theme pro D&D-5e-Schadenstyp. */
+export const DAMAGE_THEMES = [
+  "acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "psychic", "radiant", "slashing", "thunder"
+];
+
 /**
  * Auswahlliste für die Einstellungen. Wird live aktualisiert, wenn neue Themes dazukommen.
  * @type {Record<string, string>}
@@ -73,6 +78,11 @@ export function registerBuiltinThemes() {
   registerTheme({ id: "nightwatch", label: "ASCSHEET.Theme.nightwatch", base: "dark", author: "Ascandir", assets: skin("nightwatch") });
   registerTheme({ id: "crimson", label: "ASCSHEET.Theme.crimson", base: "dark", author: "Ascandir", assets: skin("crimson") });
   registerTheme({ id: "arcane", label: "ASCSHEET.Theme.arcane", base: "dark", author: "Ascandir", assets: skin("arcane") });
+
+  // Schadenstyp-Themes (Grafiken: assets/damage/<typ>, Farben: styles/themes/damage-types.css)
+  for ( const type of DAMAGE_THEMES ) {
+    registerTheme({ id: type, label: `ASCSHEET.Theme.${type}`, base: "dark", author: "Ascandir", assets: skin(`damage/${type}`) });
+  }
 }
 
 /* -------------------------------------------- */

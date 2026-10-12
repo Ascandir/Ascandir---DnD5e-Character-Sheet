@@ -1,0 +1,1209 @@
+/* Automatisch erzeugt von tools/build_damage.py – Schadenstyp-Themes. Nicht von Hand bearbeiten. */
+
+/* ---- acid ---- */
+.ascandir-sheet.asc-theme-acid {
+  --asc-frame-bg: #080b06;
+  --asc-frame-border: #4b592e;
+  --asc-content-bg: linear-gradient(to bottom, #121a0d, #090d06);
+  --asc-dark-bg: linear-gradient(to bottom, #172211, #0e150a);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(150 220 60 / 16%), transparent 55%),
+    linear-gradient(rgb(12 18 9 / 30%), rgb(12 18 9 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(12 18 9 / 30%), rgb(12 18 9 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(150 220 60 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(150 220 60 / 80%);
+
+  --asc-gold: #9cba61;
+  --asc-gold-light: #c9d9a8;
+  --asc-gold-dark: #4b592e;
+
+  --asc-panel-bg: linear-gradient(to bottom, #1d2916, #172112);
+  --asc-card-bg: linear-gradient(to bottom, #23301b, #1a2414);
+  --asc-system-tab-bg: linear-gradient(to bottom, #1c2715, #161f11);
+  --asc-panel-color: #1a2514;
+  --asc-card-color: #1f2b18;
+  --asc-panel-dark: #31451e;
+  --asc-header-color: #0b1008;
+  --asc-panel-border: #4b592e;
+  --asc-panel-inner-border: rgb(156 186 97 / 25%);
+  --asc-panel-header-text: #e6eed7;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e0e5d9;
+  --asc-text-muted: #99a98d;
+  --asc-text-heading: #f8fcf3;
+  --asc-text-on-dark: #e6eed7;
+  --asc-icon: #b3d283;
+  --asc-accent: #73a234;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(156 186 97 / 9%);
+  --asc-line: rgb(156 186 97 / 26%);
+  --asc-ring: #9bb277;
+
+  --asc-row-alt: rgb(156 186 97 / 6%);
+  --asc-row-hover: rgb(140 198 63 / 22%);
+  --asc-row-border: rgb(156 186 97 / 17%);
+
+  --asc-tab-text: #e6eed7;
+  --asc-tab-icon: #b6d388;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(150 220 60 / 75%), rgb(68 99 27 / 70%) 55%, rgb(13 19 10 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0a0e07;
+  --asc-badge-text: #f8fcf3;
+  --asc-meter-bg: #070a05;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #384f19;
+  --asc-hd-fill-2: #5b8129;
+  --asc-mana-fill: linear-gradient(to bottom, #aed779, #547726);
+  --asc-enc-fill: linear-gradient(to bottom, #aed779, #547726);
+  --asc-pip-fill: #8cc63f;
+  --asc-gem: #9dcf5c;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(156 186 97 / 30%);
+  --asc-search-bg: #090d06;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-acid:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(150 220 60 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/acid.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(150 220 60 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #96dc3c;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/acid.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- bludgeoning ---- */
+.ascandir-sheet.asc-theme-bludgeoning {
+  --asc-frame-bg: #0c0a08;
+  --asc-frame-border: #47433e;
+  --asc-content-bg: linear-gradient(to bottom, #1a1613, #0d0b0a);
+  --asc-dark-bg: linear-gradient(to bottom, #231d19, #151210);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(230 150 70 / 16%), transparent 55%),
+    linear-gradient(rgb(18 15 13 / 30%), rgb(18 15 13 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(18 15 13 / 30%), rgb(18 15 13 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(230 150 70 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(230 150 70 / 80%);
+
+  --asc-gold: #958b82;
+  --asc-gold-light: #c5bfba;
+  --asc-gold-dark: #47433e;
+
+  --asc-panel-bg: linear-gradient(to bottom, #2a2420, #221d19);
+  --asc-card-bg: linear-gradient(to bottom, #312a25, #25201c);
+  --asc-system-tab-bg: linear-gradient(to bottom, #28221e, #1f1b18);
+  --asc-panel-color: #26211c;
+  --asc-card-color: #2c2621;
+  --asc-panel-dark: #443525;
+  --asc-header-color: #100e0c;
+  --asc-panel-border: #47433e;
+  --asc-panel-inner-border: rgb(149 139 130 / 25%);
+  --asc-panel-header-text: #e4e2e0;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e4dfd9;
+  --asc-text-muted: #aaa098;
+  --asc-text-heading: #fbf7f3;
+  --asc-text-on-dark: #e4e2e0;
+  --asc-icon: #c1a98f;
+  --asc-accent: #986933;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(149 139 130 / 9%);
+  --asc-line: rgb(149 139 130 / 26%);
+  --asc-ring: #9f968d;
+
+  --asc-row-alt: rgb(149 139 130 / 6%);
+  --asc-row-hover: rgb(185 128 62 / 22%);
+  --asc-row-border: rgb(149 139 130 / 17%);
+
+  --asc-tab-text: #e4e2e0;
+  --asc-tab-icon: #c1ac95;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(230 150 70 / 75%), rgb(104 68 32 / 70%) 55%, rgb(20 17 14 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0f0d0b;
+  --asc-badge-text: #fbf7f3;
+  --asc-meter-bg: #0a0807;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #4a3319;
+  --asc-hd-fill-2: #785328;
+  --asc-mana-fill: linear-gradient(to bottom, #cea678, #6f4d25);
+  --asc-enc-fill: linear-gradient(to bottom, #cea678, #6f4d25);
+  --asc-pip-fill: #b9803e;
+  --asc-gem: #c4935b;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(149 139 130 / 30%);
+  --asc-search-bg: #0d0b0a;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-bludgeoning:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(230 150 70 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/bludgeoning.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(230 150 70 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #e69646;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/bludgeoning.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- cold ---- */
+.ascandir-sheet.asc-theme-cold {
+  --asc-frame-bg: #060a0f;
+  --asc-frame-border: #4b5664;
+  --asc-content-bg: linear-gradient(to bottom, #0d1622, #060b11);
+  --asc-dark-bg: linear-gradient(to bottom, #111d2c, #0a121b);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(110 210 255 / 16%), transparent 55%),
+    linear-gradient(rgb(9 15 23 / 30%), rgb(9 15 23 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(9 15 23 / 30%), rgb(9 15 23 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(110 210 255 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(110 210 255 / 80%);
+
+  --asc-gold: #9cb2d0;
+  --asc-gold-light: #c9d5e5;
+  --asc-gold-dark: #4b5664;
+
+  --asc-panel-bg: linear-gradient(to bottom, #162434, #121d2a);
+  --asc-card-bg: linear-gradient(to bottom, #1b2a3d, #14202d);
+  --asc-system-tab-bg: linear-gradient(to bottom, #152232, #111b27);
+  --asc-panel-color: #14212f;
+  --asc-card-color: #182637;
+  --asc-panel-dark: #234256;
+  --asc-header-color: #080e15;
+  --asc-panel-border: #4b5664;
+  --asc-panel-inner-border: rgb(156 178 208 / 25%);
+  --asc-panel-header-text: #e6ecf3;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dce6e9;
+  --asc-text-muted: #8ea4b9;
+  --asc-text-heading: #f5fcfe;
+  --asc-text-on-dark: #e6ecf3;
+  --asc-icon: #a3d0ea;
+  --asc-accent: #4ba4c6;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(156 178 208 / 9%);
+  --asc-line: rgb(156 178 208 / 26%);
+  --asc-ring: #95abc5;
+
+  --asc-row-alt: rgb(156 178 208 / 6%);
+  --asc-row-hover: rgb(92 200 242 / 22%);
+  --asc-row-border: rgb(156 178 208 / 17%);
+
+  --asc-tab-text: #e6ecf3;
+  --asc-tab-icon: #a8d1e9;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(110 210 255 / 75%), rgb(50 94 115 / 70%) 55%, rgb(10 17 25 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #070d13;
+  --asc-badge-text: #f5fcfe;
+  --asc-meter-bg: #05080d;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #255061;
+  --asc-hd-fill-2: #3c829d;
+  --asc-mana-fill: linear-gradient(to bottom, #8dd8f6, #377891);
+  --asc-enc-fill: linear-gradient(to bottom, #8dd8f6, #377891);
+  --asc-pip-fill: #5cc8f2;
+  --asc-gem: #74d0f4;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(156 178 208 / 30%);
+  --asc-search-bg: #060b11;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-cold:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(110 210 255 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/cold.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(110 210 255 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #6ed2ff;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/cold.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- fire ---- */
+.ascandir-sheet.asc-theme-fire {
+  --asc-frame-bg: #0e0603;
+  --asc-frame-border: #604e2c;
+  --asc-content-bg: linear-gradient(to bottom, #200e07, #100704);
+  --asc-dark-bg: linear-gradient(to bottom, #2a1209, #1a0b06);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(255 120 40 / 16%), transparent 55%),
+    linear-gradient(rgb(22 9 5 / 30%), rgb(22 9 5 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(22 9 5 / 30%), rgb(22 9 5 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(255 120 40 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(255 120 40 / 80%);
+
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #e1cca5;
+  --asc-gold-dark: #604e2c;
+
+  --asc-panel-bg: linear-gradient(to bottom, #32180e, #28130b);
+  --asc-card-bg: linear-gradient(to bottom, #3a1c12, #2c150d);
+  --asc-system-tab-bg: linear-gradient(to bottom, #30160e, #26120b);
+  --asc-panel-color: #2d150d;
+  --asc-card-color: #341910;
+  --asc-panel-dark: #542611;
+  --asc-header-color: #140804;
+  --asc-panel-border: #604e2c;
+  --asc-panel-inner-border: rgb(201 163 92 / 25%);
+  --asc-panel-header-text: #f2e8d6;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e9ddd6;
+  --asc-text-muted: #b69082;
+  --asc-text-heading: #fef6f2;
+  --asc-text-on-dark: #f2e8d6;
+  --asc-icon: #e6aa76;
+  --asc-accent: #c55719;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(201 163 92 / 9%);
+  --asc-line: rgb(201 163 92 / 26%);
+  --asc-ring: #c09a6f;
+
+  --asc-row-alt: rgb(201 163 92 / 6%);
+  --asc-row-hover: rgb(240 106 30 / 22%);
+  --asc-row-border: rgb(201 163 92 / 17%);
+
+  --asc-tab-text: #f2e8d6;
+  --asc-tab-icon: #e6af7d;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(255 120 40 / 75%), rgb(115 54 18 / 70%) 55%, rgb(24 10 5 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #120804;
+  --asc-badge-text: #fef6f2;
+  --asc-meter-bg: #0c0503;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #602a0c;
+  --asc-hd-fill-2: #9c4514;
+  --asc-mana-fill: linear-gradient(to bottom, #f49762, #904012);
+  --asc-enc-fill: linear-gradient(to bottom, #f49762, #904012);
+  --asc-pip-fill: #f06a1e;
+  --asc-gem: #f28040;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(201 163 92 / 30%);
+  --asc-search-bg: #100704;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-fire:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(255 120 40 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/fire.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(255 120 40 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #ff7828;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/fire.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- force ---- */
+.ascandir-sheet.asc-theme-force {
+  --asc-frame-bg: #09050f;
+  --asc-frame-border: #564b64;
+  --asc-content-bg: linear-gradient(to bottom, #150c22, #0a0611);
+  --asc-dark-bg: linear-gradient(to bottom, #1b102c, #110a1b);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(190 110 255 / 16%), transparent 55%),
+    linear-gradient(rgb(14 8 23 / 30%), rgb(14 8 23 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(14 8 23 / 30%), rgb(14 8 23 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(190 110 255 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(190 110 255 / 80%);
+
+  --asc-gold: #b29cd0;
+  --asc-gold-light: #d5c9e5;
+  --asc-gold-dark: #564b64;
+
+  --asc-panel-bg: linear-gradient(to bottom, #221534, #1b112a);
+  --asc-card-bg: linear-gradient(to bottom, #281a3d, #1e132d);
+  --asc-system-tab-bg: linear-gradient(to bottom, #201432, #191027);
+  --asc-panel-color: #1f132f;
+  --asc-card-color: #241737;
+  --asc-panel-dark: #3d2459;
+  --asc-header-color: #0d0815;
+  --asc-panel-border: #564b64;
+  --asc-panel-inner-border: rgb(178 156 208 / 25%);
+  --asc-panel-header-text: #ece6f3;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e4ddeb;
+  --asc-text-muted: #a08eba;
+  --asc-text-heading: #fbf6ff;
+  --asc-text-on-dark: #ece6f3;
+  --asc-icon: #caa7ee;
+  --asc-accent: #9655d1;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(178 156 208 / 9%);
+  --asc-line: rgb(178 156 208 / 26%);
+  --asc-ring: #a995c5;
+
+  --asc-row-alt: rgb(178 156 208 / 6%);
+  --asc-row-hover: rgb(183 104 255 / 22%);
+  --asc-row-border: rgb(178 156 208 / 17%);
+
+  --asc-tab-text: #ece6f3;
+  --asc-tab-icon: #ccaced;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(190 110 255 / 75%), rgb(86 50 115 / 70%) 55%, rgb(16 9 25 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0c0713;
+  --asc-badge-text: #fbf6ff;
+  --asc-meter-bg: #08040d;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #492a66;
+  --asc-hd-fill-2: #7744a6;
+  --asc-mana-fill: linear-gradient(to bottom, #cd95ff, #6e3e99);
+  --asc-enc-fill: linear-gradient(to bottom, #cd95ff, #6e3e99);
+  --asc-pip-fill: #b768ff;
+  --asc-gem: #c27fff;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(178 156 208 / 30%);
+  --asc-search-bg: #0a0611;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-force:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(190 110 255 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/force.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(190 110 255 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #be6eff;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/force.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- lightning ---- */
+.ascandir-sheet.asc-theme-lightning {
+  --asc-frame-bg: #04070e;
+  --asc-frame-border: #4f5562;
+  --asc-content-bg: linear-gradient(to bottom, #0a0f20, #050810);
+  --asc-dark-bg: linear-gradient(to bottom, #0d142a, #080c1a);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(120 190 255 / 16%), transparent 55%),
+    linear-gradient(rgb(7 10 22 / 30%), rgb(7 10 22 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(7 10 22 / 30%), rgb(7 10 22 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(120 190 255 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(120 190 255 / 80%);
+
+  --asc-gold: #a4b1cd;
+  --asc-gold-light: #cdd4e3;
+  --asc-gold-dark: #4f5562;
+
+  --asc-panel-bg: linear-gradient(to bottom, #121a32, #0e1528);
+  --asc-card-bg: linear-gradient(to bottom, #161f3a, #10172c);
+  --asc-system-tab-bg: linear-gradient(to bottom, #111930, #0d1326);
+  --asc-panel-color: #10172d;
+  --asc-card-color: #131c34;
+  --asc-panel-dark: #1e3557;
+  --asc-header-color: #060a14;
+  --asc-panel-border: #4f5562;
+  --asc-panel-inner-border: rgb(164 177 205 / 25%);
+  --asc-panel-header-text: #e8ebf2;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dbe3eb;
+  --asc-text-muted: #8997b7;
+  --asc-text-heading: #f5faff;
+  --asc-text-on-dark: #e8ebf2;
+  --asc-icon: #a4c7ed;
+  --asc-accent: #4890d1;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(164 177 205 / 9%);
+  --asc-line: rgb(164 177 205 / 26%);
+  --asc-ring: #96a4c2;
+
+  --asc-row-alt: rgb(164 177 205 / 6%);
+  --asc-row-hover: rgb(88 176 255 / 22%);
+  --asc-row-border: rgb(164 177 205 / 17%);
+
+  --asc-tab-text: #e8ebf2;
+  --asc-tab-icon: #aac9ec;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(120 190 255 / 75%), rgb(54 86 115 / 70%) 55%, rgb(7 11 24 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #050912;
+  --asc-badge-text: #f5faff;
+  --asc-meter-bg: #04060c;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #234666;
+  --asc-hd-fill-2: #3972a6;
+  --asc-mana-fill: linear-gradient(to bottom, #8ac8ff, #356a99);
+  --asc-enc-fill: linear-gradient(to bottom, #8ac8ff, #356a99);
+  --asc-pip-fill: #58b0ff;
+  --asc-gem: #71bcff;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(164 177 205 / 30%);
+  --asc-search-bg: #050810;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-lightning:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(120 190 255 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/lightning.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(120 190 255 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #78beff;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/lightning.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- necrotic ---- */
+.ascandir-sheet.asc-theme-necrotic {
+  --asc-frame-bg: #050705;
+  --asc-frame-border: #555246;
+  --asc-content-bg: linear-gradient(to bottom, #0c110c, #060806);
+  --asc-dark-bg: linear-gradient(to bottom, #101610, #0a0e0a);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(130 230 90 / 16%), transparent 55%),
+    linear-gradient(rgb(8 12 8 / 30%), rgb(8 12 8 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(8 12 8 / 30%), rgb(8 12 8 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(130 230 90 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(130 230 90 / 80%);
+
+  --asc-gold: #b1ab91;
+  --asc-gold-light: #d4d1c3;
+  --asc-gold-dark: #555246;
+
+  --asc-panel-bg: linear-gradient(to bottom, #151c15, #111711);
+  --asc-card-bg: linear-gradient(to bottom, #1a211a, #131913);
+  --asc-system-tab-bg: linear-gradient(to bottom, #141b14, #101510);
+  --asc-panel-color: #131913;
+  --asc-card-color: #171e17;
+  --asc-panel-dark: #283d22;
+  --asc-header-color: #080a08;
+  --asc-panel-border: #555246;
+  --asc-panel-inner-border: rgb(177 171 145 / 25%);
+  --asc-panel-header-text: #ebeae4;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dee6db;
+  --asc-text-muted: #8f9b8d;
+  --asc-text-heading: #f7fcf5;
+  --asc-text-on-dark: #ebeae4;
+  --asc-icon: #b5d19e;
+  --asc-accent: #65ab4a;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(177 171 145 / 9%);
+  --asc-line: rgb(177 171 145 / 26%);
+  --asc-ring: #a0a38f;
+
+  --asc-row-alt: rgb(177 171 145 / 6%);
+  --asc-row-hover: rgb(123 208 90 / 22%);
+  --asc-row-border: rgb(177 171 145 / 17%);
+
+  --asc-tab-text: #ebeae4;
+  --asc-tab-icon: #b9d1a3;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(130 230 90 / 75%), rgb(58 104 40 / 70%) 55%, rgb(9 13 9 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #070907;
+  --asc-badge-text: #f7fcf5;
+  --asc-meter-bg: #040604;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #315324;
+  --asc-hd-fill-2: #50873a;
+  --asc-mana-fill: linear-gradient(to bottom, #a3de8c, #4a7d36);
+  --asc-enc-fill: linear-gradient(to bottom, #a3de8c, #4a7d36);
+  --asc-pip-fill: #7bd05a;
+  --asc-gem: #8fd773;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(177 171 145 / 30%);
+  --asc-search-bg: #060806;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-necrotic:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(130 230 90 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/necrotic.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(130 230 90 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #82e65a;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/necrotic.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- piercing ---- */
+.ascandir-sheet.asc-theme-piercing {
+  --asc-frame-bg: #080a08;
+  --asc-frame-border: #4d5056;
+  --asc-content-bg: linear-gradient(to bottom, #121713, #090c0a);
+  --asc-dark-bg: linear-gradient(to bottom, #171e19, #0e1310);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(240 205 100 / 16%), transparent 55%),
+    linear-gradient(rgb(12 16 13 / 30%), rgb(12 16 13 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(12 16 13 / 30%), rgb(12 16 13 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(240 205 100 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(240 205 100 / 80%);
+
+  --asc-gold: #a0a7b2;
+  --asc-gold-light: #cbcfd5;
+  --asc-gold-dark: #4d5056;
+
+  --asc-panel-bg: linear-gradient(to bottom, #1d2520, #171e19);
+  --asc-card-bg: linear-gradient(to bottom, #232c25, #1a211c);
+  --asc-system-tab-bg: linear-gradient(to bottom, #1c231e, #161c18);
+  --asc-panel-color: #1a221c;
+  --asc-card-color: #1f2721;
+  --asc-panel-dark: #3d3f29;
+  --asc-header-color: #0b0e0c;
+  --asc-panel-border: #4d5056;
+  --asc-panel-inner-border: rgb(160 167 178 / 25%);
+  --asc-panel-header-text: #e7e9ec;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e6e4db;
+  --asc-text-muted: #9ca499;
+  --asc-text-heading: #fcfaf5;
+  --asc-text-on-dark: #e7e9ec;
+  --asc-icon: #cdc5a8;
+  --asc-accent: #ab9447;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(160 167 178 / 9%);
+  --asc-line: rgb(160 167 178 / 26%);
+  --asc-ring: #9ea6a6;
+
+  --asc-row-alt: rgb(160 167 178 / 6%);
+  --asc-row-hover: rgb(208 180 86 / 22%);
+  --asc-row-border: rgb(160 167 178 / 17%);
+
+  --asc-tab-text: #e7e9ec;
+  --asc-tab-icon: #ccc7af;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(240 205 100 / 75%), rgb(108 92 45 / 70%) 55%, rgb(13 17 14 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0a0d0b;
+  --asc-badge-text: #fcfaf5;
+  --asc-meter-bg: #070907;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #534822;
+  --asc-hd-fill-2: #877538;
+  --asc-mana-fill: linear-gradient(to bottom, #deca89, #7d6c34);
+  --asc-enc-fill: linear-gradient(to bottom, #deca89, #7d6c34);
+  --asc-pip-fill: #d0b456;
+  --asc-gem: #d7bf6f;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(160 167 178 / 30%);
+  --asc-search-bg: #090c0a;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-piercing:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(240 205 100 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/piercing.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(240 205 100 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #f0cd64;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/piercing.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- poison ---- */
+.ascandir-sheet.asc-theme-poison {
+  --asc-frame-bg: #0a060d;
+  --asc-frame-border: #475934;
+  --asc-content-bg: linear-gradient(to bottom, #180e1d, #0c070e);
+  --asc-dark-bg: linear-gradient(to bottom, #1f1226, #140b17);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(120 235 80 / 16%), transparent 55%),
+    linear-gradient(rgb(16 9 20 / 30%), rgb(16 9 20 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(16 9 20 / 30%), rgb(16 9 20 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(120 235 80 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(120 235 80 / 80%);
+
+  --asc-gold: #95ba6c;
+  --asc-gold-light: #c5d9ae;
+  --asc-gold-dark: #475934;
+
+  --asc-panel-bg: linear-gradient(to bottom, #26182d, #1f1324);
+  --asc-card-bg: linear-gradient(to bottom, #2d1c35, #221528);
+  --asc-system-tab-bg: linear-gradient(to bottom, #25162b, #1d1222);
+  --asc-panel-color: #231529;
+  --asc-card-color: #281930;
+  --asc-panel-dark: #343b33;
+  --asc-header-color: #0f0812;
+  --asc-panel-border: #475934;
+  --asc-panel-inner-border: rgb(149 186 108 / 25%);
+  --asc-panel-header-text: #e4eeda;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dde7da;
+  --asc-text-muted: #a296a8;
+  --asc-text-heading: #f6fdf4;
+  --asc-text-on-dark: #e4eeda;
+  --asc-icon: #a7da8b;
+  --asc-accent: #5bb43d;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(149 186 108 / 9%);
+  --asc-line: rgb(149 186 108 / 26%);
+  --asc-ring: #9ba88a;
+
+  --asc-row-alt: rgb(149 186 108 / 6%);
+  --asc-row-hover: rgb(111 220 74 / 22%);
+  --asc-row-border: rgb(149 186 108 / 17%);
+
+  --asc-tab-text: #e4eeda;
+  --asc-tab-icon: #abda90;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(120 235 80 / 75%), rgb(54 106 36 / 70%) 55%, rgb(18 10 22 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0e0810;
+  --asc-badge-text: #f6fdf4;
+  --asc-meter-bg: #09050b;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #2c581e;
+  --asc-hd-fill-2: #488f30;
+  --asc-mana-fill: linear-gradient(to bottom, #9ae680, #43842c);
+  --asc-enc-fill: linear-gradient(to bottom, #9ae680, #43842c);
+  --asc-pip-fill: #6fdc4a;
+  --asc-gem: #85e165;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(149 186 108 / 30%);
+  --asc-search-bg: #0c070e;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-poison:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(120 235 80 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/poison.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(120 235 80 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #78eb50;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/poison.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- psychic ---- */
+.ascandir-sheet.asc-theme-psychic {
+  --asc-frame-bg: #0c050c;
+  --asc-frame-border: #5f4b59;
+  --asc-content-bg: linear-gradient(to bottom, #1b0c1b, #0e060e);
+  --asc-dark-bg: linear-gradient(to bottom, #241024, #160a16);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(255 120 210 / 16%), transparent 55%),
+    linear-gradient(rgb(19 8 19 / 30%), rgb(19 8 19 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(19 8 19 / 30%), rgb(19 8 19 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(255 120 210 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(255 120 210 / 80%);
+
+  --asc-gold: #c59cba;
+  --asc-gold-light: #dfc9d9;
+  --asc-gold-dark: #5f4b59;
+
+  --asc-panel-bg: linear-gradient(to bottom, #2b152b, #221122);
+  --asc-card-bg: linear-gradient(to bottom, #321a32, #261326);
+  --asc-system-tab-bg: linear-gradient(to bottom, #291429, #201020);
+  --asc-panel-color: #271327;
+  --asc-card-color: #2d172d;
+  --asc-panel-dark: #512549;
+  --asc-header-color: #110811;
+  --asc-panel-border: #5f4b59;
+  --asc-panel-inner-border: rgb(197 156 186 / 25%);
+  --asc-panel-header-text: #f1e6ee;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #ebdde6;
+  --asc-text-muted: #af8ead;
+  --asc-text-heading: #fff6fc;
+  --asc-text-on-dark: #f1e6ee;
+  --asc-icon: #eaa9d6;
+  --asc-accent: #d15baa;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(197 156 186 / 9%);
+  --asc-line: rgb(197 156 186 / 26%);
+  --asc-ring: #ba95b3;
+
+  --asc-row-alt: rgb(197 156 186 / 6%);
+  --asc-row-hover: rgb(255 111 207 / 22%);
+  --asc-row-border: rgb(197 156 186 / 17%);
+
+  --asc-tab-text: #f1e6ee;
+  --asc-tab-icon: #e9aed6;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(255 120 210 / 75%), rgb(115 54 94 / 70%) 55%, rgb(20 9 20 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0f070f;
+  --asc-badge-text: #fff6fc;
+  --asc-meter-bg: #0a040a;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #662c53;
+  --asc-hd-fill-2: #a64887;
+  --asc-mana-fill: linear-gradient(to bottom, #ff9add, #99437c);
+  --asc-enc-fill: linear-gradient(to bottom, #ff9add, #99437c);
+  --asc-pip-fill: #ff6fcf;
+  --asc-gem: #ff85d6;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(197 156 186 / 30%);
+  --asc-search-bg: #0e060e;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-psychic:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(255 120 210 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/psychic.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(255 120 210 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #ff78d2;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/psychic.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- radiant ---- */
+.ascandir-sheet.asc-theme-radiant {
+  --asc-frame-bg: #0f0c06;
+  --asc-frame-border: #604e2c;
+  --asc-content-bg: linear-gradient(to bottom, #221b0e, #110e07);
+  --asc-dark-bg: linear-gradient(to bottom, #2c2413, #1b160c);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(255 225 120 / 16%), transparent 55%),
+    linear-gradient(rgb(23 19 10 / 30%), rgb(23 19 10 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(23 19 10 / 30%), rgb(23 19 10 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(255 225 120 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(255 225 120 / 80%);
+
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #e1cca5;
+  --asc-gold-dark: #604e2c;
+
+  --asc-panel-bg: linear-gradient(to bottom, #342b19, #2a2214);
+  --asc-card-bg: linear-gradient(to bottom, #3d321d, #2d2616);
+  --asc-system-tab-bg: linear-gradient(to bottom, #322917, #272013);
+  --asc-panel-color: #2f2716;
+  --asc-card-color: #372d1a;
+  --asc-panel-dark: #594924;
+  --asc-header-color: #151109;
+  --asc-panel-border: #604e2c;
+  --asc-panel-inner-border: rgb(201 163 92 / 25%);
+  --asc-panel-header-text: #f2e8d6;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #ebe6db;
+  --asc-text-muted: #baad91;
+  --asc-text-heading: #fffcf5;
+  --asc-text-on-dark: #f2e8d6;
+  --asc-icon: #ecce8a;
+  --asc-accent: #d1ac47;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(201 163 92 / 9%);
+  --asc-line: rgb(201 163 92 / 26%);
+  --asc-ring: #c1a876;
+
+  --asc-row-alt: rgb(201 163 92 / 6%);
+  --asc-row-hover: rgb(255 210 87 / 22%);
+  --asc-row-border: rgb(201 163 92 / 17%);
+
+  --asc-tab-text: #f2e8d6;
+  --asc-tab-icon: #eace8e;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(255 225 120 / 75%), rgb(115 101 54 / 70%) 55%, rgb(25 20 11 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #130f08;
+  --asc-badge-text: #fffcf5;
+  --asc-meter-bg: #0d0a05;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #665423;
+  --asc-hd-fill-2: #a68839;
+  --asc-mana-fill: linear-gradient(to bottom, #ffe089, #997e34);
+  --asc-enc-fill: linear-gradient(to bottom, #ffe089, #997e34);
+  --asc-pip-fill: #ffd257;
+  --asc-gem: #ffd970;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(201 163 92 / 30%);
+  --asc-search-bg: #110e07;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-radiant:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(255 225 120 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/radiant.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(255 225 120 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #ffe178;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/radiant.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- slashing ---- */
+.ascandir-sheet.asc-theme-slashing {
+  --asc-frame-bg: #0a0707;
+  --asc-frame-border: #4f5055;
+  --asc-content-bg: linear-gradient(to bottom, #180f0f, #0c0808);
+  --asc-dark-bg: linear-gradient(to bottom, #1f1414, #140c0c);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(235 60 50 / 16%), transparent 55%),
+    linear-gradient(rgb(16 10 10 / 30%), rgb(16 10 10 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(16 10 10 / 30%), rgb(16 10 10 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(235 60 50 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(235 60 50 / 80%);
+
+  --asc-gold: #a4a7b1;
+  --asc-gold-light: #cdcfd4;
+  --asc-gold-dark: #4f5055;
+
+  --asc-panel-bg: linear-gradient(to bottom, #261a1a, #1f1515);
+  --asc-card-bg: linear-gradient(to bottom, #2d1f1f, #221717);
+  --asc-system-tab-bg: linear-gradient(to bottom, #251919, #1d1313);
+  --asc-panel-color: #231717;
+  --asc-card-color: #281c1c;
+  --asc-panel-dark: #431e1d;
+  --asc-header-color: #0f0a0a;
+  --asc-panel-border: #4f5055;
+  --asc-panel-inner-border: rgb(164 167 177 / 25%);
+  --asc-panel-header-text: #e8e9eb;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e5d8d7;
+  --asc-text-muted: #a79090;
+  --asc-text-heading: #fbf3f2;
+  --asc-text-on-dark: #e8e9eb;
+  --asc-icon: #ca9799;
+  --asc-accent: #a12723;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(164 167 177 / 9%);
+  --asc-line: rgb(164 167 177 / 26%);
+  --asc-ring: #a59ca0;
+
+  --asc-row-alt: rgb(164 167 177 / 6%);
+  --asc-row-hover: rgb(196 48 43 / 22%);
+  --asc-row-border: rgb(164 167 177 / 17%);
+
+  --asc-tab-text: #e8e9eb;
+  --asc-tab-icon: #ca9fa1;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(235 60 50 / 75%), rgb(106 27 22 / 70%) 55%, rgb(18 11 11 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #0e0909;
+  --asc-badge-text: #fbf3f2;
+  --asc-meter-bg: #090606;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #4e1311;
+  --asc-hd-fill-2: #7f1f1c;
+  --asc-mana-fill: linear-gradient(to bottom, #d66e6b, #761d1a);
+  --asc-enc-fill: linear-gradient(to bottom, #d66e6b, #761d1a);
+  --asc-pip-fill: #c4302b;
+  --asc-gem: #cd4f4b;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(164 167 177 / 30%);
+  --asc-search-bg: #0c0808;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-slashing:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(235 60 50 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/slashing.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(235 60 50 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #eb3c32;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/slashing.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}
+
+
+/* ---- thunder ---- */
+.ascandir-sheet.asc-theme-thunder {
+  --asc-frame-bg: #07090c;
+  --asc-frame-border: #5b4736;
+  --asc-content-bg: linear-gradient(to bottom, #0f141b, #080a0e);
+  --asc-dark-bg: linear-gradient(to bottom, #141a24, #0c1016);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(140 175 255 / 16%), transparent 55%),
+    linear-gradient(rgb(10 14 19 / 30%), rgb(10 14 19 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(10 14 19 / 30%), rgb(10 14 19 / 50%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(140 175 255 / 4%) 30%, rgb(0 0 0 / 38%) 100%);
+  --asc-glow: rgb(140 175 255 / 80%);
+
+  --asc-gold: #be9570;
+  --asc-gold-light: #dbc5b0;
+  --asc-gold-dark: #5b4736;
+
+  --asc-panel-bg: linear-gradient(to bottom, #1a212b, #151a22);
+  --asc-card-bg: linear-gradient(to bottom, #1f2632, #171d26);
+  --asc-system-tab-bg: linear-gradient(to bottom, #191f29, #131920);
+  --asc-panel-color: #171d27;
+  --asc-card-color: #1c232d;
+  --asc-panel-dark: #2c3951;
+  --asc-header-color: #0a0c11;
+  --asc-panel-border: #5b4736;
+  --asc-panel-inner-border: rgb(190 149 112 / 25%);
+  --asc-panel-header-text: #efe4db;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #dfe2eb;
+  --asc-text-muted: #949eaf;
+  --asc-text-heading: #f7faff;
+  --asc-text-on-dark: #efe4db;
+  --asc-icon: #babacc;
+  --asc-accent: #6788d1;
+  --asc-accent-contrast: #ffffff;
+  --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(190 149 112 / 9%);
+  --asc-line: rgb(190 149 112 / 26%);
+  --asc-ring: #a99a8f;
+
+  --asc-row-alt: rgb(190 149 112 / 6%);
+  --asc-row-hover: rgb(126 166 255 / 22%);
+  --asc-row-border: rgb(190 149 112 / 17%);
+
+  --asc-tab-text: #efe4db;
+  --asc-tab-icon: #bfbbc8;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(140 175 255 / 75%), rgb(63 79 115 / 70%) 55%, rgb(11 15 20 / 95%) 100%);
+  --asc-tab-active-text: #ffffff;
+
+  --asc-badge-bg: #090b0f;
+  --asc-badge-text: #f7faff;
+  --asc-meter-bg: #06080a;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #324266;
+  --asc-hd-fill-2: #526ca6;
+  --asc-mana-fill: linear-gradient(to bottom, #a5c1ff, #4c6499);
+  --asc-enc-fill: linear-gradient(to bottom, #a5c1ff, #4c6499);
+  --asc-pip-fill: #7ea6ff;
+  --asc-gem: #91b3ff;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(190 149 112 / 30%);
+  --asc-search-bg: #080a0e;
+  --asc-condition-icon-filter: brightness(0) invert(.85);
+}
+
+/* Schadens-Symbol als Wasserzeichen im Namensschild und bei der Inspiration */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-thunder:not(.limited) {
+  .asc-nameplate {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 16px 28% 6px;
+      background: rgb(140 175 255 / 100%);
+      mask: url("../../../../systems/dnd5e/icons/svg/damage/thunder.svg") center / contain no-repeat;
+      opacity: .24;
+      pointer-events: none;
+      filter: drop-shadow(0 0 6px rgb(140 175 255 / 80%));
+    }
+    .asc-name, .asc-subtitle { position: relative; z-index: 1; }
+  }
+  .asc-insp-title i {
+    width: 22px;
+    height: 22px;
+    background: #8cafff;
+    mask: url("../../../../systems/dnd5e/icons/svg/damage/thunder.svg") center / contain no-repeat;
+    &::before { display: none; }
+  }
+}

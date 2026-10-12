@@ -15,7 +15,20 @@
       "parchment": "Parchment & Wood",
       "nightwatch": "Nightwatch",
       "crimson": "Blood Moon",
-      "arcane": "Arcanum"
+      "arcane": "Arcanum",
+      "acid": "Damage: Acid",
+      "bludgeoning": "Damage: Bludgeoning",
+      "cold": "Damage: Cold",
+      "fire": "Damage: Fire",
+      "force": "Damage: Force",
+      "lightning": "Damage: Lightning",
+      "necrotic": "Damage: Necrotic",
+      "piercing": "Damage: Piercing",
+      "poison": "Damage: Poison",
+      "psychic": "Damage: Psychic",
+      "radiant": "Damage: Radiant",
+      "slashing": "Damage: Slashing",
+      "thunder": "Damage: Thunder"
     },
     "Settings": {
       "ThemeWorldDefault": "World default",

@@ -85,6 +85,8 @@ Rahmen, Abzeichen und Texturen auf. Ein neues Theme braucht also nur:
 
 Die Grafiken von „Blutmond“ (`assets/crimson`) sind aus den Pergament-Grafiken umgefärbt; „Arkanum“ und
 „Nachtwache“ erzeugt `tools/build_art.py` aus dem Blutmond-Satz (`python3 tools/build_art.py`).
+Die 13 Schadenstyp-Themes (`assets/damage/<typ>`, Farben in `styles/themes/damage-types.css`) erzeugt
+`python3 tools/build_damage.py`; Farben, Metall und Leuchtton stehen dort in der Tabelle `TYPES`.
 Eigene, neu gemalte Grafiken können die Dateien jederzeit ersetzen.
 
 Zusätzliche Variablen für Skins: `--asc-wood-overlay`, `--asc-dark-overlay`, `--asc-panel-overlay`

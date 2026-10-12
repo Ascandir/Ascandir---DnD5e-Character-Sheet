@@ -15,7 +15,20 @@
       "parchment": "Pergament & Holz",
       "nightwatch": "Nachtwache",
       "crimson": "Blutmond",
-      "arcane": "Arkanum"
+      "arcane": "Arkanum",
+      "acid": "Schadenstyp: Säure",
+      "bludgeoning": "Schadenstyp: Wucht",
+      "cold": "Schadenstyp: Kälte",
+      "fire": "Schadenstyp: Feuer",
+      "force": "Schadenstyp: Energie",
+      "lightning": "Schadenstyp: Blitz",
+      "necrotic": "Schadenstyp: Nekrotisch",
+      "piercing": "Schadenstyp: Stich",
+      "poison": "Schadenstyp: Gift",
+      "psychic": "Schadenstyp: Psychisch",
+      "radiant": "Schadenstyp: Gleißend",
+      "slashing": "Schadenstyp: Hieb",
+      "thunder": "Schadenstyp: Schall"
     },
     "Settings": {
       "ThemeWorldDefault": "Standard der Welt",
