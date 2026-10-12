@@ -33,8 +33,9 @@ Im selben Fenster lässt sich unter **Theme** das Aussehen wählen.
 - **Bearbeiten nur mit Freigabe**: Der SL hat im Kopf des Bogens einen Schloss-Button, mit dem er den
   Bearbeitungsmodus für die Spieler dieses Charakters freigibt oder sperrt. Würfeln, TP, Gegenstände
   benutzen, Geld usw. funktionieren immer.
-- **Themes/Skins**: „Pergament & Holz" und „Nachtwache" sind dabei, weitere lassen sich einfach
-  ergänzen – siehe [THEMES.md](THEMES.md).
+- **Themes/Skins**: „Pergament & Holz“, „Nachtwache“ (Silber/Schiefer), „Blutmond“ (Gotisch, Rot/Gold)
+  und „Arkanum“ (Nachtblau, farbige Attributskarten). Weitere lassen sich einfach ergänzen –
+  siehe [THEMES.md](THEMES.md).
 - **Kompatibel zum Standardbogen**: Der Bogen erweitert den originalen dnd5e-Bogen. Inventar, Zauber,
   Merkmale, Effekte, Biografie, Bastion und Spezial nutzen die Original-Bausteine, Hooks wie
   `renderCharacterActorSheet` feuern weiter, Header-Buttons anderer Module (z. B. Plutonium,

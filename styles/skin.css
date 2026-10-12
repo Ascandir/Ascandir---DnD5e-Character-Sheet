@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Ascandir – Skin-Grafiken
+   Gilt für jedes Theme mit eigenem Grafik-Ordner (Klasse .asc-skinned).
+   Die Bildpfade setzt scripts/themes.mjs als Variablen --asc-img-<name>,
+   z. B. --asc-img-frame-panel. So reicht für ein neues Theme ein Ordner mit
+   denselben Dateinamen (siehe THEMES.md).
+   ========================================================================== */
+
+/* Gleiche Spezifität wie sheet.css, damit diese Regeln dort gewinnen */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-skinned:not(.limited) {
+
+  /* Texturen */
+  .window-content {
+    background:
+      var(--asc-wood-overlay, linear-gradient(rgb(8 5 2 / 55%), rgb(8 5 2 / 65%))),
+      var(--asc-img-wood-dark) repeat 0 0 / 360px auto;
+  }
+  .asc-panel, .asc-dark-box, nav.tabs.asc-tabs, .asc-portrait {
+    background:
+      var(--asc-dark-overlay, linear-gradient(rgb(10 6 3 / 62%), rgb(10 6 3 / 74%))),
+      var(--asc-img-wood-dark) repeat 0 0 / 300px auto;
+  }
+  .asc-panel-body, .asc-passive-list, .tab-body > .tab:not(.asc-tab-overview, .asc-tab-combat) {
+    background:
+      var(--asc-panel-overlay, radial-gradient(ellipse at center, rgb(255 245 220 / 0%) 55%, rgb(120 80 30 / 22%) 100%)),
+      var(--asc-img-parchment) repeat 0 0 / 340px auto;
+  }
+
+  /* Fensterrahmen und Panel-Rahmen (9-Slice: nur die Ecken sind verziert) */
+  &::after {
+    border-width: 30px;
+    border-image: var(--asc-img-frame-window) 62 / 30px stretch;
+    opacity: 1;
+  }
+  .asc-framed::after {
+    inset: -4px;
+    border-width: 18px;
+    border-image: var(--asc-img-frame-panel) 40 / 18px stretch;
+  }
+  .asc-panel, .asc-dark-box, nav.tabs.asc-tabs { border-color: transparent; }
+
+  /* Namensschild */
+  .asc-nameplate {
+    background: var(--asc-img-nameplate) center / 100% 100% no-repeat;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding-top: 30px;
+    &::after { display: none; }
+    .asc-crest {
+      top: -12px;
+      width: 150px;
+      height: 30px;
+      background: var(--asc-img-crest-nameplate) center / contain no-repeat;
+    }
+  }
+
+  /* Tabs */
+  nav.tabs.asc-tabs .asc-tab {
+    & + .asc-tab::before {
+      left: -3px;
+      width: 6px;
+      top: 6%;
+      bottom: 6%;
+      background: var(--asc-img-tab-divider) center / 100% 100% no-repeat;
+    }
+    &.active {
+      background: var(--asc-img-tab-active) center / 100% 100% no-repeat;
+      box-shadow: none;
+    }
+  }
+
+  /* Porträt im gemalten Torbogen */
+  .asc-portrait {
+    padding: 14px 16px 34px;
+    .asc-portrait-arch {
+      position: relative;
+      overflow: visible;
+      border: none;
+      box-shadow: none;
+      background: none;
+      img, video {
+        border-radius: 96px 96px 4px 4px / 64px 64px 4px 4px;
+        background: radial-gradient(ellipse at 50% 30%, #2f3c52, #151b26 80%);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        inset: -12px -12px -10px -12px;
+        pointer-events: none;
+        border-style: solid;
+        border-width: 72px 26px 22px 26px;
+        border-image: var(--asc-img-portrait-arch) 150 58 46 58 / 72px 26px 22px 26px stretch;
+      }
+    }
+  }
+
+  .asc-medallion {
+    width: 78px;
+    height: 78px;
+    bottom: -34px;
+    border: none;
+    box-shadow: none;
+    background: var(--asc-img-medallion) center / 100% 100% no-repeat;
+    filter: drop-shadow(0 3px 5px rgb(0 0 0 / 80%));
+  }
+
+  /* Initiative / Bewegung / Übung */
+  .asc-lozenge {
+    clip-path: none;
+    filter: drop-shadow(0 2px 3px rgb(0 0 0 / 70%));
+    background: var(--asc-img-lozenge) center / 100% 100% no-repeat;
+    height: 62px;
+    padding-top: 6px;
+    &::before { display: none; }
+    &.rollable:hover { filter: drop-shadow(0 0 5px var(--asc-glow, rgb(255 200 120 / 70%))); }
+  }
+
+  /* Attributskarten */
+  .asc-ability {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--asc-img-ability-card) center / 100% 100% no-repeat;
+    filter: drop-shadow(0 3px 5px rgb(0 0 0 / 65%));
+    padding: 21px 8px 9px;
+    justify-content: space-between;
+    &::before { display: none; }
+    .asc-ability-icon { font-size: 21px; height: 22px; }
+    .asc-ability-label { margin-top: 2px; }
+    .asc-ability-score {
+      margin-top: 2px;
+      width: 60px;
+      height: 40px;
+      font-size: 30px;
+      border: none;
+      background: var(--asc-img-ability-score-box) center / 100% 100% no-repeat;
+    }
+    .asc-ability-mod {
+      margin-top: 2px;
+      min-width: 62px;
+      height: 28px;
+      border: none;
+      box-shadow: none;
+      background: var(--asc-img-mod-badge) center / 100% 100% no-repeat;
+    }
+  }
+
+  /* Dunkle Abzeichen */
+  .asc-value-box, .asc-chip {
+    border: none;
+    box-shadow: none;
+    background: var(--asc-img-mod-badge) center / 100% 100% no-repeat;
+    padding: 2px 14px;
+  }
+  .asc-value-box { min-width: 64px; height: 34px; }
+
+  /* Kampfwerte */
+  .asc-shield, .asc-hex, .asc-oct {
+    clip-path: none;
+    filter: drop-shadow(0 2px 3px rgb(0 0 0 / 45%));
+    &::before { display: none; }
+  }
+  .asc-shield {
+    width: 70px;
+    height: 72px;
+    background: var(--asc-img-shield-ac) center / 100% 100% no-repeat;
+  }
+  .asc-hex {
+    width: 88px;
+    height: 40px;
+    background: var(--asc-img-badge-hex) center / 100% 100% no-repeat;
+  }
+  .asc-oct {
+    width: 104px;
+    height: 40px;
+    background: var(--asc-img-badge-oct) center / 100% 100% no-repeat;
+  }
+  .asc-stat.rollable:hover .asc-hex { filter: drop-shadow(0 0 5px var(--asc-glow, rgb(255 190 110 / 90%))); }
+
+  /* Band "Angriffe … Schaden" */
+  .asc-ribbon {
+    clip-path: none;
+    height: 26px;
+    background: none;
+    border-style: solid;
+    border-width: 0 26px;
+    border-image: var(--asc-img-ribbon) 0 52 fill / 0 26px stretch;
+    padding: 0 6px 0 10px;
+    &::before, &::after { display: none; }
+  }
+
+  /* Suchfelder */
+  .asc-search {
+    background: none;
+    box-shadow: none;
+    border-style: solid;
+    border-width: 10px;
+    border-image: var(--asc-img-search-bar) 16 fill / 10px stretch;
+    padding: 0 2px;
+  }
+
+  /* Inspiration & Favoriten-Kreise */
+  .asc-inspiration .asc-inspiration-gem {
+    width: 66px;
+    height: 66px;
+    transform: none;
+    border: none;
+    box-shadow: none;
+    background: var(--asc-img-inspiration-off) center / contain no-repeat;
+    filter: drop-shadow(0 3px 4px rgb(0 0 0 / 70%));
+  }
+  .asc-inspiration[aria-pressed="true"] .asc-inspiration-gem {
+    background-image: var(--asc-img-inspiration-on);
+    box-shadow: none;
+    filter: drop-shadow(0 0 10px var(--asc-glow, rgb(255 190 90 / 80%)));
+  }
+  .asc-fav-circles .asc-fav {
+    border: none;
+    box-shadow: none;
+    background: var(--asc-img-circle-slot) center / 100% 100% no-repeat;
+  }
+  .asc-fav-circles .asc-fav-button { padding: 3px; }
+}

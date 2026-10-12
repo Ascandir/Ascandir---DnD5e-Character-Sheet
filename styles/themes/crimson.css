@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Theme: Blutmond  (id: crimson, Grundschema: dunkel)
+   Gotisch: schwarzer Stein, Gold-Zierrahmen, tiefrote Samt-Akzente, Kerzenlicht.
+   Grafiken: assets/crimson/
+   ========================================================================== */
+
+.ascandir-sheet.asc-theme-crimson {
+  --asc-frame-bg: #0a0606;
+  --asc-frame-border: #5e3a1c;
+  --asc-content-bg: linear-gradient(to bottom, #1a0b0a, #0c0606);
+  --asc-dark-bg: linear-gradient(to bottom, #1f1412, #120b0a);
+  --asc-wood-overlay:
+    radial-gradient(ellipse at 50% 0%, rgb(170 30 25 / 22%), transparent 55%),
+    linear-gradient(rgb(6 2 2 / 30%), rgb(6 2 2 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(8 3 3 / 35%), rgb(8 3 3 / 55%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(0 0 0 / 0%) 50%, rgb(0 0 0 / 40%) 100%);
+  --asc-glow: rgb(232 70 40 / 75%);
+
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #ecd59c;
+  --asc-gold-dark: #6e4a24;
+
+  --asc-panel-bg: linear-gradient(to bottom, #221b1a, #191312);
+  --asc-card-bg: linear-gradient(to bottom, #261d1b, #1a1312);
+  --asc-system-tab-bg: linear-gradient(to bottom, #201918, #160f0e);
+  --asc-panel-color: #201918;
+  --asc-card-color: #241b1a;
+  --asc-panel-dark: #3a2420;
+  --asc-header-color: #120a09;
+  --asc-panel-border: #6e4a24;
+  --asc-panel-inner-border: rgb(201 163 92 / 25%);
+  --asc-panel-header-text: #f2e2c0;
+  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 80%);
+
+  --asc-text: #e8dcc6;
+  --asc-text-muted: #a8957c;
+  --asc-text-heading: #f6ead2;
+  --asc-text-on-dark: #f2e2c0;
+  --asc-icon: #d6b47a;
+  --asc-accent: #a3221a;
+  --asc-accent-contrast: #fff1e0;
+  --asc-positive: #4f7a32;
+  --asc-soft-bg: rgb(201 163 92 / 9%);
+  --asc-line: rgb(201 163 92 / 28%);
+  --asc-ring: #8f7556;
+
+  --asc-row-alt: rgb(201 163 92 / 6%);
+  --asc-row-hover: rgb(163 34 26 / 28%);
+  --asc-row-border: rgb(201 163 92 / 18%);
+
+  --asc-tab-text: #ead7a8;
+  --asc-tab-icon: #d9b56a;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(230 70 35 / 75%), rgb(120 25 15 / 70%) 55%, rgb(40 8 6 / 95%) 100%);
+  --asc-tab-active-text: #fff3e6;
+
+  --asc-badge-bg: #110a09;
+  --asc-badge-text: #f6ead2;
+  --asc-meter-bg: #0b0606;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #4a0f12;
+  --asc-hd-fill-2: #7a1c22;
+  --asc-mana-fill: linear-gradient(to bottom, #a58ad6, #5b3d8f);
+  --asc-enc-fill: linear-gradient(to bottom, #a58ad6, #5b3d8f);
+  --asc-pip-fill: #b02a1c;
+  --asc-gem: #3f8ae0;
+
+  --asc-input-bg: rgb(0 0 0 / 30%);
+  --asc-input-border: rgb(201 163 92 / 30%);
+  --asc-search-bg: #0f0908;
+  --asc-condition-icon-filter: brightness(0) invert(.85) sepia(.4);
+}
+
+/* Roter Samt hinter der Kopfzeile, wie Vorhänge im Entwurf */
+.dnd5e2.sheet.actor.character.ascandir-sheet.asc-theme-crimson:not(.limited) .sheet-header.asc-header {
+  background:
+    linear-gradient(90deg, rgb(120 10 12 / 55%) 0, rgb(120 10 12 / 0%) 14%, rgb(120 10 12 / 0%) 86%, rgb(120 10 12 / 55%) 100%);
+}

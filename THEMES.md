@@ -66,13 +66,29 @@ Hooks.once("ascandirCharacterSheet.registerThemes", register => {
 | `--asc-condition-icon-filter` | Einfärbung der Zustands-Symbole |
 | `--asc-font-heading`, `--asc-font-body`, `--asc-radius` | Schriften, Eckenradius |
 
-## Zierrahmen
+## Grafiken (Skins)
 
-Die verschnörkelten Ecken kommen aus SVG-Grafiken in `assets/` (`frame-gold.svg`, `crest-gold.svg`,
-Silber-Varianten für Nachtwache). Ein Theme legt am Ende seiner CSS-Datei fest, welche Grafik es nutzt
-(siehe `parchment.css`): `border-image-source` für `::after` des Fensters und von `.asc-framed`,
-dazu `.asc-crest` für das Wappen über dem Namen. Für neue Farben einfach eine SVG kopieren und die
-drei Farbwerte darin ändern.
+Jedes Theme kann einen eigenen Grafik-Ordner haben (`assets: "..."` bei `registerTheme`). Darin liegen
+immer dieselben 22 Dateien:
+
+`frame-window.png`, `frame-panel.png`, `crest-nameplate.png`, `nameplate.png`, `portrait-arch.png`,
+`medallion.png`, `lozenge.png`, `ability-card.png`, `ability-score-box.png`, `mod-badge.png`, `shield-ac.png`,
+`badge-hex.png`, `badge-oct.png`, `ribbon.png`, `tab-active.png`, `tab-divider.png`, `inspiration-off.png`,
+`inspiration-on.png`, `circle-slot.png`, `search-bar.png`, `wood-dark.jpg`, `parchment.jpg`
+
+Das Modul setzt sie automatisch als CSS-Variablen `--asc-img-<name>` ein; `styles/skin.css` baut damit
+Rahmen, Abzeichen und Texturen auf. Ein neues Theme braucht also nur:
+
+1. einen Ordner mit diesen Dateien (z. B. `assets/mein-theme/`),
+2. eine kleine CSS-Datei mit den Farb-Variablen (siehe `styles/themes/crimson.css`),
+3. eine Zeile in `registerBuiltinThemes()` in `scripts/themes.mjs`.
+
+Die Grafiken von „Blutmond“ (`assets/crimson`) sind aus den Pergament-Grafiken umgefärbt; „Arkanum“ und
+„Nachtwache“ erzeugt `tools/build_art.py` aus dem Blutmond-Satz (`python3 tools/build_art.py`).
+Eigene, neu gemalte Grafiken können die Dateien jederzeit ersetzen.
+
+Zusätzliche Variablen für Skins: `--asc-wood-overlay`, `--asc-dark-overlay`, `--asc-panel-overlay`
+(Abdunklung über Holz/Pergament), `--asc-glow` (Leuchtfarbe), `--asc-soft-bg`, `--asc-line`, `--asc-ring`.
 
 ## Skalierung
 

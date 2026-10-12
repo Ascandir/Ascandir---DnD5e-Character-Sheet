@@ -13,7 +13,9 @@
     },
     "Theme": {
       "parchment": "Parchment & Wood",
-      "nightwatch": "Nightwatch"
+      "nightwatch": "Nightwatch",
+      "crimson": "Blood Moon",
+      "arcane": "Arcanum"
     },
     "Settings": {
       "ThemeWorldDefault": "World default",

@@ -1,53 +1,58 @@
 /* ==========================================================================
    Theme: Nachtwache  (id: nightwatch, Grundschema: dunkel)
    Schiefer und Stahl, Silber-Zierrahmen, Türkis als Akzent.
-   Dient auch als Beispiel, wie wenig für ein neues Theme nötig ist.
+   Grafiken: assets/nightwatch/ (umgefärbte Pergament-Grafiken)
    ========================================================================== */
 
 .ascandir-sheet.asc-theme-nightwatch {
   --asc-frame-bg: #0b0e12;
   --asc-frame-border: #3f4a57;
-  --asc-content-bg:
-    radial-gradient(ellipse at 50% 20%, rgb(80 140 160 / 8%), transparent 70%),
-    linear-gradient(to bottom, #12161b, #0a0c0f);
+  --asc-content-bg: linear-gradient(to bottom, #151a20, #0b0e12);
   --asc-dark-bg: linear-gradient(to bottom, #1d232b, #12161b);
+  --asc-wood-overlay: linear-gradient(rgb(5 8 12 / 35%), rgb(5 8 12 / 55%));
+  --asc-dark-overlay: linear-gradient(rgb(6 9 13 / 40%), rgb(6 9 13 / 60%));
+  --asc-panel-overlay: radial-gradient(ellipse at center, rgb(0 0 0 / 0%) 55%, rgb(0 0 0 / 35%) 100%);
+  --asc-glow: rgb(60 200 210 / 75%);
 
-  --asc-gold: #9fb2c6;
-  --asc-gold-light: #dbe6f1;
-  --asc-gold-dark: #47535f;
+  --asc-gold: #a9bccf;
+  --asc-gold-light: #e2ebf4;
+  --asc-gold-dark: #4a5866;
 
   --asc-panel-bg: linear-gradient(to bottom, #232a33, #1b2128);
   --asc-card-bg: linear-gradient(to bottom, #2a323c, #1f262e);
   --asc-system-tab-bg: linear-gradient(to bottom, #1f252d, #181d23);
-  --asc-panel-color: #1f252d;
-  --asc-card-color: #252c35;
-  --asc-panel-dark: #2c353f;
+  --asc-panel-color: #222932;
+  --asc-card-color: #262d36;
+  --asc-panel-dark: #303a46;
   --asc-header-color: #12161b;
   --asc-panel-border: #4d5866;
-  --asc-panel-inner-border: rgb(159 178 198 / 25%);
-  --asc-panel-header-text: #dbe6f1;
+  --asc-panel-inner-border: rgb(169 188 207 / 25%);
+  --asc-panel-header-text: #e2ebf4;
   --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 75%);
 
-  --asc-text: #d8dee6;
-  --asc-text-muted: #8c98a6;
-  --asc-text-heading: #eef3f8;
-  --asc-text-on-dark: #dbe6f1;
-  --asc-icon: #9fb2c6;
-  --asc-accent: #2c8c8c;
+  --asc-text: #d8e0e9;
+  --asc-text-muted: #8f9cab;
+  --asc-text-heading: #f0f5fa;
+  --asc-text-on-dark: #e2ebf4;
+  --asc-icon: #a9bccf;
+  --asc-accent: #2a9a9e;
   --asc-accent-contrast: #f2ffff;
   --asc-positive: #3f8a55;
+  --asc-soft-bg: rgb(169 188 207 / 10%);
+  --asc-line: rgb(169 188 207 / 25%);
+  --asc-ring: #7d8a99;
 
-  --asc-row-alt: rgb(255 255 255 / 3%);
-  --asc-row-hover: rgb(44 140 140 / 18%);
-  --asc-row-border: rgb(159 178 198 / 15%);
+  --asc-row-alt: rgb(255 255 255 / 4%);
+  --asc-row-hover: rgb(42 154 158 / 20%);
+  --asc-row-border: rgb(169 188 207 / 16%);
 
-  --asc-tab-text: #b3c3d3;
-  --asc-tab-icon: #9fb2c6;
-  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(70 190 200 / 55%), rgb(30 80 95 / 70%) 55%, rgb(15 25 32 / 95%) 100%);
+  --asc-tab-text: #c2d0de;
+  --asc-tab-icon: #a9bccf;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(60 200 210 / 55%), rgb(25 70 85 / 70%) 55%, rgb(12 20 26 / 95%) 100%);
   --asc-tab-active-text: #ffffff;
 
   --asc-badge-bg: #0c0f13;
-  --asc-badge-text: #dbe6f1;
+  --asc-badge-text: #e2ebf4;
   --asc-meter-bg: #0a0c0f;
   --asc-hp-fill-1: #1a6b48;
   --asc-hp-fill-2: #39b47c;
@@ -55,27 +60,11 @@
   --asc-hd-fill-2: #5e4290;
   --asc-mana-fill: linear-gradient(to bottom, #6ac0d8, #2c6c8c);
   --asc-enc-fill: linear-gradient(to bottom, #6ac0d8, #2c6c8c);
-  --asc-pip-fill: #2c8c8c;
+  --asc-pip-fill: #2a9a9e;
   --asc-gem: #4ec3d3;
 
   --asc-input-bg: rgb(0 0 0 / 30%);
-  --asc-input-border: rgb(159 178 198 / 30%);
+  --asc-input-border: rgb(169 188 207 / 30%);
   --asc-search-bg: #0c0f13;
-  --asc-condition-icon-filter: brightness(1.6) grayscale(1);
-}
-
-.ascandir-sheet.asc-theme-nightwatch::after,
-.ascandir-sheet.asc-theme-nightwatch .asc-framed::after {
-  border-image-source: url("../../assets/frame-silver.svg");
-}
-.ascandir-sheet.asc-theme-nightwatch .asc-tab.active::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border: 10px solid transparent;
-  border-image: url("../../assets/frame-silver.svg") 16 / 10px stretch;
-}
-.ascandir-sheet.asc-theme-nightwatch .asc-crest {
-  background-image: url("../../assets/crest-silver.svg");
+  --asc-condition-icon-filter: brightness(0) invert(.82);
 }

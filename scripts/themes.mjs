@@ -7,6 +7,8 @@ import { MODULE_ID, SETTINGS } from "./constants.mjs";
  * @property {"light"|"dark"} base  Welches Foundry-Grundschema die Inhalte (Inventar, Zauberliste ...) nutzen.
  * @property {string} [stylesheet]  Optionaler Pfad zu einer CSS-Datei, die nachgeladen wird
  *                                  (für Themes aus anderen Modulen oder aus dem Datenordner).
+ * @property {string} [assets]      Optionaler Ordner mit Skin-Grafiken (Dateinamen siehe SKIN_ASSETS).
+ *                                  Relativ zum Foundry-Datenordner, z. B. "modules/mein-modul/skins/rot".
  * @property {string} [author]      Optional, nur zur Anzeige.
  */
 
@@ -15,6 +17,17 @@ import { MODULE_ID, SETTINGS } from "./constants.mjs";
  * @type {Map<string, SheetTheme>}
  */
 export const THEMES = new Map();
+
+/**
+ * Dateinamen der Skin-Grafiken. Jede Datei wird als CSS-Variable --asc-img-<name ohne Endung> bereitgestellt.
+ * @type {string[]}
+ */
+export const SKIN_ASSETS = [
+  "frame-window.png", "frame-panel.png", "crest-nameplate.png", "nameplate.png", "portrait-arch.png",
+  "medallion.png", "lozenge.png", "ability-card.png", "ability-score-box.png", "mod-badge.png", "shield-ac.png",
+  "badge-hex.png", "badge-oct.png", "ribbon.png", "tab-active.png", "tab-divider.png", "inspiration-off.png",
+  "inspiration-on.png", "circle-slot.png", "search-bar.png", "wood-dark.jpg", "parchment.jpg"
+];
 
 /**
  * Auswahlliste für die Einstellungen. Wird live aktualisiert, wenn neue Themes dazukommen.
@@ -55,8 +68,11 @@ export function registerTheme(theme) {
  * Die eingebauten Themes. Neue Themes hier ergänzen (und die CSS-Datei in module.json eintragen).
  */
 export function registerBuiltinThemes() {
-  registerTheme({ id: "parchment", label: "ASCSHEET.Theme.parchment", base: "light", author: "Ascandir" });
-  registerTheme({ id: "nightwatch", label: "ASCSHEET.Theme.nightwatch", base: "dark", author: "Ascandir" });
+  const skin = id => `modules/${MODULE_ID}/assets/${id}`;
+  registerTheme({ id: "parchment", label: "ASCSHEET.Theme.parchment", base: "light", author: "Ascandir", assets: skin("parchment") });
+  registerTheme({ id: "nightwatch", label: "ASCSHEET.Theme.nightwatch", base: "dark", author: "Ascandir", assets: skin("nightwatch") });
+  registerTheme({ id: "crimson", label: "ASCSHEET.Theme.crimson", base: "dark", author: "Ascandir", assets: skin("crimson") });
+  registerTheme({ id: "arcane", label: "ASCSHEET.Theme.arcane", base: "dark", author: "Ascandir", assets: skin("arcane") });
 }
 
 /* -------------------------------------------- */
@@ -99,6 +115,18 @@ export function applyTheme(element, theme=getActiveTheme()) {
   }
   element.classList.add("themed", `theme-${theme.base}`, `asc-theme-${theme.id}`);
   element.dataset.ascTheme = theme.id;
+
+  // Skin-Grafiken als CSS-Variablen setzen (Pfade werden hier aufgelöst, damit sie überall stimmen)
+  element.classList.toggle("asc-skinned", !!theme.assets);
+  for ( const file of SKIN_ASSETS ) {
+    const key = `--asc-img-${file.replace(/\.\w+$/, "")}`;
+    if ( theme.assets ) {
+      const folder = theme.assets.replace(/\/$/, "");
+      const path = /^(https?:)?\//.test(folder) ? `${folder}/${file}` : foundry.utils.getRoute(`${folder}/${file}`);
+      element.style.setProperty(key, `url("${path}")`);
+    }
+    else element.style.removeProperty(key);
+  }
 }
 
 /* -------------------------------------------- */
