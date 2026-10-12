@@ -52,7 +52,8 @@
       }
     },
     "Warn": {
-      "NoEditRights": "Dafür brauchst du die Freigabe des Spielleiters."
+      "NoEditRights": "Dafür brauchst du die Freigabe des Spielleiters.",
+      "SaveFailed": "Einige Änderungen konnten nicht gespeichert werden. Details stehen in der Konsole (F12)."
     },
     "Notify": {
       "Locked": "Bearbeitung von {name} für Spieler gesperrt.",

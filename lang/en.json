@@ -52,7 +52,8 @@
       }
     },
     "Warn": {
-      "NoEditRights": "You need the GM's permission for that."
+      "NoEditRights": "You need the GM's permission for that.",
+      "SaveFailed": "Some changes could not be saved. See the console (F12) for details."
     },
     "Notify": {
       "Locked": "Editing {name} is now locked for players.",

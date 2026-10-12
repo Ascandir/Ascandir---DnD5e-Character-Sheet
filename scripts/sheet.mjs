@@ -277,7 +277,16 @@ export function createSheetClass() {
       const { MODES } = this.constructor;
       const target = mode ?? (this.isEditMode ? MODES.PLAY : MODES.EDIT);
       if ( (target === MODES.EDIT) && !this.canEditSheet ) return this.#warnNoRights();
-      return super.changeMode(target);
+      // Speichern darf das Umschalten nie blockieren: schlägt es fehl, wird der Fehler gemeldet,
+      // der Bogen wechselt aber trotzdem in den gewünschten Modus.
+      try {
+        await super.changeMode(target);
+      } catch(err) {
+        console.error(err);
+        ui.notifications.error(game.i18n.localize("ASCSHEET.Warn.SaveFailed"));
+      }
+      if ( this._mode !== target ) this._mode = target;
+      return this.render();
     }
 
     /* -------------------------------------------- */
