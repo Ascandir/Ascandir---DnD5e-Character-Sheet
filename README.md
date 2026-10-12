@@ -65,4 +65,6 @@ api.sheetClass; // die Bogen-Klasse
 
 ## Lizenzen
 
+Grafiken des Themes „Pergament & Holz“ (`assets/parchment/`): erstellt von Ascandir mit ChatGPT.
+
 Schriften Cinzel und EB Garamond: SIL Open Font License (siehe `fonts/`).
