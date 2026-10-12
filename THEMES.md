@@ -43,25 +43,38 @@ Hooks.once("ascandirCharacterSheet.registerThemes", register => {
 | Variable | Wofür |
 |---|---|
 | `--asc-frame-bg`, `--asc-frame-border` | Fensterrahmen |
-| `--asc-content-bg` | Hintergrund hinter den Panels |
+| `--asc-content-bg` | Hintergrund hinter den Panels (Holz) |
+| `--asc-dark-bg` | dunkle Kästen: Panel-Rahmen, Namensschild, Tabs, TP-Kasten, Inspiration |
 | `--asc-gold`, `--asc-gold-light`, `--asc-gold-dark` | Zierlinien, Rahmen, Akzentlinien |
 | `--asc-panel-bg` | Panel-Hintergrund (darf Verlauf/Textur sein) |
 | `--asc-panel-color` | dieselbe Farbe einfarbig (für Innenlinien) |
 | `--asc-card-bg`, `--asc-card-color` | Attributskarten, Kästchen |
+| `--asc-panel-dark` | dunkleres Pergament (Band „Angriffe“, Gruppenköpfe) |
 | `--asc-panel-border`, `--asc-panel-inner-border` | Panel-Rahmen außen/innen |
-| `--asc-panel-header-bg`, `--asc-header-color`, `--asc-panel-header-text` | Panel-Überschriften |
-| `--asc-nameplate-bg`, `--asc-tabbar-bg`, `--asc-portrait-bg` | Namensschild, Tab-Leiste, Porträtrahmen |
+| `--asc-header-color`, `--asc-panel-header-text` | dunkle Grundfarbe einfarbig, Schrift der Panel-Überschriften |
 | `--asc-system-tab-bg` | Hintergrund der Original-Tabs (Inventar, Zauber …) |
 | `--asc-text`, `--asc-text-muted`, `--asc-text-heading`, `--asc-text-on-dark` | Schriftfarben |
 | `--asc-accent`, `--asc-accent-contrast`, `--asc-positive` | Akzentfarbe (Übung, aktive Zustände), Text darauf, „erledigt" |
 | `--asc-row-alt`, `--asc-row-hover`, `--asc-row-border` | Tabellenzeilen |
-| `--asc-tab-bg`, `--asc-tab-text`, `--asc-tab-active-bg`, `--asc-tab-active-text` | Tabs |
-| `--asc-badge-bg`, `--asc-badge-text`, `--asc-shield-bg` | dunkle Abzeichen, RK-Schild |
+| `--asc-tab-text`, `--asc-tab-icon`, `--asc-tab-active-bg`, `--asc-tab-active-text` | Tabs |
+| `--asc-icon` | Symbole auf Pergament (Fertigkeiten, Attribute) |
+| `--asc-badge-bg`, `--asc-badge-text` | dunkle Abzeichen (Modifikatoren, Werte-Kästen) |
 | `--asc-meter-bg`, `--asc-hp-fill-1/2`, `--asc-hd-fill-1/2` | TP- und Trefferwürfel-Balken |
-| `--asc-xp-fill`, `--asc-enc-fill`, `--asc-pip-fill` | EP-Balken, Traglast, Zauberplätze |
+| `--asc-mana-fill`, `--asc-enc-fill`, `--asc-pip-fill`, `--asc-gem` | Zauberplatz-Balken, Traglast, Rauten, Edelsteine |
+| `--asc-search-bg` | Suchfelder |
 | `--asc-input-bg`, `--asc-input-border` | Eingabefelder |
-| `--asc-ability-icon`, `--asc-condition-icon-filter` | Symbolfarben |
+| `--asc-condition-icon-filter` | Einfärbung der Zustands-Symbole |
 | `--asc-font-heading`, `--asc-font-body`, `--asc-radius` | Schriften, Eckenradius |
 
-Zusätzliche Verzierungen (z. B. Ecken-Ornamente) können im Theme mit eigenen Regeln unter
-`.ascandir-sheet.asc-theme-<id>` ergänzt werden, siehe Ende von `parchment.css`.
+## Zierrahmen
+
+Die verschnörkelten Ecken kommen aus SVG-Grafiken in `assets/` (`frame-gold.svg`, `crest-gold.svg`,
+Silber-Varianten für Nachtwache). Ein Theme legt am Ende seiner CSS-Datei fest, welche Grafik es nutzt
+(siehe `parchment.css`): `border-image-source` für `::after` des Fensters und von `.asc-framed`,
+dazu `.asc-crest` für das Wappen über dem Namen. Für neue Farben einfach eine SVG kopieren und die
+drei Farbwerte darin ändern.
+
+## Skalierung
+
+Alle Maße sind für ein Raster von 1270 × 1240 Pixeln gebaut. Der Bogen skaliert den Inhalt automatisch
+proportional zur Fenstergröße (`--asc-zoom`). Themes müssen sich darum nicht kümmern.

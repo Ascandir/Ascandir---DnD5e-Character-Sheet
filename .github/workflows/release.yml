@@ -37,7 +37,7 @@ jobs:
 
       - name: ZIP bauen
         if: steps.v.outputs.exists == 'false'
-        run: zip -r module.zip module.json scripts templates styles lang fonts README.md THEMES.md
+        run: zip -r module.zip module.json scripts templates styles lang fonts assets README.md THEMES.md
 
       - name: Release erstellen
         if: steps.v.outputs.exists == 'false'

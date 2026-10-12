@@ -1,57 +1,53 @@
 <aside class="sidebar asc-sidebar">
 
-    {{!-- Porträt --}}
-    <div class="asc-card asc-portrait {{#if portrait.token}}token{{/if}}">
+    {{!-- Porträt im Bogenrahmen mit RK-Medaillon --}}
+    <div class="asc-portrait asc-framed {{#if portrait.token}}token{{/if}}">
         {{#if editable}}
         <label class="asc-portrait-toggle">
             <input type="checkbox" name="flags.dnd5e.showTokenPortrait" {{ checked portrait.token }}>
             <span>{{#if portrait.token}}{{ localize "DOCUMENT.Token" }}{{else}}{{ localize "DND5E.Portrait" }}{{/if}}</span>
         </label>
         {{/if}}
-        {{#with portrait}}
-        {{#if isVideo}}
-        <video src="{{ src }}" autoplay muted disablepictureinpicture loop playsinline
-               {{#if @root.editable}}data-action="{{ action }}"{{else}}data-action="showArtwork"{{/if}}
-               {{#if (and @root.editable path)}}data-edit="{{ path }}" data-type="{{ type }}"{{/if}}></video>
-        {{else}}
-        <img src="{{ src }}" alt="{{ @root.actor.name }}"
-             {{#if @root.editable}}data-action="{{ action }}"{{else}}data-action="showArtwork"{{/if}}
-             {{#if (and @root.editable path)}}data-edit="{{ path }}" data-type="{{ type }}"{{/if}}>
-        {{/if}}
-        {{/with}}
-
-        {{!-- Rüstungsklasse --}}
-        <div class="asc-ac" aria-label="{{ localize 'DND5E.ArmorClass' }}">
+        <div class="asc-portrait-arch">
+            {{#with portrait}}
+            {{#if isVideo}}
+            <video src="{{ src }}" autoplay muted disablepictureinpicture loop playsinline
+                   {{#if @root.editable}}data-action="{{ action }}"{{else}}data-action="showArtwork"{{/if}}
+                   {{#if (and @root.editable path)}}data-edit="{{ path }}" data-type="{{ type }}"{{/if}}></video>
+            {{else}}
+            <img src="{{ src }}" alt="{{ @root.actor.name }}"
+                 {{#if @root.editable}}data-action="{{ action }}"{{else}}data-action="showArtwork"{{/if}}
+                 {{#if (and @root.editable path)}}data-edit="{{ path }}" data-type="{{ type }}"{{/if}}>
+            {{/if}}
+            {{/with}}
+        </div>
+        <div class="asc-medallion" aria-label="{{ localize 'DND5E.ArmorClass' }}">
+            <span class="asc-medallion-value" data-attribution="attributes.ac" data-attribution-caption="DND5E.ArmorClass"
+                  data-tooltip-direction="DOWN">{{{ ifThen system.attributes.ac.value system.attributes.ac.value "&mdash;" }}}</span>
             {{#if editable}}
             <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="armorClass"
-                    data-tooltip="DND5E.ARMORCLASS.Action.Configure">
-                <i class="fas fa-cog" inert></i>
-            </button>
+                    data-tooltip="DND5E.ARMORCLASS.Action.Configure"><i class="fas fa-cog" inert></i></button>
             {{/if}}
-            <span class="asc-ac-value" data-attribution="attributes.ac" data-attribution-caption="DND5E.ArmorClass"
-                  data-tooltip-direction="DOWN">{{{ ifThen system.attributes.ac.value system.attributes.ac.value "&mdash;" }}}</span>
-            <span class="asc-ac-label">{{ localize "DND5E.AC" }}</span>
         </div>
     </div>
 
     {{!-- Initiative, Bewegung, Übung --}}
     <div class="asc-lozenges">
-        <div class="asc-lozenge {{ rollableClass }}" data-action="roll" data-type="initiative"
-             data-tooltip="DND5E.InitiativeRoll">
+        <div class="asc-lozenge {{ rollableClass }}" data-action="roll" data-type="initiative" data-tooltip="DND5E.InitiativeRoll">
+            <span class="asc-lozenge-value">{{ dnd5e-numberFormat system.attributes.init.total signDisplay="always" }}</span>
+            <span class="asc-lozenge-label">{{ localize "DND5E.Initiative" }}</span>
             {{#if editable}}
             <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="initiative"
                     data-tooltip="DND5E.InitiativeConfig"><i class="fas fa-cog" inert></i></button>
             {{/if}}
-            <span class="asc-lozenge-value">{{ dnd5e-numberFormat system.attributes.init.total signDisplay="always" }}</span>
-            <span class="asc-lozenge-label">{{ localize "DND5E.Initiative" }}</span>
         </div>
         <div class="asc-lozenge" data-attribution="attributes.movement">
+            <span class="asc-lozenge-value">{{ speed.value }}</span>
+            <span class="asc-lozenge-label">{{ speed.label }}</span>
             {{#if editable}}
             <button type="button" class="unbutton asc-config" data-action="showConfiguration" data-config="movement"
                     data-tooltip="DND5E.MOVEMENT.Action.Configure"><i class="fas fa-cog" inert></i></button>
             {{/if}}
-            <span class="asc-lozenge-value">{{ speed.value }}</span>
-            <span class="asc-lozenge-label">{{ speed.label }}</span>
         </div>
         <div class="asc-lozenge">
             <span class="asc-lozenge-value">{{ dnd5e-numberFormat system.attributes.prof signDisplay="always" }}</span>
@@ -59,8 +55,8 @@
         </div>
     </div>
 
-    {{!-- Trefferpunkte --}}
-    <div class="asc-card asc-vitals">
+    {{!-- Trefferpunkte & Trefferwürfel --}}
+    <div class="asc-vitals asc-framed asc-dark-box">
         <div class="meter-group">
             <div class="asc-label">
                 <span>{{ localize "DND5E.HitPoints" }}</span>
@@ -111,7 +107,6 @@
         </div>
         {{/with}}
 
-        {{!-- Todesrettungswürfe --}}
         {{#if ascSidebar.showDeathSaves}}
         <div class="asc-death">
             <div class="pips asc-pips" data-prop="system.attributes.death.success">
@@ -121,9 +116,7 @@
                 {{/each}}
             </div>
             <button type="button" class="unbutton asc-death-roll {{ rollableClass }}" data-action="roll" data-type="deathSave"
-                    data-tooltip="DND5E.DeathSaveRoll">
-                <i class="fa-solid fa-skull" inert></i>
-            </button>
+                    data-tooltip="DND5E.DeathSaveRoll"><i class="fa-solid fa-skull" inert></i></button>
             <div class="pips asc-pips" data-prop="system.attributes.death.failure">
                 {{#each death.failure}}
                 <button type="button" class="{{ classes }}" data-action="togglePip" data-n="{{ n }}"
@@ -135,104 +128,96 @@
     </div>
 
     {{!-- Spezies & Hintergrund --}}
-    <div class="asc-card asc-origin">
-        <div class="asc-card-title"><i class="fa-solid fa-users" inert></i>{{ localize "ASCSHEET.Origin.Title" }}</div>
-
-        {{#if ascSidebar.species}}
-        {{#with ascSidebar.species}}
-        <div class="asc-origin-row item-tooltip" data-item-id="{{ id }}" data-uuid="{{ uuid }}">
-            <img src="{{ img }}" alt="" class="asc-origin-img" data-action="showDocument">
-            <div class="asc-origin-text" data-action="showDocument">
-                <span class="asc-origin-name">{{ name }}</span>
-                <span class="asc-origin-sub">{{ @root.ascSidebar.creatureType }}{{#if @root.ascSidebar.size}} · {{ localize @root.ascSidebar.size }}{{/if}}</span>
-            </div>
-            {{#if @root.editable}}
-            <button type="button" class="unbutton asc-config" data-action="deleteDocument" data-tooltip="DND5E.ItemDelete">
-                <i class="fas fa-trash" inert></i>
-            </button>
-            {{/if}}
-        </div>
-        {{/with}}
-        {{else}}
-        <button type="button" class="asc-add-button" data-action="findItem" data-item-type="race"
-                {{#unless asc.setup.canSpecies}}disabled data-tooltip="ASCSHEET.Warn.NoEditRights"{{/unless}}>
-            <i class="fa-solid fa-plus" inert></i>{{ localize "ASCSHEET.Setup.Species" }}
-        </button>
-        {{/if}}
-
-        {{#if ascSidebar.background}}
-        {{#with ascSidebar.background}}
-        <div class="asc-origin-row item-tooltip" data-item-id="{{ id }}" data-uuid="{{ uuid }}">
-            <img src="{{ img }}" alt="" class="asc-origin-img" data-action="showDocument">
-            <div class="asc-origin-text" data-action="showDocument">
-                <span class="asc-origin-sub">{{ localize "DND5E.Background" }}</span>
-                <span class="asc-origin-name">{{ name }}</span>
-            </div>
-            {{#if @root.editable}}
-            <button type="button" class="unbutton asc-config" data-action="deleteDocument" data-tooltip="DND5E.ItemDelete">
-                <i class="fas fa-trash" inert></i>
-            </button>
-            {{/if}}
-        </div>
-        {{/with}}
-        {{else}}
-        <button type="button" class="asc-add-button" data-action="findItem" data-item-type="background"
-                {{#unless asc.setup.canBackground}}disabled data-tooltip="ASCSHEET.Warn.NoEditRights"{{/unless}}>
-            <i class="fa-solid fa-plus" inert></i>{{ localize "ASCSHEET.Setup.Background" }}
-        </button>
-        {{/if}}
-
-        <dl class="asc-characteristics">
-            {{#each ascSidebar.characteristics}}
-            <dt>{{ localize label }}</dt>
-            <dd>
-                {{#if @root.editable}}
-                <input type="text" name="{{ name }}" value="{{ value }}" placeholder="–">
-                {{else}}
-                {{#if value}}{{ value }}{{else}}–{{/if}}
-                {{/if}}
-            </dd>
-            {{/each}}
-        </dl>
-    </div>
-
-    {{!-- Inspiration --}}
-    <div class="asc-card asc-inspiration-card">
-        <button type="button" class="unbutton asc-inspiration" data-action="toggleInspiration"
-                aria-pressed="{{ system.attributes.inspiration }}" data-tooltip="DND5E.Inspiration">
-            <span class="asc-inspiration-gem" aria-hidden="true"></span>
-            <span class="asc-inspiration-label">{{ localize "DND5E.Inspiration" }}</span>
-        </button>
-    </div>
-
-    {{!-- Favoriten (Drop-Zone bleibt kompatibel zum Standardbogen) --}}
-    <div class="asc-card favorites">
-        <div class="asc-card-title"><i class="fa-solid fa-bookmark" inert></i>{{ localize "DND5E.Favorites" }}</div>
-        <ul class="unlist asc-favorites">
-            {{#each favorites}}
-            <li class="{{#if itemId}}item-tooltip{{/if}} {{ type }} {{#if draggable}}draggable{{/if}} {{#if suppressed}}suppressed{{/if}}"
-                data-favorite-id="{{ id }}" {{#if key}}data-key="{{ key }}"{{/if}} {{#if itemId}}data-item-id="{{ itemId }}"{{/if}}
-                {{#if effectId}}data-effect-id="{{ effectId }}"{{/if}} {{#if parentId}}data-parent-id="{{ parentId }}"{{/if}}
-                {{#if activityId}}data-activity-id="{{ activityId }}"{{/if}} {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}
-                {{#if method}}data-method="{{ method }}"{{/if}} {{#if level}}data-level="{{ level }}"{{/if}}>
-                <img src="{{ img }}" alt="" class="asc-fav-img">
-                <div class="asc-fav-text {{ rollableClass }}" role="button" data-action="useFavorite">
-                    <span class="asc-fav-title">{{ title }}</span>
-                    {{#if subtitle}}<span class="asc-fav-sub">{{{ subtitle }}}</span>{{/if}}
-                </div>
-                <div class="asc-fav-info">
-                    {{#if (and uses.max (not uses.hidden))}}{{ uses.value }}/{{ uses.max }}
-                    {{else if modifier includeZero=true}}{{ dnd5e-formatModifier modifier }}
-                    {{else if quantity}}×{{ quantity }}{{/if}}
+    <div class="asc-panel asc-framed asc-origin">
+        <div class="asc-panel-header asc-panel-header--plain"><span>{{ localize "ASCSHEET.Origin.Title" }}</span></div>
+        <div class="asc-panel-body">
+            {{#if ascSidebar.species}}
+            {{#with ascSidebar.species}}
+            <div class="asc-origin-row item-tooltip" data-item-id="{{ id }}" data-uuid="{{ uuid }}">
+                <img src="{{ img }}" alt="" class="asc-origin-img" data-action="showDocument">
+                <div class="asc-origin-text" data-action="showDocument">
+                    <span class="asc-origin-name">{{ name }}</span>
+                    <span class="asc-origin-sub">{{ @root.ascSidebar.creatureType }}</span>
                 </div>
                 {{#if @root.editable}}
-                <button type="button" class="unbutton asc-config" data-action="deleteFavorite" data-tooltip="DND5E.FavoriteRemove">
-                    <i class="fas fa-circle-xmark" inert></i>
+                <button type="button" class="unbutton asc-config" data-action="deleteDocument" data-tooltip="DND5E.ItemDelete">
+                    <i class="fas fa-trash" inert></i>
                 </button>
                 {{/if}}
-            </li>
-            {{/each}}
-            <li class="drop asc-fav-drop">{{ localize "DND5E.FavoriteDrop" }}</li>
-        </ul>
+            </div>
+            {{/with}}
+            {{else}}
+            <button type="button" class="asc-add-button" data-action="findItem" data-item-type="race"
+                    {{#unless asc.setup.canSpecies}}disabled data-tooltip="ASCSHEET.Warn.NoEditRights"{{/unless}}>
+                <i class="fa-solid fa-plus" inert></i>{{ localize "ASCSHEET.Setup.Species" }}
+            </button>
+            {{/if}}
+
+            {{#if ascSidebar.background}}
+            {{#with ascSidebar.background}}
+            <div class="asc-origin-row item-tooltip" data-item-id="{{ id }}" data-uuid="{{ uuid }}">
+                <img src="{{ img }}" alt="" class="asc-origin-img" data-action="showDocument">
+                <div class="asc-origin-text" data-action="showDocument">
+                    <span class="asc-origin-caption">{{ localize "DND5E.Background" }}</span>
+                    <span class="asc-origin-name">{{ name }}</span>
+                </div>
+                {{#if @root.editable}}
+                <button type="button" class="unbutton asc-config" data-action="deleteDocument" data-tooltip="DND5E.ItemDelete">
+                    <i class="fas fa-trash" inert></i>
+                </button>
+                {{/if}}
+            </div>
+            {{/with}}
+            {{else}}
+            <button type="button" class="asc-add-button" data-action="findItem" data-item-type="background"
+                    {{#unless asc.setup.canBackground}}disabled data-tooltip="ASCSHEET.Warn.NoEditRights"{{/unless}}>
+                <i class="fa-solid fa-plus" inert></i>{{ localize "ASCSHEET.Setup.Background" }}
+            </button>
+            {{/if}}
+
+            <dl class="asc-characteristics">
+                {{#each ascSidebar.characteristics}}
+                <dt>{{ localize label }}</dt>
+                <dd>
+                    {{#if @root.editable}}
+                    <input type="text" name="{{ name }}" value="{{ value }}" placeholder="–">
+                    {{else}}
+                    {{#if value}}{{ value }}{{else}}-{{/if}}
+                    {{/if}}
+                </dd>
+                {{/each}}
+            </dl>
+        </div>
+    </div>
+
+    {{!-- Inspiration & Favoriten (Kreise = Favoriten, Ablagefläche bleibt kompatibel) --}}
+    <div class="asc-inspiration-card asc-framed asc-dark-box favorites">
+        <div class="asc-insp-title"><i class="fa-solid fa-shield-halved" inert></i><span>{{ localize "DND5E.Inspiration" }}</span></div>
+        <div class="asc-insp-body">
+            <button type="button" class="unbutton asc-inspiration" data-action="toggleInspiration"
+                    aria-pressed="{{ system.attributes.inspiration }}" data-tooltip="DND5E.Inspiration">
+                <span class="asc-inspiration-gem" aria-hidden="true"></span>
+            </button>
+            <ul class="unlist asc-fav-circles" data-tooltip-direction="UP">
+                {{#each favorites}}
+                <li class="asc-fav {{#if itemId}}item-tooltip{{/if}} {{ type }} {{#if draggable}}draggable{{/if}} {{#if suppressed}}suppressed{{/if}}"
+                    data-favorite-id="{{ id }}" {{#if key}}data-key="{{ key }}"{{/if}} {{#if itemId}}data-item-id="{{ itemId }}"{{/if}}
+                    {{#if effectId}}data-effect-id="{{ effectId }}"{{/if}} {{#if parentId}}data-parent-id="{{ parentId }}"{{/if}}
+                    {{#if activityId}}data-activity-id="{{ activityId }}"{{/if}} {{#if method}}data-method="{{ method }}"{{/if}}
+                    {{#if level}}data-level="{{ level }}"{{/if}} {{#unless itemId}}data-tooltip="{{ title }}"{{/unless}}>
+                    <button type="button" class="unbutton asc-fav-button {{ rollableClass }}" data-action="useFavorite">
+                        <img src="{{ img }}" alt="{{ title }}">
+                    </button>
+                    {{#if (and uses.max (not uses.hidden))}}<span class="asc-fav-badge">{{ uses.value }}</span>{{/if}}
+                    {{#if @root.editable}}
+                    <button type="button" class="unbutton asc-fav-remove" data-action="deleteFavorite" data-tooltip="DND5E.FavoriteRemove">
+                        <i class="fas fa-xmark" inert></i>
+                    </button>
+                    {{/if}}
+                </li>
+                {{/each}}
+                {{#each ascFavoriteSlots}}<li class="asc-fav asc-fav--empty" data-tooltip="DND5E.FavoriteDrop"></li>{{/each}}
+            </ul>
+        </div>
     </div>
 </aside>

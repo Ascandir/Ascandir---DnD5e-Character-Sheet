@@ -1,99 +1,92 @@
 /* ==========================================================================
    Theme: Pergament & Holz  (id: parchment, Grundschema: hell)
-   Dunkles Holz als Rahmen, Pergament-Panels, Bronze-/Goldlinien, Weinrot als Akzent.
+   Dunkles Holz, Pergament-Panels, Gold-Zierrahmen – nach dem Design-Entwurf.
    ========================================================================== */
 
 .ascandir-sheet.asc-theme-parchment {
-  /* Rahmen & Hintergrund */
-  --asc-frame-bg:
-    radial-gradient(ellipse at 50% 0%, rgb(255 210 140 / 10%), transparent 60%),
-    repeating-linear-gradient(92deg, rgb(0 0 0 / 0%) 0 14px, rgb(0 0 0 / 14%) 14px 15px, rgb(0 0 0 / 0%) 15px 31px),
-    repeating-linear-gradient(88deg, rgb(255 255 255 / 0%) 0 40px, rgb(255 220 170 / 4%) 40px 42px),
-    linear-gradient(to bottom, #3a2618, #24170e 40%, #1b110a);
-  --asc-frame-border: #7a5a2e;
+  /* Hintergründe */
+  --asc-frame-bg: #0f0a06;
+  --asc-frame-border: #5e4320;
   --asc-content-bg:
-    radial-gradient(ellipse at 50% 30%, rgb(120 80 40 / 18%), transparent 70%),
-    repeating-linear-gradient(90deg, rgb(0 0 0 / 0%) 0 22px, rgb(0 0 0 / 18%) 22px 23px),
-    linear-gradient(to bottom, #24170e, #160e08);
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0%) 0 26px, rgb(0 0 0 / 22%) 26px 27px, rgb(0 0 0 / 0%) 27px 61px),
+    repeating-linear-gradient(90deg, rgb(255 220 170 / 0%) 0 90px, rgb(255 220 170 / 3%) 90px 93px),
+    linear-gradient(to bottom, #1d130c, #120b07);
+  --asc-dark-bg:
+    radial-gradient(ellipse at 50% 0%, rgb(255 210 150 / 7%), transparent 70%),
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0%) 0 18px, rgb(0 0 0 / 16%) 18px 19px),
+    linear-gradient(to bottom, #261a11, #140d08);
 
-  /* Gold / Bronze */
-  --asc-gold: #b48a46;
-  --asc-gold-light: #ecd08f;
-  --asc-gold-dark: #6b4d24;
+  /* Gold */
+  --asc-gold: #c9a35c;
+  --asc-gold-light: #ecd59c;
+  --asc-gold-dark: #6e5027;
 
   /* Pergament */
-  --asc-parchment-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --asc-parchment-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .27 0 0 0 0 .1 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --asc-parchment-blots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .12 0 0 0 .22 -.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
   --asc-panel-bg:
     var(--asc-parchment-noise),
-    radial-gradient(ellipse at center, #f4e8cb 0%, #ecdcb6 65%, #dcc597 100%);
+    var(--asc-parchment-blots),
+    radial-gradient(ellipse at center, #f2e4c2 0%, #e9d6ad 65%, #d8bf8d 100%);
   --asc-card-bg:
     var(--asc-parchment-noise),
-    radial-gradient(ellipse at 50% 30%, #f7ecd2 0%, #ead8af 80%, #d9c08e 100%);
-  --asc-panel-color: #ecdcb6;
-  --asc-card-color: #efe0bb;
-  --asc-header-color: #2f1f13;
-  --asc-panel-border: #8a6a3a;
+    var(--asc-parchment-blots),
+    radial-gradient(ellipse at 50% 35%, #f5e8c8 0%, #e8d4a8 75%, #d6bb87 100%);
+  --asc-system-tab-bg: var(--asc-panel-bg);
+  --asc-panel-color: #ead8b0;
+  --asc-card-color: #eddcb4;
+  --asc-panel-dark: #dcc495;
+  --asc-header-color: #1c130c;
+  --asc-panel-border: #a07f48;
   --asc-panel-inner-border: rgb(122 90 46 / 55%);
-  --asc-panel-header-bg: linear-gradient(to bottom, #3d2a1b, #2a1b10);
-  --asc-panel-header-text: #ecd08f;
-  --asc-panel-shadow: 0 3px 10px rgb(0 0 0 / 60%);
-  --asc-nameplate-bg:
-    radial-gradient(ellipse at 50% 0%, rgb(236 208 143 / 16%), transparent 70%),
-    linear-gradient(to bottom, #3d2a1b, #1f140c);
-  --asc-tabbar-bg: linear-gradient(to bottom, #3a281a, #24170e);
-  --asc-portrait-bg: linear-gradient(to bottom, #3a281a, #1b110a);
-  --asc-system-tab-bg:
-    var(--asc-parchment-noise),
-    linear-gradient(to bottom, #f1e3c2, #e6d3a8);
+  --asc-panel-header-text: #f0dfb6;
+  --asc-panel-shadow: 0 3px 8px rgb(0 0 0 / 70%);
 
   /* Text */
-  --asc-text: #2e2215;
+  --asc-text: #2b1f14;
   --asc-text-muted: #6d5a43;
-  --asc-text-heading: #3b2614;
-  --asc-text-on-dark: #f0e2c0;
-  --asc-accent: #8f2a1e;
+  --asc-text-heading: #2b1b0e;
+  --asc-text-on-dark: #f0dfb6;
+  --asc-icon: #3d2b1a;
+  --asc-accent: #5b2614;
   --asc-accent-contrast: #fff4dc;
   --asc-positive: #3f6b2a;
 
-  /* Zeilen */
-  --asc-row-alt: rgb(122 90 46 / 8%);
-  --asc-row-hover: rgb(143 42 30 / 12%);
-  --asc-row-border: rgb(122 90 46 / 25%);
-
   /* Tabs */
-  --asc-tab-bg: transparent;
-  --asc-tab-text: #d6bd86;
-  --asc-tab-active-bg: linear-gradient(to bottom, #7a5428, #4d3317);
-  --asc-tab-active-text: #fff2cf;
+  --asc-tab-text: #ead7a8;
+  --asc-tab-icon: #d9b56a;
+  --asc-tab-active-bg: radial-gradient(ellipse at 50% 90%, rgb(245 160 70 / 80%), rgb(150 75 25 / 65%) 50%, rgb(55 28 12 / 95%) 100%);
+  --asc-tab-active-text: #fff3d6;
 
-  /* Abzeichen, Balken */
-  --asc-badge-bg: #2a1c11;
-  --asc-badge-text: #f3e6c8;
-  --asc-shield-bg: linear-gradient(to bottom, #3e2b1b, #140d07);
-  --asc-meter-bg: #1a110a;
-  --asc-hp-fill-1: #2e6a22;
-  --asc-hp-fill-2: #55a53c;
-  --asc-hd-fill-1: #5b1a1a;
-  --asc-hd-fill-2: #923030;
-  --asc-xp-fill: linear-gradient(to right, #8a6a2e, #e0bf6c);
-  --asc-enc-fill: linear-gradient(to right, #4b3a78, #7a63b5);
-  --asc-pip-fill: #8f2a1e;
-
-  --asc-input-bg: rgb(255 250 235 / 55%);
-  --asc-input-border: rgb(122 90 46 / 50%);
-  --asc-ability-icon: #4a3420;
+  /* Abzeichen & Balken */
+  --asc-badge-bg: #16100a;
+  --asc-badge-text: #f5ead0;
+  --asc-meter-bg: #0e0906;
+  --asc-hp-fill-1: #17703a;
+  --asc-hp-fill-2: #43c46d;
+  --asc-hd-fill-1: #3f0f15;
+  --asc-hd-fill-2: #6b1c27;
+  --asc-mana-fill: linear-gradient(to bottom, #a58ad6, #5b3d8f);
+  --asc-enc-fill: linear-gradient(to bottom, #a58ad6, #5b3d8f);
+  --asc-pip-fill: #7a1f14;
+  --asc-gem: #3f8ae0;
+  --asc-search-bg: #1a130d;
   --asc-condition-icon-filter: brightness(.25) sepia(.6);
 }
 
-/* Kleine Zierdiamanten an den Panel-Ecken */
-.ascandir-sheet.asc-theme-parchment .asc-panel::after,
-.ascandir-sheet.asc-theme-parchment .asc-card:not(.asc-portrait)::after {
+/* Zierrahmen und Wappen aus den Gold-Grafiken */
+.ascandir-sheet.asc-theme-parchment::after,
+.ascandir-sheet.asc-theme-parchment .asc-framed::after {
+  border-image-source: url("../../assets/frame-gold.svg");
+}
+.ascandir-sheet.asc-theme-parchment .asc-tab.active::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(45deg, transparent 45%, #b48a46 45% 55%, transparent 55%) 3px calc(100% - 3px) / 8px 8px no-repeat,
-    linear-gradient(-45deg, transparent 45%, #b48a46 45% 55%, transparent 55%) calc(100% - 3px) calc(100% - 3px) / 8px 8px no-repeat;
-  opacity: .8;
+  border: 10px solid transparent;
+  border-image: url("../../assets/frame-gold.svg") 16 / 10px stretch;
+}
+.ascandir-sheet.asc-theme-parchment .asc-crest {
+  background-image: url("../../assets/crest-gold.svg");
 }

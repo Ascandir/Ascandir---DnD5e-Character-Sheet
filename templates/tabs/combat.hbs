@@ -1,31 +1,34 @@
 <section class="tab asc-tab-combat {{ tab.cssClass }}" data-tab="{{ tab.id }}" data-group="{{ tab.group }}">
 
     {{!-- Kampfwerte --}}
-    <div class="asc-panel asc-combat-strip">
-        <div class="asc-combat-stats">
-            <div class="asc-stat asc-stat--ac" data-attribution="attributes.ac" data-attribution-caption="DND5E.ArmorClass">
-                <span class="asc-stat-label">{{ localize "DND5E.ArmorClass" }}</span>
-                <span class="asc-shield"><span>{{ ascCombat.ac }}</span></span>
-            </div>
-            <div class="asc-stat {{ rollableClass }}" data-action="roll" data-type="initiative">
-                <span class="asc-stat-label">{{ localize "DND5E.Initiative" }}</span>
-                <span class="asc-stat-hex">{{ dnd5e-numberFormat ascCombat.init signDisplay="always" }}</span>
-            </div>
-            <div class="asc-stat">
-                <span class="asc-stat-label">{{ localize "ASCSHEET.Movement" }}</span>
-                <span class="asc-stat-hex">{{ ascCombat.speed }} {{ localize ascCombat.speedUnit }}</span>
-            </div>
-            <div class="asc-stat">
-                <span class="asc-stat-label">{{ localize "DND5E.Proficiency" }}</span>
-                <span class="asc-stat-hex">{{ dnd5e-numberFormat ascCombat.prof signDisplay="always" }}</span>
-            </div>
-            <div class="asc-stat" data-ability="concentration">
-                <span class="asc-stat-label">{{ localize "DND5E.Concentration" }}</span>
-                <a class="asc-stat-hex {{ rollableClass }} saving-throw" data-action="roll" data-type="ability">{{ dnd5e-formatModifier ascCombat.concentration }}</a>
-            </div>
-            <div class="asc-stat">
-                <span class="asc-stat-label">{{ localize "DND5E.HitPoints" }}</span>
-                <span class="asc-stat-hex">{{ ascHp.value }} / {{ ascHp.effectiveMax }}{{#if ascHp.temp}} <small>+{{ ascHp.temp }}</small>{{/if}}</span>
+    <div class="asc-panel asc-framed asc-combat-strip">
+        <div class="asc-panel-header"><i class="fa-solid fa-khanda" inert></i><span>{{ localize "ASCSHEET.Tab.combat" }}</span></div>
+        <div class="asc-panel-body">
+            <div class="asc-combat-stats">
+                <div class="asc-stat" data-attribution="attributes.ac" data-attribution-caption="DND5E.ArmorClass">
+                    <span class="asc-stat-label">{{ localize "DND5E.ArmorClass" }}</span>
+                    <span class="asc-shield"><span>{{ ascCombat.ac }}</span></span>
+                </div>
+                <div class="asc-stat {{ rollableClass }}" data-action="roll" data-type="initiative">
+                    <span class="asc-stat-label">{{ localize "DND5E.Initiative" }}</span>
+                    <span class="asc-hex"><span>{{ dnd5e-numberFormat ascCombat.init signDisplay="always" }}</span></span>
+                </div>
+                <div class="asc-stat">
+                    <span class="asc-stat-label">{{ localize "ASCSHEET.Movement" }}</span>
+                    <span class="asc-oct"><span>{{ ascCombat.speed }} {{ localize ascCombat.speedUnit }}</span></span>
+                </div>
+                <div class="asc-stat">
+                    <span class="asc-stat-label">{{ localize "DND5E.Proficiency" }}</span>
+                    <span class="asc-hex"><span>{{ dnd5e-numberFormat ascCombat.prof signDisplay="always" }}</span></span>
+                </div>
+                <div class="asc-stat" data-ability="concentration">
+                    <span class="asc-stat-label">{{ localize "DND5E.Concentration" }}</span>
+                    <a class="asc-hex {{ rollableClass }} saving-throw" data-action="roll" data-type="ability"><span>{{ dnd5e-formatModifier ascCombat.concentration }}</span></a>
+                </div>
+                <div class="asc-stat">
+                    <span class="asc-stat-label">{{ localize "DND5E.HitPoints" }}</span>
+                    <span class="asc-oct"><span>{{ ascHp.value }} / {{ ascHp.effectiveMax }}{{#if ascHp.temp}} +{{ ascHp.temp }}{{/if}}</span></span>
+                </div>
             </div>
         </div>
     </div>
@@ -34,72 +37,78 @@
         {{!-- Aktionen nach Typ --}}
         <div class="asc-combat-actions">
             {{#each ascActionGroups}}
-            <div class="asc-panel asc-action-group" data-action-group="{{ id }}">
+            <div class="asc-panel asc-framed asc-action-group" data-action-group="{{ id }}">
                 <div class="asc-panel-header">
                     <i class="fa-solid {{#if (eq id 'action')}}fa-circle{{else if (eq id 'bonus')}}fa-play{{else if (eq id 'reaction')}}fa-rotate-left{{else}}fa-hourglass-half{{/if}}" inert></i>
                     <span>{{ label }}</span>
                     <span class="asc-col-heads asc-col-heads--combat"><span>{{ localize "ASCSHEET.ToHit" }}</span><span>{{ localize "ASCSHEET.Damage" }}</span><span>{{ localize "ASCSHEET.Uses" }}</span></span>
                 </div>
-                <ul class="unlist asc-rows asc-item-rows">
-                    {{#each rows}}
-                    <li class="asc-row asc-item-row asc-combat-row item-tooltip {{#unless equipped}}unequipped{{/unless}}"
-                        data-item-id="{{ itemId }}" data-activity-id="{{ activityId }}" data-uuid="{{ item.uuid }}">
-                        <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
-                        <div class="asc-item-text {{ @root.rollableClass }}" data-action="ascUseItem">
-                            <span class="asc-item-name">{{ name }}</span>
-                            <span class="asc-item-sub">{{ subtitle }}</span>
-                        </div>
-                        <span class="asc-mod">{{#if toHit}}{{ toHit }}{{else if save}}{{ save }}{{else}}–{{/if}}</span>
-                        <span class="asc-damage">{{#if damage}}{{ damage }}{{else}}–{{/if}}</span>
-                        <span class="asc-cell">{{#if uses}}{{ uses.value }}/{{ uses.max }}{{else}}–{{/if}}</span>
-                        {{#if equippable}}
-                        <button type="button" class="unbutton asc-equip {{#if equipped}}active{{/if}}" data-action="ascToggleEquipped"
-                                data-tooltip="{{#if equipped}}DND5E.Equipped{{else}}DND5E.Unequipped{{/if}}">
-                            <i class="fa-solid fa-shield-halved" inert></i>
-                        </button>
-                        {{else}}<span></span>{{/if}}
-                    </li>
-                    {{/each}}
-                </ul>
+                <div class="asc-panel-body">
+                    <ul class="unlist asc-item-rows">
+                        {{#each rows}}
+                        <li class="asc-item-row asc-combat-row item-tooltip {{#unless equipped}}unequipped{{/unless}}"
+                            data-item-id="{{ itemId }}" data-activity-id="{{ activityId }}" data-uuid="{{ item.uuid }}">
+                            <img class="asc-item-img" src="{{ img }}" alt="" data-action="showDocument">
+                            <div class="asc-item-text {{ @root.rollableClass }}" data-action="ascUseItem">
+                                <span class="asc-item-name">{{ name }}</span>
+                                <span class="asc-item-sub">{{ subtitle }}</span>
+                            </div>
+                            <span class="asc-cell asc-cell--sep asc-num">{{#if toHit}}{{ toHit }}{{else if save}}{{ save }}{{else}}–{{/if}}</span>
+                            <span class="asc-cell asc-cell--sep asc-num">{{#if damage}}{{ damage }}{{else}}–{{/if}}</span>
+                            <span class="asc-cell asc-cell--sep">{{#if uses}}{{ uses.value }}/{{ uses.max }}{{else}}–{{/if}}</span>
+                            {{#if equippable}}
+                            <button type="button" class="unbutton asc-equip {{#if equipped}}active{{/if}}" data-action="ascToggleEquipped"
+                                    data-tooltip="{{#if equipped}}DND5E.Equipped{{else}}DND5E.Unequipped{{/if}}">
+                                <i class="fa-solid fa-shield-halved" inert></i>
+                            </button>
+                            {{else}}<span></span>{{/if}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
             </div>
             {{else}}
-            <div class="asc-panel"><p class="asc-empty">{{ localize "ASCSHEET.NoAttacks" }}</p></div>
+            <div class="asc-panel asc-framed"><div class="asc-panel-body"><p class="asc-empty">{{ localize "ASCSHEET.NoAttacks" }}</p></div></div>
             {{/each}}
         </div>
 
         <div class="asc-combat-side">
             {{!-- Todesrettungswürfe --}}
-            <div class="asc-panel asc-death-panel">
+            <div class="asc-panel asc-framed asc-death-panel">
                 <div class="asc-panel-header"><i class="fa-solid fa-skull" inert></i><span>{{ localize "DND5E.DeathSave" }}</span></div>
-                {{#each ascDeath}}
-                <div class="asc-death-line">
-                    <span>{{ label }}</span>
-                    <div class="pips asc-pips" data-prop="{{ prop }}">
-                        {{#each pips}}
-                        <button type="button" class="pip {{#if filled}}filled{{/if}} {{#if (eq ../type 'failure')}}failure{{/if}}"
-                                data-action="togglePip" data-n="{{ n }}" aria-pressed="{{ filled }}"></button>
-                        {{/each}}
+                <div class="asc-panel-body">
+                    {{#each ascDeath}}
+                    <div class="asc-death-line">
+                        <span>{{ label }}</span>
+                        <div class="pips asc-pips" data-prop="{{ prop }}">
+                            {{#each pips}}
+                            <button type="button" class="pip {{#if filled}}filled{{/if}} {{#if (eq ../type 'failure')}}failure{{/if}}"
+                                    data-action="togglePip" data-n="{{ n }}" aria-pressed="{{ filled }}"></button>
+                            {{/each}}
+                        </div>
                     </div>
+                    {{/each}}
+                    <button type="button" class="asc-wide-button {{ rollableClass }}" data-action="roll" data-type="deathSave">
+                        <i class="fa-solid fa-dice-d20" inert></i> {{ localize "DND5E.DeathSaveRoll" }}
+                    </button>
                 </div>
-                {{/each}}
-                <button type="button" class="asc-wide-button {{ rollableClass }}" data-action="roll" data-type="deathSave">
-                    <i class="fa-solid fa-dice-d20" inert></i> {{ localize "DND5E.DeathSaveRoll" }}
-                </button>
             </div>
 
             {{!-- Zustände --}}
-            <div class="asc-panel asc-conditions">
+            <div class="asc-panel asc-framed asc-conditions">
                 <div class="asc-panel-header"><i class="fa-solid fa-bolt" inert></i><span>{{ localize "ASCSHEET.Conditions" }}</span></div>
-                <ul class="unlist asc-condition-grid">
-                    {{#each ascConditions}}
-                    <li class="asc-condition {{#if active}}active{{/if}}" data-condition="{{ id }}" data-action="ascToggleCondition"
-                        {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}>
-                        <img src="{{ img }}" alt="">
-                        <span>{{ name }}</span>
-                        {{#if isExhaustion}}<em class="asc-exhaustion-level" data-tooltip="ASCSHEET.ExhaustionHint">{{ level }}</em>{{/if}}
-                    </li>
-                    {{/each}}
-                </ul>
+                <div class="asc-panel-body">
+                    <ul class="unlist asc-condition-grid">
+                        {{#each ascConditions}}
+                        <li class="asc-condition {{#if active}}active{{/if}}" data-condition="{{ id }}" data-action="ascToggleCondition"
+                            {{#if reference}}data-reference-tooltip="{{ reference }}"{{/if}}>
+                            <img src="{{ img }}" alt="">
+                            <span>{{ name }}</span>
+                            {{#if isExhaustion}}<em class="asc-exhaustion-level" data-tooltip="ASCSHEET.ExhaustionHint">{{ level }}</em>{{/if}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

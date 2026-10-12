@@ -1,42 +1,25 @@
 <header class="sheet-header asc-header">
 
-    {{!-- Namensschild mit EP --}}
-    <div class="asc-nameplate">
-        <span class="asc-ornament asc-ornament--top" aria-hidden="true"></span>
+    {{!-- Namensschild --}}
+    <div class="asc-nameplate asc-framed">
+        <span class="asc-crest" aria-hidden="true"></span>
         {{#if editable}}
-        <input type="text" name="name" class="document-name asc-name" value="{{ actor._source.name }}"
+        <input type="text" name="name" class="document-name asc-name {{ ascHeader.nameClass }}" value="{{ actor._source.name }}"
                placeholder="{{ localize 'Name' }}">
         {{else}}
-        <div class="document-name asc-name">{{ actor.name }}</div>
+        <div class="document-name asc-name {{ ascHeader.nameClass }}">{{ actor.name }}</div>
         {{/if}}
         <div class="asc-subtitle">
             <span class="class">{{ ascHeader.classLabel }}</span>
-            {{#if ascHeader.species}}<span class="asc-dot">·</span><span>{{ ascHeader.species }}</span>{{/if}}
+            {{#if ascHeader.species}}<span class="asc-dot">•</span><span>{{ ascHeader.species }}</span>{{/if}}
         </div>
-
-        {{#if showExperience}}
-        {{#with system.details.xp}}
-        <div class="asc-xp" data-tooltip="DND5E.ExperiencePoints.Label">
-            <div class="asc-xp-text">
-                {{#if @root.editable}}
-                <input type="text" name="system.details.xp.value" class="asc-xp-input" data-dtype="Number" value="{{ value }}">
-                {{else}}
-                <span>{{ dnd5e-numberFormat value }}</span>
-                {{/if}}
-                {{#unless @root.epicBoonsEarned}}<span class="asc-sep">/</span><span>{{ dnd5e-numberFormat max }}</span>{{/unless}}
-                <span class="asc-xp-unit">{{ localize "ASCSHEET.XP" }}</span>
-            </div>
-            <div class="asc-bar asc-bar--xp"><span style="width: {{ pct }}%"></span></div>
-        </div>
-        {{/with}}
-        {{/if}}
     </div>
 
     {{!-- Tabs --}}
-    <nav class="tabs asc-tabs" data-group="primary" aria-roledescription="{{ localize 'SHEETS.FormNavLabel' }}">
+    <nav class="tabs asc-tabs asc-framed" data-group="primary" aria-roledescription="{{ localize 'SHEETS.FormNavLabel' }}">
         {{#each ascHeader.tabs}}
         <a class="item control asc-tab {{ cssClass }}" data-action="tab" data-group="primary" data-tab="{{ id }}"
-           aria-label="{{ localize label }}" data-tooltip="{{ localize label }}">
+           aria-label="{{ localize label }}">
             <span class="asc-tab-icon">
                 {{#if icon}}<i class="{{ icon }}" inert></i>{{/if}}
                 {{#if svg}}<dnd5e-icon src="{{ svg }}"></dnd5e-icon>{{/if}}
@@ -46,44 +29,50 @@
         {{/each}}
     </nav>
 
-    {{!-- Stufe, Rasten, Bearbeiten --}}
-    <div class="asc-header-side">
-        <div class="asc-level" data-tooltip="{{ localize 'DND5E.LevelNumber' level=system.details.level }}">
-            <span class="asc-level-label">{{ localize "ASCSHEET.Level" }}</span>
-            <span class="asc-level-value">{{ system.details.level }}</span>
-        </div>
-
-        <div class="asc-header-buttons sheet-header-buttons">
-            {{#if showRests}}
-            {{#each CONFIG.restTypes}}
-            <button type="button" class="asc-icon-button {{ @key }}-rest" data-action="rest" data-type="{{ @key }}"
-                    data-tooltip="{{ localize label }}" aria-label="{{ localize label }}">
-                <i class="{{ icon }}" inert></i>
-            </button>
-            {{/each}}
-            {{/if}}
-
-            {{#if asc.isGM}}
-            <button type="button" class="asc-icon-button asc-gm-unlock {{#if asc.playerEditUnlocked}}active{{/if}}"
-                    data-action="ascTogglePlayerEdit"
-                    data-tooltip="{{#if asc.playerEditUnlocked}}{{ localize 'ASCSHEET.GM.Lock' }}{{else}}{{ localize 'ASCSHEET.GM.Unlock' }}{{/if}}">
-                <i class="fa-solid {{#if asc.playerEditUnlocked}}fa-lock-open{{else}}fa-user-lock{{/if}}" inert></i>
-            </button>
-            {{/if}}
-
-            {{#if asc.canEdit}}
-            <button type="button" class="asc-icon-button asc-edit-toggle {{#if asc.editMode}}active{{/if}}"
-                    data-action="ascToggleEdit"
-                    data-tooltip="{{#if asc.editMode}}{{ localize 'ASCSHEET.Edit.Stop' }}{{else}}{{ localize 'ASCSHEET.Edit.Start' }}{{/if}}"
-                    aria-pressed="{{ asc.editMode }}">
-                <i class="fa-solid {{#if asc.editMode}}fa-floppy-disk{{else}}fa-pen-to-square{{/if}}" inert></i>
-                <span>{{#if asc.editMode}}{{ localize "ASCSHEET.Edit.Done" }}{{else}}{{ localize "ASCSHEET.Edit.Label" }}{{/if}}</span>
-            </button>
+    {{!-- Diese Knöpfe werden beim Rendern in die Fensterleiste oben rechts verschoben --}}
+    <div class="asc-window-buttons sheet-header-buttons">
+        {{#if showExperience}}
+        {{#with system.details.xp}}
+        <div class="asc-xp" data-tooltip="{{ localize 'DND5E.ExperiencePoints.Label' }}">
+            {{#if @root.editable}}
+            <input type="text" name="system.details.xp.value" class="asc-xp-input" data-dtype="Number" value="{{ value }}">
             {{else}}
-            <span class="asc-icon-button asc-locked" data-tooltip="{{ localize 'ASCSHEET.Edit.Locked' }}">
-                <i class="fa-solid fa-lock" inert></i>
-            </span>
+            <span>{{ dnd5e-numberFormat value }}</span>
             {{/if}}
+            {{#unless @root.epicBoonsEarned}}<span class="asc-sep">/</span><span>{{ dnd5e-numberFormat max }}</span>{{/unless}}
+            <span class="asc-xp-unit">{{ localize "ASCSHEET.XP" }}</span>
+            <span class="asc-xp-bar" style="width: {{ pct }}%"></span>
         </div>
+        {{/with}}
+        {{/if}}
+
+        {{#if showRests}}
+        {{#each CONFIG.restTypes}}
+        <button type="button" class="asc-square {{ @key }}-rest" data-action="rest" data-type="{{ @key }}"
+                data-tooltip="{{ localize label }}" aria-label="{{ localize label }}">
+            <i class="{{ icon }}" inert></i>
+        </button>
+        {{/each}}
+        {{/if}}
+
+        {{#if asc.isGM}}
+        <button type="button" class="asc-square asc-gm-unlock {{#if asc.playerEditUnlocked}}active{{/if}}"
+                data-action="ascTogglePlayerEdit"
+                data-tooltip="{{#if asc.playerEditUnlocked}}{{ localize 'ASCSHEET.GM.Lock' }}{{else}}{{ localize 'ASCSHEET.GM.Unlock' }}{{/if}}">
+            <i class="fa-solid {{#if asc.playerEditUnlocked}}fa-lock-open{{else}}fa-user-lock{{/if}}" inert></i>
+        </button>
+        {{/if}}
+
+        {{#if asc.canEdit}}
+        <button type="button" class="asc-square asc-edit-toggle {{#if asc.editMode}}active{{/if}}"
+                data-action="ascToggleEdit" aria-pressed="{{ asc.editMode }}"
+                data-tooltip="{{#if asc.editMode}}{{ localize 'ASCSHEET.Edit.Stop' }}{{else}}{{ localize 'ASCSHEET.Edit.Start' }}{{/if}}">
+            <i class="fa-solid {{#if asc.editMode}}fa-floppy-disk{{else}}fa-pen{{/if}}" inert></i>
+        </button>
+        {{else}}
+        <span class="asc-square asc-locked" data-tooltip="{{ localize 'ASCSHEET.Edit.Locked' }}">
+            <i class="fa-solid fa-lock" inert></i>
+        </span>
+        {{/if}}
     </div>
 </header>

@@ -26,8 +26,33 @@ const ABILITY_ICONS = {
   con: "fa-solid fa-heart",
   int: "fa-solid fa-brain",
   wis: "fa-solid fa-eye",
-  cha: "fa-solid fa-crown"
+  cha: "fa-solid fa-star"
 };
+
+/** Einfarbige Symbole für die Fertigkeiten (wie im Entwurf). */
+const SKILL_ICONS = {
+  acr: "fa-solid fa-person-running",
+  ani: "fa-solid fa-paw",
+  arc: "fa-solid fa-hat-wizard",
+  ath: "fa-solid fa-dumbbell",
+  dec: "fa-solid fa-masks-theater",
+  his: "fa-solid fa-book-open",
+  ins: "fa-solid fa-lightbulb",
+  itm: "fa-solid fa-skull",
+  inv: "fa-solid fa-magnifying-glass",
+  med: "fa-solid fa-staff-snake",
+  nat: "fa-solid fa-leaf",
+  prc: "fa-solid fa-eye",
+  prf: "fa-solid fa-music",
+  per: "fa-solid fa-comments",
+  rel: "fa-solid fa-hands-praying",
+  slt: "fa-solid fa-hand-sparkles",
+  ste: "fa-solid fa-user-ninja",
+  sur: "fa-solid fa-compass"
+};
+
+/** Design-Raster des Bogens. Alles wird proportional auf die Fenstergröße skaliert. */
+const DESIGN = { width: 1270, height: 1240, minZoom: 0.45, maxZoom: 1.6 };
 
 /** Reihenfolge und Beschriftung der Aktionsgruppen im Kampf-Tab. */
 const ACTION_GROUPS = ["action", "bonus", "reaction", "other"];
@@ -64,10 +89,13 @@ export function createSheetClass() {
     static DEFAULT_OPTIONS = {
       classes: ["ascandir-sheet"],
       position: {
-        width: 1120,
-        height: 940
+        width: DESIGN.width,
+        height: DESIGN.height
       },
       actions: {
+        ascToggleSkillFavorite: AscandirCharacterSheet.#toggleSkillFavorite,
+        ascSpendSlot: AscandirCharacterSheet.#spendSlot,
+        ascClearSearch: AscandirCharacterSheet.#clearSearch,
         findItem: AscandirCharacterSheet.#findItem,
         ascToggleEdit: AscandirCharacterSheet.#toggleEdit,
         ascTogglePlayerEdit: AscandirCharacterSheet.#togglePlayerEdit,
@@ -78,6 +106,31 @@ export function createSheetClass() {
         ascToggleEquipped: AscandirCharacterSheet.#toggleEquipped
       }
     };
+
+    constructor(options={}) {
+      // Startgröße: gespeicherte Größe dieses Bogens oder passend zum Bildschirm im Seitenverhältnis des Entwurfs.
+      options.position ??= {};
+      const saved = game.user.getFlag(MODULE_ID, "sheetSize") ?? {};
+      if ( !("width" in options.position) || !("height" in options.position) ) {
+        const maxH = Math.max(600, window.innerHeight - 40);
+        const maxW = Math.max(700, window.innerWidth - 40);
+        let height = saved.height ?? Math.min(DESIGN.height, maxH);
+        let width = saved.width ?? Math.round(height * DESIGN.width / DESIGN.height);
+        if ( width > maxW ) {
+          width = maxW;
+          if ( !saved.height ) height = Math.round(width * DESIGN.height / DESIGN.width);
+        }
+        options.position.width ??= width;
+        options.position.height ??= Math.min(height, maxH);
+      }
+      super(options);
+    }
+
+    /**
+     * Gemerkte Suchbegriffe der Suchfelder auf der Übersicht.
+     * @type {Record<string, string>}
+     */
+    _ascSearch = {};
 
     /* -------------------------------------------- */
 
@@ -269,7 +322,9 @@ export function createSheetClass() {
      */
     async _ascPrepareHeader(context, options) {
       const species = this.actor.system.details.race;
+      const nameLength = (this.actor.name ?? "").length;
       context.ascHeader = {
+        nameClass: nameLength > 18 ? "asc-name--xlong" : nameLength > 11 ? "asc-name--long" : "",
         species: species instanceof Item ? species.name : null,
         classLabel: context.labels.class || game.i18n.localize("ASCSHEET.NoClass"),
         tabs: Object.values(context.tabs ?? {})
@@ -306,6 +361,8 @@ export function createSheetClass() {
         showDeathSaves: (this.actor.system.attributes.hp.value <= 0) || !!this.actor.system.attributes.death.success
           || !!this.actor.system.attributes.death.failure
       };
+      // Leere Favoriten-Kreise, damit immer mindestens vier Ablageplätze sichtbar sind.
+      context.ascFavoriteSlots = Array(Math.max(0, 4 - (context.favorites?.length ?? 0))).fill(0);
       return context;
     }
 
@@ -410,9 +467,18 @@ export function createSheetClass() {
       // Fertigkeiten mit Übungsstatus
       context.ascSkills = context.skills.map(s => {
         const multiplier = system.skills[s.key]?.prof?.multiplier ?? 0;
-        return { ...s, profClass: Base.PROFICIENCY_CLASSES[multiplier] ?? "none", total: s.total };
+        return {
+          ...s,
+          profClass: Base.PROFICIENCY_CLASSES[multiplier] ?? "none",
+          icon: SKILL_ICONS[s.key] ?? "fa-solid fa-circle-dot",
+          abilityMod: system.abilities[s.ability]?.mod ?? 0,
+          favorite: !!system.hasFavorite?.(s.key),
+          total: s.total
+        };
       });
-      context.ascSaves = Object.values(context.saves).filter(s => !s.isConcentration);
+      context.ascSaves = Object.values(context.saves).filter(s => !s.isConcentration).map(s => ({
+        ...s, icon: ABILITY_ICONS[s.key] ?? "fa-solid fa-circle"
+      }));
 
       // Kampf
       context.ascCombat = this._ascCombatStats();
@@ -435,11 +501,19 @@ export function createSheetClass() {
           pips: section.pips ?? [],
           spells: section.items.map(spell => {
             const ctx = context.itemContext[spell.id] ?? {};
+            const saveAbility = spell.system.activities?.getByType?.("save")?.[0]?.save?.ability;
+            const attack = spell.system.activities?.getByType?.("attack")?.[0];
+            let roll = "–";
+            if ( saveAbility?.size ) roll = Array.from(saveAbility).map(a => CONFIG.DND5E.abilities[a]?.abbreviation)
+              .map(a => game.i18n.localize(a ?? "")).join("/").toUpperCase();
+            else if ( attack ) roll = attack.labels?.toHit ?? "–";
+            const uses = spell.system.uses?.max ? `${spell.system.uses.value}/${spell.system.uses.max}` : "–";
             return {
               id: spell.id,
               uuid: spell.uuid,
               name: spell.name,
               img: spell.img,
+              roll, uses,
               subtitle: [ctx.activation, ctx.range?.distance ? `${ctx.range.value} ${ctx.range.unit}` : null]
                 .filter(_ => _).join(" · "),
               prepared: ctx.preparation?.applicable ? !!spell.system.prepared : null,
@@ -449,7 +523,13 @@ export function createSheetClass() {
         }));
       context.ascSlots = Object.values(context.spellbook ?? {})
         .filter(s => s.usesSlots && s.pips?.length)
-        .map(s => ({ level: s.dataset.level, label: s.label, value: s.pips.filter(p => p.filled).length, max: s.pips.length }));
+        .map(s => {
+          const value = s.pips.filter(p => p.filled).length;
+          return { slot: s.slot, level: s.dataset.level, label: s.label, value, max: s.pips.length, empty: !value };
+        });
+      const slotTotals = context.ascSlots.reduce((t, s) => ({ value: t.value + s.value, max: t.max + s.max }),
+        { value: 0, max: 0 });
+      context.ascSlotTotal = { ...slotTotals, pct: slotTotals.max ? Math.round(slotTotals.value / slotTotals.max * 100) : 0 };
 
       // Inventar
       const currencies = CONFIG.DND5E.currencies;
@@ -464,7 +544,9 @@ export function createSheetClass() {
             name: item.name,
             img: item.img,
             subtitle: game.i18n.localize(CONFIG.Item.typeLabels[item.type] ?? ""),
-            price: price?.value ? `${price.value} ${game.i18n.localize(currencies[price.denomination]?.abbreviation ?? "")}` : "–",
+            price: price?.value ? price.value : "–",
+            priceIcon: price?.value ? currencies[price.denomination]?.icon : null,
+            priceLabel: price?.value ? game.i18n.localize(currencies[price.denomination]?.label ?? "") : "",
             weight: item.system.weight?.value ? item.system.weight.value : "–",
             quantity: item.system.quantity,
             equipped: item.system.equipped
@@ -508,8 +590,11 @@ export function createSheetClass() {
       context.ascConditions = this._ascConditions();
 
       // Hintergrund
+      const bgIcons = { trait: "fa-solid fa-masks-theater", ideal: "fa-solid fa-sun", bond: "fa-solid fa-link",
+        flaw: "fa-solid fa-mask" };
       context.ascBackground = ["trait", "ideal", "bond", "flaw"].map(key => ({
         key,
+        icon: bgIcons[key],
         label: game.i18n.localize(`ASCSHEET.Background.${key}`),
         text: plainText(system.details[key], 70)
       }));
@@ -596,11 +681,83 @@ export function createSheetClass() {
     async _onRender(context, options) {
       await super._onRender(context, options);
       applyTheme(this.element, getActiveTheme(this.document));
+      this._ascMoveWindowButtons();
+      this._ascUpdateZoom();
+      this._ascBindSearch();
       this.element.classList.toggle("asc-can-edit", this.canEditSheet);
       this.element.classList.toggle("asc-no-edit", !this.canEditSheet);
       // Erstellen-Button nur anzeigen, wenn es für den aktuellen Tab etwas zu erstellen gibt.
       this.element.querySelector(".create-child")?.toggleAttribute("hidden",
         ["overview", "combat", "details", "biography"].includes(this.tabGroups.primary));
+    }
+
+    /**
+     * Rasten-, Bearbeiten- und SL-Knöpfe sitzen wie im Entwurf als kleine Quadrate oben rechts in der Fensterleiste.
+     * @protected
+     */
+    _ascMoveWindowButtons() {
+      const header = this.element.querySelector(".window-header");
+      const buttons = this.element.querySelector(".asc-header .asc-window-buttons");
+      if ( !header || !buttons ) return;
+      header.querySelector(":scope > .asc-window-buttons")?.remove();
+      const firstControl = header.querySelector(":scope > .header-control, :scope > button");
+      if ( firstControl ) firstControl.before(buttons);
+      else header.append(buttons);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Den Inhalt proportional zur Fenstergröße skalieren, damit der Bogen immer wie der Entwurf aussieht.
+     * @protected
+     */
+    _ascUpdateZoom() {
+      const content = this.element?.querySelector(".window-content");
+      if ( !content || this.minimized ) return;
+      const width = content.clientWidth;
+      const height = content.clientHeight;
+      if ( !width || !height ) return;
+      const zoom = Math.clamp(Math.min(width / DESIGN.width, height / DESIGN.height), DESIGN.minZoom, DESIGN.maxZoom);
+      this.element.style.setProperty("--asc-zoom", zoom.toFixed(4));
+    }
+
+    /** @inheritDoc */
+    _onPosition(position) {
+      super._onPosition(position);
+      this._ascUpdateZoom();
+      this._ascSaveSize ??= foundry.utils.debounce(({ width, height }) => {
+        if ( !Number.isFinite(width) || !Number.isFinite(height) ) return;
+        game.user.setFlag(MODULE_ID, "sheetSize", { width, height });
+      }, 500);
+      this._ascSaveSize(position);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Einfache Suchfelder der Übersicht (Zauber, Inventar, Effekte). Filtert sofort beim Tippen.
+     * @protected
+     */
+    _ascBindSearch() {
+      for ( const input of this.element.querySelectorAll("input.asc-search-input") ) {
+        const key = input.dataset.search;
+        input.value = this._ascSearch[key] ?? "";
+        const apply = () => {
+          this._ascSearch[key] = input.value;
+          const term = input.value.trim().toLocaleLowerCase(game.i18n.lang);
+          const scope = this.element.querySelector(`[data-search-scope="${key}"]`);
+          for ( const row of scope?.querySelectorAll("[data-search-text]") ?? [] ) {
+            row.hidden = !!term && !row.dataset.searchText.toLocaleLowerCase(game.i18n.lang).includes(term);
+          }
+          for ( const group of scope?.querySelectorAll("[data-search-group]") ?? [] ) {
+            group.hidden = !!term && !group.querySelector("[data-search-text]:not([hidden])");
+          }
+        };
+        input.addEventListener("input", apply);
+        input.addEventListener("change", event => event.stopPropagation());
+        input.addEventListener("keydown", event => { if ( event.key === "Enter" ) event.preventDefault(); });
+        apply();
+      }
     }
 
     /** @inheritDoc */
@@ -739,6 +896,44 @@ export function createSheetClass() {
         return this.actor.update({ "system.attributes.exhaustion": event.shiftKey ? Math.max(level - 1, 0) : Math.min(level + 1, max) });
       }
       return this.actor.toggleStatusEffect(id);
+    }
+
+    /**
+     * Fertigkeit als Favorit markieren/entfernen (linker Kreis in der Fertigkeitenliste).
+     * @this {AscandirCharacterSheet}
+     */
+    static async #toggleSkillFavorite(event, target) {
+      if ( !this.isEditable ) return;
+      const key = target.closest("[data-key]")?.dataset.key;
+      if ( !key ) return;
+      const system = this.actor.system;
+      if ( system.hasFavorite(key) ) return system.removeFavorite(key);
+      return system.addFavorite({ type: "skill", id: key });
+    }
+
+    /**
+     * Zauberplatz-Kachel: Klick verbraucht einen Platz, Umschalt+Klick stellt einen wieder her.
+     * @this {AscandirCharacterSheet}
+     */
+    static async #spendSlot(event, target) {
+      if ( !this.isEditable ) return;
+      const slot = target.closest("[data-slot]")?.dataset.slot;
+      const data = this.actor.system.spells?.[slot];
+      if ( !data ) return;
+      const max = data.override ?? data.max ?? 0;
+      const value = event.shiftKey ? Math.min((data.value ?? 0) + 1, max) : Math.max((data.value ?? 0) - 1, 0);
+      if ( value !== data.value ) return this.actor.update({ [`system.spells.${slot}.value`]: value });
+    }
+
+    /**
+     * Suchfeld leeren.
+     * @this {AscandirCharacterSheet}
+     */
+    static #clearSearch(event, target) {
+      const input = target.closest(".asc-search")?.querySelector("input");
+      if ( !input ) return;
+      input.value = "";
+      input.dispatchEvent(new Event("input"));
     }
 
     /**

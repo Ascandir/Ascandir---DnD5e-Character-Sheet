@@ -104,7 +104,8 @@
       "trait": "Persönlichkeit",
       "ideal": "Ideale",
       "bond": "Bindungen",
-      "flaw": "Makel"
+      "flaw": "Makel",
+      "biography": "Biografie"
     },
     "Combat": {
       "group": {
@@ -117,6 +118,17 @@
     "Death": {
       "success": "Erfolge",
       "failure": "Fehlschläge"
+    },
+    "Prof": "Prof.",
+    "Total": "Ges.",
+    "FavoriteToggle": "Als Favorit markieren",
+    "SlotsTotal": "Zauberplätze gesamt",
+    "SlotHint": "Klick: Platz verbrauchen · Umschalt+Klick: zurückgeben",
+    "SpellRoll": "Wurf",
+    "Search": {
+      "Spells": "Zauber suchen…",
+      "Inventory": "Inventar suchen…",
+      "Effects": "Effekte suchen…"
     }
   }
 }

@@ -104,7 +104,8 @@
       "trait": "Personality",
       "ideal": "Ideals",
       "bond": "Bonds",
-      "flaw": "Flaws"
+      "flaw": "Flaws",
+      "biography": "Biography"
     },
     "Combat": {
       "group": {
@@ -117,6 +118,17 @@
     "Death": {
       "success": "Successes",
       "failure": "Failures"
+    },
+    "Prof": "Prof.",
+    "Total": "Total",
+    "FavoriteToggle": "Toggle favorite",
+    "SlotsTotal": "Total spell slots",
+    "SlotHint": "Click: spend a slot · Shift+click: restore",
+    "SpellRoll": "Roll",
+    "Search": {
+      "Spells": "Search spells…",
+      "Inventory": "Search inventory…",
+      "Effects": "Search effects…"
     }
   }
 }

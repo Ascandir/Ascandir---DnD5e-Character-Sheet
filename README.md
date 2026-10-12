@@ -18,9 +18,15 @@ Im selben Fenster lässt sich unter **Theme** das Aussehen wählen.
 
 ## Funktionen
 
-- **Übersicht** auf einer Seite: Attribute, Übungsbonus, passive Werte, Fertigkeiten, Rettungswürfe,
+- **Skaliert mit dem Fenster**: Der Bogen ist für 1270 × 1240 Pixel gestaltet und wird beim Öffnen und
+  beim Größe-Ändern proportional verkleinert/vergrößert. Die zuletzt gewählte Fenstergröße wird gemerkt.
+- **Übersicht** auf einer Seite, aufgebaut wie der Design-Entwurf: Attribute, Übungsbonus, passive Werte, Fertigkeiten, Rettungswürfe,
   Kampfwerte mit Angriffen, Zauberwerte und Zauberplätze, Zauberbuch, Inventar mit Traglast und Geld,
-  Merkmale, Zustände, Hintergrund. Alles ist anklickbar (würfeln, benutzen, wirken).
+  Merkmale, Zustände, Hintergrund. Alles ist anklickbar (würfeln, benutzen, wirken). Suchfelder für
+  Zauber, Inventar und Effekte filtern sofort. Kreise links bei den Fertigkeiten markieren Favoriten,
+  Favoriten erscheinen als runde Schnellzugriffe neben der Inspiration (Ablegen per Drag & Drop).
+  Zauberplatz-Kacheln: Klick verbraucht einen Platz, Umschalt+Klick gibt einen zurück.
+- **Fensterleiste**: EP, kurze/lange Rast, Bearbeiten und die SL-Freigabe sitzen als kleine Knöpfe oben rechts.
 - **Kampf-Tab**: alle Aktionen nach Aktion/Bonusaktion/Reaktion, Todesrettungswürfe, Zustände.
 - **Charakter einrichten**: Bei leeren Bögen Buttons für Klasse, Spezies und Hintergrund
   (Kompendium-Browser + Stufenaufstieg des Systems).
