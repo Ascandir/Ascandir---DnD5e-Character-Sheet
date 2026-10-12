@@ -1,10 +1,13 @@
 name: Release
 
-# Ein Tag wie v0.1.0 pushen -> Release mit module.json und module.zip wird erstellt.
+# Sobald sich "version" in module.json auf main ändert, wird automatisch ein Release
+# v<version> mit module.json und module.zip erstellt (Foundry kann dann updaten).
+# Lässt sich auch manuell unter "Actions" starten.
 on:
   push:
-    tags:
-      - "v*"
+    branches: [main]
+    paths: [module.json]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,19 +18,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Version aus dem Tag in module.json eintragen
+      - name: Version lesen
+        id: v
         run: |
-          VERSION="${GITHUB_REF_NAME#v}"
-          jq --arg v "$VERSION" --arg tag "$GITHUB_REF_NAME" \
-            '.version = $v | .download = "https://github.com/\(env.GITHUB_REPOSITORY)/releases/download/\($tag)/module.zip"' \
+          VERSION=$(jq -r .version module.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          if gh release view "v$VERSION" >/dev/null 2>&1; then echo "exists=true" >> "$GITHUB_OUTPUT"; else echo "exists=false" >> "$GITHUB_OUTPUT"; fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Download-Link prüfen
+        if: steps.v.outputs.exists == 'false'
+        run: |
+          jq --arg tag "${{ steps.v.outputs.tag }}" \
+            '.download = "https://github.com/\(env.GITHUB_REPOSITORY)/releases/download/\($tag)/module.zip"' \
             module.json > module.tmp && mv module.tmp module.json
 
       - name: ZIP bauen
+        if: steps.v.outputs.exists == 'false'
         run: zip -r module.zip module.json scripts templates styles lang fonts README.md THEMES.md
 
       - name: Release erstellen
+        if: steps.v.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.v.outputs.tag }}
+          name: ${{ steps.v.outputs.tag }}
+          target_commitish: ${{ github.sha }}
           files: |
             module.json
             module.zip
