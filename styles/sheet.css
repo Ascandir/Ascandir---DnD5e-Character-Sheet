@@ -345,7 +345,7 @@
     color: var(--asc-panel-header-text);
     opacity: .85;
     > span { text-align: center; }
-    &.asc-cols-3 > span { width: 34px; }
+    &.asc-cols-3 > span { width: 30px; }
     &.asc-cols-2 > span { width: 56px; }
   }
 
@@ -1038,12 +1038,16 @@
   }
 
   /* Panels mit eigener Liste geben ihre Höhe an das Raster ab (kein Aufblähen, Liste scrollt intern) */
-  .asc-combat, .asc-inventory, .asc-spells, .asc-bottom-row > .asc-panel { contain: size; min-height: 0; }
+  .tab.asc-tab-overview.active > * { contain: size; min-height: 0; min-width: 0; }
+  .tab.asc-tab-overview.active > .asc-setup { contain: none; }
+  .asc-bottom-row > .asc-panel { contain: size; min-height: 0; }
+  .tab.asc-tab-overview .asc-panel-body { overflow: hidden auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+  .asc-bg-grid li { height: auto; min-height: 26px; max-height: 33px; flex: 1; }
 
   .tab.asc-tab-overview.active {
     display: grid;
-    grid-template-columns: 316fr 284fr 56fr 322fr;
-    grid-template-rows: auto minmax(270px, 1.3fr) minmax(150px, auto) minmax(220px, 1.2fr) minmax(150px, .7fr);
+    grid-template-columns: 306fr 294fr 50fr 322fr;
+    grid-template-rows: minmax(140px, 160px) minmax(200px, 1.3fr) minmax(130px, 150px) minmax(120px, 1.2fr) minmax(110px, .7fr);
     grid-template-areas:
       "abil abil abil side"
       "skills saves combat combat"
@@ -1055,7 +1059,7 @@
   }
 
   .tab.asc-tab-overview.active.asc-has-setup {
-    grid-template-rows: auto auto minmax(270px, 1.3fr) minmax(150px, auto) minmax(220px, 1.2fr) minmax(150px, .7fr);
+    grid-template-rows: auto minmax(140px, 160px) minmax(200px, 1.3fr) minmax(130px, 150px) minmax(120px, 1.2fr) minmax(110px, .7fr);
     grid-template-areas:
       "setup setup setup setup"
       "abil abil abil side"
@@ -1093,6 +1097,9 @@
         "bottom bottom";
     }
     .asc-bottom-row { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 170px; }
+    .tab.asc-tab-overview.active > .asc-abilities { height: 160px; }
+    .tab.asc-tab-overview.active > .asc-spellstats { height: 150px; }
+    .tab.asc-tab-overview.active > .asc-bottom-row { height: calc(3 * 170px + 2 * var(--asc-gap)); }
   }
 
   /* Schmal: eine Spalte */
@@ -1106,6 +1113,14 @@
     .tab.asc-tab-overview.active:not(.asc-has-setup) {
       grid-template-areas: "abil" "side" "skills" "saves" "combat" "spellstats" "spells" "inv" "bottom";
     }
+    .tab.asc-tab-overview.active > * { height: 300px; }
+    .tab.asc-tab-overview.active > .asc-abilities { height: 320px; }
+    .tab.asc-tab-overview.active > .asc-side-stats { height: 170px; }
+    .tab.asc-tab-overview.active > .asc-skills { height: 500px; }
+    .tab.asc-tab-overview.active > .asc-saves { height: 280px; }
+    .tab.asc-tab-overview.active > .asc-spellstats { height: 160px; }
+    .tab.asc-tab-overview.active > .asc-setup { height: auto; }
+    .tab.asc-tab-overview.active > .asc-bottom-row { height: calc(3 * 170px + 2 * var(--asc-gap)); }
     .asc-combat { height: 300px; }
     .asc-spells { height: 320px; }
     .asc-inventory { height: 420px; }
@@ -1357,13 +1372,18 @@
 
   .asc-rows--banded .asc-row { height: 31px; margin-bottom: 2px; &:nth-child(even) { background: rgb(122 90 46 / 12%); } }
 
-  .asc-skill { grid-template-columns: 14px 18px minmax(0, 1fr) 34px 34px 34px; }
+  .asc-skill { grid-template-columns: 14px 18px minmax(0, 1fr) 30px 30px 30px; column-gap: 5px; }
 
   /* Fertigkeiten füllen die Panel-Höhe genau aus – kein Scrollen nötig */
   .asc-skills .asc-panel-body { display: flex; flex-direction: column; overflow: hidden; }
   .asc-skills .asc-rows { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-  .asc-skills .asc-row { flex: 1 1 0; height: auto; min-height: 21px; max-height: 32px; }
-  .asc-save { grid-template-columns: 22px minmax(0, 1fr) 34px 34px 34px; }
+  .asc-skills .asc-row { flex: 1 1 0; height: auto; min-height: 19px; max-height: 32px; }
+  .asc-skills .asc-panel-body, .asc-saves .asc-panel-body { overflow: hidden auto; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+  .asc-save { grid-template-columns: 20px minmax(0, 1fr) 30px 30px 30px; column-gap: 5px; }
+  /* Rettungswürfe füllen die Panel-Höhe wie die Fertigkeiten */
+  .asc-saves .asc-panel-body { display: flex; flex-direction: column; overflow: hidden; }
+  .asc-saves .asc-rows { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .asc-saves .asc-row { flex: 1 1 0; height: auto; min-height: 20px; max-height: 34px; margin-bottom: 2px; }
 
   .asc-name {
     color: var(--asc-text);
@@ -1904,7 +1924,7 @@
 
   .tab.asc-tab-details.active {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "abil abil abil"
