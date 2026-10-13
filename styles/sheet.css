@@ -2311,94 +2311,81 @@
 
   /* ---------------------------------- */
   /*  Ausgerüstet / Eingestimmt         */
-  /*  (in allen Themes gleich deutlich) */
+  /*  Farben kommen aus dem Theme       */
   /* ---------------------------------- */
 
-  .asc-item-img-wrap { position: relative; display: inline-flex; width: 34px; height: 34px; }
-  .asc-inv-row .asc-item-img-wrap .asc-item-img { width: 34px; height: 34px; }
+  --asc-equip-on: var(--asc-accent, #b8862f);
+  --asc-equip-on-text: var(--asc-accent-contrast, #fff);
+  --asc-equip-ring: var(--asc-gold, #c9a14a);
+  --asc-equip-glow: var(--asc-glow, color-mix(in srgb, var(--asc-accent, #b8862f) 70%, transparent));
+  --asc-equip-off: var(--asc-gold-dark, #7a6340);
 
-  .asc-equip-badge {
-    position: absolute;
-    right: -6px;
-    bottom: -5px;
-    width: 18px;
-    height: 18px;
+  /* Gemeinsamer Look: Medaillon mit Theme-Rahmen */
+  .asc-equip-badge,
+  .tab-body > .tab .item-controls .item-control.item-action:is([data-action="equip"], [data-action="attune"], [data-action="prepare"]) {
+    flex: none;
+    align-self: center;
+    width: 20px;
+    height: 20px;
     padding: 0;
     margin: 0;
     display: grid;
     place-items: center;
     border-radius: 50%;
     font-size: 9px;
-    color: #9b917f;
-    background: #1a1612;
-    border: 1px dashed #6b6256;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 60%);
-    opacity: .75;
+    line-height: 1;
+    color: var(--asc-equip-off);
+    background: color-mix(in srgb, var(--asc-equip-off) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--asc-equip-off) 55%, transparent);
+    box-shadow: none;
+    opacity: .7;
     cursor: var(--cursor-pointer, pointer);
+    transition: opacity .15s, box-shadow .15s, background .15s;
     i { margin: 0; }
-    &:hover { opacity: 1; border-style: solid; color: #e6dccb; box-shadow: none; }
+    &:hover { opacity: 1; border-color: var(--asc-equip-ring); color: var(--asc-equip-ring); }
     &.active {
       opacity: 1;
-      color: #ffffff;
-      background: radial-gradient(circle at 40% 35%, #5fd47a, #1f7a3c);
-      border: 1px solid #c7f5d2;
-      box-shadow: 0 0 0 1px rgb(0 0 0 / 60%), 0 0 8px rgb(80 220 120 / 75%);
+      color: var(--asc-equip-on-text);
+      background: radial-gradient(circle at 38% 32%, color-mix(in srgb, var(--asc-equip-on) 55%, #fff), var(--asc-equip-on) 60%, color-mix(in srgb, var(--asc-equip-on) 60%, #000));
+      border: 1px solid var(--asc-equip-ring);
+      box-shadow: 0 0 0 1px rgb(0 0 0 / 45%), 0 0 7px var(--asc-equip-glow);
     }
   }
-  .asc-equip-badge--inline {
-    position: static;
-    width: 22px;
-    height: 22px;
-    font-size: 11px;
+
+  /* Übersicht: Abzeichen sitzt in der Ecke des Bildes */
+  .asc-item-img-wrap { position: relative; display: inline-flex; width: 34px; height: 34px; }
+  .asc-inv-row .asc-item-img-wrap .asc-item-img { width: 34px; height: 34px; }
+  .asc-item-img-wrap .asc-equip-badge {
+    position: absolute;
+    right: -5px;
+    bottom: -4px;
+    width: 17px;
+    height: 17px;
+    font-size: 8px;
+    background-color: var(--asc-panel-dark, #1a1612);
+  }
+  .asc-item-img-wrap .asc-equip-badge:not(.active) { opacity: .85; color: var(--asc-gold, #c9a14a); }
+
+  /* Kampf-Tab: in der letzten Spalte, mittig */
+  .asc-equip-badge--inline { position: static; justify-self: center; width: 22px; height: 22px; font-size: 10px; }
+
+  /* Eingestimmt (Sonne) in Gold, Vorbereitet im Akzent */
+  .tab-body > .tab .item-controls .item-control.item-action[data-action="attune"].active {
+    --asc-equip-on: var(--asc-gold, #d9a632);
+    --asc-equip-on-text: var(--asc-dark-bg, #1a1206);
   }
 
-  .asc-item-row.is-equipped {
-    background: linear-gradient(to right, rgb(80 200 110 / 18%), transparent 60%);
-    box-shadow: inset 3px 0 0 #3fb85f;
+  /* Ausgerüstete Zeilen: Akzentkante links und leichter Schimmer */
+  .asc-item-row.is-equipped,
+  .tab-body > .tab .item-list .item:has(.item-control[data-action="equip"].active) {
+    background-image: linear-gradient(to right, color-mix(in srgb, var(--asc-equip-on) 22%, transparent), transparent 55%);
+    box-shadow: inset 3px 0 0 var(--asc-equip-on);
   }
   .asc-combat-row.unequipped { opacity: .55; }
-  .asc-attuned { font-size: 10px; color: #f2b632; filter: drop-shadow(0 0 3px rgb(242 182 50 / 70%)); }
+  .asc-attuned { font-size: 10px; color: var(--asc-gold, #f2b632); }
 
-  /* Original-Inventar des Systems: Ausrüsten/Einstimmen/Vorbereiten deutlich hervorheben */
-  .tab-body > .tab .item-control.item-action[data-action="equip"],
-  .tab-body > .tab .item-control.item-action[data-action="attune"],
-  .tab-body > .tab .item-control.item-action[data-action="prepare"] {
-    width: 22px;
-    height: 22px;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 11px;
-    color: #9b917f;
-    border: 1px dashed #6b6256;
-    background: rgb(0 0 0 / 15%);
-    opacity: .8;
-    &:hover { opacity: 1; border-style: solid; }
-  }
-  .tab-body > .tab .item-control.item-action[data-action="equip"].active {
-    color: #fff;
-    opacity: 1;
-    background: radial-gradient(circle at 40% 35%, #5fd47a, #1f7a3c);
-    border: 1px solid #c7f5d2;
-    box-shadow: 0 0 8px rgb(80 220 120 / 70%);
-  }
-  .tab-body > .tab .item-control.item-action[data-action="attune"].active {
-    color: #fff;
-    opacity: 1;
-    background: radial-gradient(circle at 40% 35%, #ffd76a, #b07c12);
-    border: 1px solid #fff0c0;
-    box-shadow: 0 0 8px rgb(242 182 50 / 70%);
-  }
-  .tab-body > .tab .item-control.item-action[data-action="prepare"].active {
-    color: #fff;
-    opacity: 1;
-    background: radial-gradient(circle at 40% 35%, #8fb8ff, #2f5fb8);
-    border: 1px solid #d8e6ff;
-    box-shadow: 0 0 8px rgb(110 160 255 / 70%);
-  }
-  .tab-body > .tab .item-list .item:has(.item-control[data-action="equip"].active) {
-    background: linear-gradient(to right, rgb(80 200 110 / 18%), transparent 60%);
-    box-shadow: inset 3px 0 0 #3fb85f;
-  }
+  /* System-Inventar: Platz für das Abzeichen in der Steuerspalte */
+  .tab-body > .tab .items-section .item .item-controls { align-items: center; }
 
   /* ---------------------------------- */
   /*  Bearbeitungsmodus                 */
