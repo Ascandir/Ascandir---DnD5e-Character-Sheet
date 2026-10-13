@@ -1,7 +1,7 @@
 import { MODULE_ID, SETTINGS } from "./constants.mjs";
 import { createSheetClass } from "./sheet.mjs";
 import {
-  CLIENT_THEME_CHOICES, THEME_CHOICES, THEMES, getActiveTheme, refreshOpenSheets, registerBuiltinThemes, registerTheme
+  CLIENT_THEME_CHOICES, THEME_CHOICES, THEMES, getActiveTheme, localizeThemeChoices, refreshOpenSheets, registerBuiltinThemes, registerTheme
 } from "./themes.mjs";
 
 Hooks.once("init", () => {
@@ -35,6 +35,18 @@ Hooks.once("init", () => {
     getActiveTheme,
     refreshOpenSheets
   };
+});
+
+/* -------------------------------------------- */
+
+// Themenamen übersetzen, sobald Foundrys Sprache geladen ist.
+Hooks.once("i18nInit", () => {
+  if ( game.system.id !== "dnd5e" ) return;
+  const SheetClass = game.modules.get(MODULE_ID).api?.sheetClass;
+  const copies = Object.values(CONFIG.Actor.sheetClasses?.character ?? {})
+    .filter(entry => entry.cls === SheetClass)
+    .map(entry => entry.themes);
+  localizeThemeChoices(...copies);
 });
 
 /* -------------------------------------------- */

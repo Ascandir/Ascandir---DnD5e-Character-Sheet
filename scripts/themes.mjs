@@ -66,8 +66,8 @@ export function registerTheme(theme) {
   }
   const entry = { base: "light", ...theme };
   THEMES.set(entry.id, entry);
-  THEME_CHOICES[entry.id] = entry.label;
-  CLIENT_THEME_CHOICES[entry.id] = entry.label;
+  THEME_CHOICES[entry.id] = _localize(entry.label);
+  CLIENT_THEME_CHOICES[entry.id] = _localize(entry.label);
   if ( entry.stylesheet ) _injectStylesheet(entry);
   return entry;
 }
@@ -158,6 +158,29 @@ export function refreshOpenSheets() {
   for ( const app of foundry.applications.instances.values() ) {
     if ( app.element?.classList.contains("ascandir-sheet") ) applyTheme(app.element, getActiveTheme(app.document));
   }
+}
+
+/* -------------------------------------------- */
+
+/**
+ * Themenamen in der Sprache aus Foundrys Einstellungen übersetzen.
+ * Beim „init" sind die Übersetzungen noch nicht geladen, darum wird das bei „i18nInit" nachgeholt.
+ * Die Auswahllisten werden direkt geändert, damit Einstellungen und „Bogen konfigurieren" die Namen übernehmen.
+ * @param {...Record<string, string>} [extra]  Weitere Auswahllisten (z. B. Kopien in CONFIG)
+ */
+export function localizeThemeChoices(...extra) {
+  for ( const theme of THEMES.values() ) {
+    const label = _localize(theme.label);
+    THEME_CHOICES[theme.id] = label;
+    CLIENT_THEME_CHOICES[theme.id] = label;
+    for ( const choices of extra ) if ( choices && (theme.id in choices) ) choices[theme.id] = label;
+  }
+  CLIENT_THEME_CHOICES[""] = _localize("ASCSHEET.Settings.ThemeWorldDefault");
+}
+
+function _localize(key) {
+  if ( !key || !game.i18n?.translations || !Object.keys(game.i18n.translations).length ) return key;
+  return game.i18n.localize(key);
 }
 
 /* -------------------------------------------- */
