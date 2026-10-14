@@ -35,9 +35,9 @@ Im selben Fenster lässt sich unter **Theme** das Aussehen wählen.
 - **Kampf-Tab**: alle Aktionen nach Aktion/Bonusaktion/Reaktion, Todesrettungswürfe, Zustände.
 - **Charakter einrichten**: Bei leeren Bögen Buttons für Klasse, Spezies und Hintergrund
   (Kompendium-Browser + Stufenaufstieg des Systems).
-- **Bearbeiten nur mit Freigabe**: Der SL hat im Kopf des Bogens einen Schloss-Button, mit dem er den
-  Bearbeitungsmodus für die Spieler dieses Charakters freigibt oder sperrt. Würfeln, TP, Gegenstände
-  benutzen, Geld usw. funktionieren immer.
+- **Bearbeiten für Spieler**: Standardmäßig dürfen Spieler ihre Charaktere bearbeiten. Der SL kann das in den
+  Moduleinstellungen sperren („Bearbeitungsmodus für Spieler“ → Gesperrt). Dann erscheint im Kopf des Bogens ein
+  Schloss-Button, mit dem der SL einzelne Charaktere wieder freigibt. Würfeln, TP, EP, Gegenstände benutzen usw. geht immer.
 - **Themes/Skins**: „Pergament & Holz“, „Nachtwache“ (Silber/Schiefer), „Blutmond“ (Gotisch, Rot/Gold)
   und „Arkanum“ (Nachtblau, farbige Attributskarten), dazu je ein Theme für alle 13 Schadenstypen
   (Säure, Wucht, Kälte, Feuer, Energie, Blitz, Nekrotisch, Stich, Gift, Psychisch, Gleißend, Hieb, Schall)
@@ -59,7 +59,7 @@ Weitere Ansichten: [Nachtwache-Theme](docs/nightwatch.jpg) · [Leerer Bogen mit 
 |---|---|---|
 | Standard-Theme (Welt) | Welt | Theme für alle ohne eigene Wahl |
 | Mein Theme | Spieler | persönliches Theme |
-| Bearbeitungsmodus für Spieler | Welt | nur mit SL-Freigabe pro Charakter, oder immer |
+| Bearbeitungsmodus für Spieler | Welt | immer (Standard), oder gesperrt mit SL-Freigabe pro Charakter |
 | Spieler dürfen leere Charaktere einrichten | Welt | erste Klasse/Spezies/Hintergrund ohne Freigabe |
 
 Hinweis: Die Sperre wirkt auf dem Bogen. Besitzer eines Charakters können ihn technisch weiterhin

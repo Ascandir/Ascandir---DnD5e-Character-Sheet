@@ -56,8 +56,8 @@
       "PlayerEdit": {
         "Name": "Edit mode for players",
         "Hint": "Who may use edit mode (ability scores, class levels, configuration, deleting class/species/background)? Rolling, HP and using items always work.",
-        "gm": "Only when unlocked by the GM (per character)",
-        "always": "Players may always edit their characters"
+        "gm": "Locked – only with GM approval (per character)",
+        "always": "Players can always edit their characters (default)"
       },
       "PlayerSetup": {
         "Name": "Players may set up empty characters",

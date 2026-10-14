@@ -56,8 +56,8 @@
       "PlayerEdit": {
         "Name": "Bearbeitungsmodus für Spieler",
         "Hint": "Wer darf den Bearbeitungsmodus (Attributswerte, Klassenstufen, Konfiguration, Löschen von Klasse/Spezies/Hintergrund) nutzen? Würfeln, TP, Gegenstände benutzen usw. geht immer.",
-        "gm": "Nur mit Freigabe des SL (pro Charakter)",
-        "always": "Spieler dürfen ihre Charaktere immer bearbeiten"
+        "gm": "Gesperrt – nur mit Freigabe des SL (pro Charakter)",
+        "always": "Spieler dürfen ihre Charaktere immer bearbeiten (Standard)"
       },
       "PlayerSetup": {
         "Name": "Spieler dürfen leere Charaktere einrichten",

@@ -55,7 +55,7 @@
         {{/each}}
         {{/if}}
 
-        {{#if asc.isGM}}
+        {{#if (and asc.isGM (not asc.playerEditAlways))}}
         <button type="button" class="asc-square asc-gm-unlock {{#if asc.playerEditUnlocked}}active{{/if}}"
                 data-action="ascTogglePlayerEdit"
                 data-tooltip="{{#if asc.playerEditUnlocked}}{{ localize 'ASCSHEET.GM.Lock' }}{{else}}{{ localize 'ASCSHEET.GM.Unlock' }}{{/if}}">

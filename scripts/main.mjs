@@ -81,10 +81,11 @@ function registerSettings() {
     config: true,
     type: String,
     choices: {
-      gm: "ASCSHEET.Settings.PlayerEdit.gm",
-      always: "ASCSHEET.Settings.PlayerEdit.always"
+      always: "ASCSHEET.Settings.PlayerEdit.always",
+      gm: "ASCSHEET.Settings.PlayerEdit.gm"
     },
-    default: "gm",
+    // Standard: freigegeben. Der SL kann es hier sperren und dann pro Charakter freigeben.
+    default: "always",
     onChange: () => rerenderSheets()
   });
 
