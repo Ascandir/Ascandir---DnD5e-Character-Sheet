@@ -650,7 +650,12 @@
       border: 1px solid var(--asc-panel-border);
       border-radius: var(--asc-radius);
       box-shadow: inset 0 0 0 3px var(--asc-panel-color), inset 0 0 0 4px var(--asc-panel-inner-border), inset 0 0 20px rgb(110 70 25 / 30%);
-      padding: 14px 14px 48px;
+      /* Inhalt bleibt innerhalb des gezeichneten Rahmens (Rahmen ~5px + Luft) */
+      padding: 16px 18px 56px !important;
+      min-width: 0;
+      overflow: hidden auto;
+      /* Flex-Tabs des Systems (Merkmale, Biografie ...) nicht zusammenquetschen, sondern scrollen */
+      > * { flex-shrink: 0; min-width: 0; max-width: 100%; }
     }
   }
 
@@ -1980,7 +1985,8 @@
   .tab.asc-tab-details.active {
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto auto auto;
+    /* Letzte Zeile nimmt den Rest auf, damit unter Rettungswürfen/Herkunft keine Lücke entsteht */
+    grid-template-rows: auto auto minmax(min-content, 1fr);
     grid-template-areas:
       "abil abil abil"
       "skills saves origin"
@@ -2105,6 +2111,7 @@
         "skills saves"
         "skills tools"
         "origin traits";
+      grid-template-rows: auto auto minmax(min-content, 1fr) auto;
     }
   }
   @container asc-body (max-width: 620px) {
@@ -2287,8 +2294,21 @@
       border: 1px solid var(--asc-row-border);
       color: var(--asc-text);
       font-family: var(--asc-font-body);
-      &:not(.disabled) { background: var(--asc-accent); color: var(--asc-accent-contrast); border-color: var(--asc-accent); }
+      &.active { background: var(--asc-accent); color: var(--asc-accent-contrast); border-color: var(--asc-accent); }
     }
+
+    /* Effekte: Zustandsraster bleibt in der Breite */
+    .effects-element .conditions-list { margin: 0; }
+
+    /* Biografie: Spalten dürfen schrumpfen statt über den Rand zu laufen */
+    &[data-tab="biography"] {
+      > .top { margin-bottom: .75rem; padding-left: 0; flex-wrap: wrap; gap: .5rem 1rem; }
+      > .middle > * { min-width: 0; }
+      .characteristics { max-width: 100%; }
+    }
+
+    /* Merkmale: Klassen-Karten nicht an den oberen Rand kleben */
+    &.features .classes.pills-lg { margin: 4px 0 0; }
 
     /* Biografie */
     .characteristics input, input[type="text"]:not(.uninput, search input), select, textarea {
