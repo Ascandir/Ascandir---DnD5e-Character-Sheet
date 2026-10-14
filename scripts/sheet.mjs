@@ -753,6 +753,9 @@ export function createSheetClass() {
       super._onPosition(position);
       this._ascSaveSize ??= foundry.utils.debounce(({ width, height }) => {
         if ( !Number.isFinite(width) || !Number.isFinite(height) ) return;
+        // Nur speichern, wenn sich die Größe wirklich geändert hat (nicht beim bloßen Verschieben/Neuzeichnen)
+        const saved = game.user.getFlag(MODULE_ID, "sheetSize");
+        if ( (saved?.width === width) && (saved?.height === height) ) return;
         game.user.setFlag(MODULE_ID, "sheetSize", { width, height });
       }, 500);
       this._ascSaveSize(position);
